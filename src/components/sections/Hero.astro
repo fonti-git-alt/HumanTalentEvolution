@@ -1,0 +1,143 @@
+---
+import Button from '../ui/Button.astro';
+---
+
+<section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+  <!-- Background with Image -->
+  <div class="absolute inset-0">
+    <img 
+      src="/images/hero.jpg" 
+      alt="" 
+      class="w-full h-full object-cover opacity-10"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-lighter via-white/95 to-background"></div>
+  </div>
+  
+  <!-- Decorative Elements -->
+  <div class="absolute top-20 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-20 left-0 w-72 h-72 bg-accent-gold/10 rounded-full blur-3xl"></div>
+  
+  <div class="container-page relative z-10 py-20">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Content -->
+      <div class="space-y-8">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary font-medium text-sm">
+          <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+          Consultora Estratégica de RRHH
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-text-dark leading-tight text-balance">
+          Tomar mejores decisiones sobre las personas 
+          <span class="gradient-text">transforma los resultados</span>
+        </h1>
+        
+        <p class="text-xl text-text-medium max-w-xl">
+          Valoramos el talento para impulsar desarrollo, sucesión y liderazgo. 
+          Te ayudamos a construir equipos que generan impacto real.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4">
+          <Button href="/contacto" variant="primary" size="lg">
+            Agenda una asesoría estratégica
+          </Button>
+          <Button href="/empresas" variant="secondary" size="lg">
+            Conoce nuestras soluciones
+          </Button>
+        </div>
+      </div>
+      
+      <!-- Visual -->
+      <div class="relative hidden lg:block">
+        <div class="relative w-full aspect-square">
+          <!-- Main Card -->
+          <div class="absolute inset-8 bg-white rounded-3xl shadow-2xl shadow-primary/10 p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+            <div class="space-y-6">
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center">
+                  <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-heading font-semibold text-text-dark">Valoración del Talento</h3>
+                  <p class="text-text-medium text-sm">Decisiones basadas en datos</p>
+                </div>
+              </div>
+              
+              <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-text-medium">Desarrollo</span>
+                  <span class="text-sm font-semibold text-primary">95%</span>
+                </div>
+                <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                  <div class="h-full w-[95%] bg-primary rounded-full"></div>
+                </div>
+              </div>
+              
+              <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-text-medium">Sucesión</span>
+                  <span class="text-sm font-semibold text-accent-gold">87%</span>
+                </div>
+                <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                  <div class="h-full w-[87%] bg-accent-gold rounded-full"></div>
+                </div>
+              </div>
+              
+              <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                  <span class="text-sm text-text-medium">Liderazgo</span>
+                  <span class="text-sm font-semibold text-primary-dark">92%</span>
+                </div>
+                <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                  <div class="h-full w-[92%] bg-primary-dark rounded-full"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Floating Elements -->
+          <div class="absolute top-4 right-4 bg-white rounded-2xl shadow-lg p-4 animate-bounce-slow">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                <svg class="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <span class="text-sm font-medium">Toma de decisiones</span>
+            </div>
+          </div>
+          
+          <div class="absolute bottom-4 left-4 bg-white rounded-2xl shadow-lg p-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-primary-lighter flex items-center justify-center">
+                <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+              <span class="text-sm font-medium">+40% Resultados</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-text-medium" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    </svg>
+  </div>
+</section>
+
+<style>
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .animate-bounce-slow {
+    animation: bounce-slow 3s ease-in-out infinite;
+  }
+</style>

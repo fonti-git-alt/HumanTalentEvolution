@@ -1,0 +1,46 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  icon?: string;
+  href?: string;
+  variant?: 'default' | 'featured' | 'compact';
+  class?: string;
+}
+
+const { 
+  title, 
+  description, 
+  icon, 
+  href, 
+  variant = 'default',
+  class: className = '' 
+} = Astro.props;
+
+const variantClasses = {
+  default: 'card card-hover border border-gray-100',
+  featured: 'card card-hover border-2 border-primary/20 bg-gradient-to-br from-white to-primary-lighter',
+  compact: 'card card-hover border border-gray-100 py-4',
+};
+
+const classes = [variantClasses[variant], className].filter(Boolean).join(' ');
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag href={href} class={classes}>
+  {icon && (
+    <div class="w-12 h-12 rounded-xl bg-primary-lighter flex items-center justify-center mb-4">
+      <img src={icon} alt="" class="w-6 h-6 object-contain" />
+    </div>
+  )}
+  <h3 class="text-xl font-heading font-semibold text-text-dark mb-2">{title}</h3>
+  {description && <p class="text-text-medium">{description}</p>}
+  {href && (
+    <span class="inline-flex items-center mt-4 text-primary font-semibold group">
+      Ver más
+      <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </span>
+  )}
+</Tag>

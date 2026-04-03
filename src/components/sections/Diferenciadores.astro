@@ -1,0 +1,33 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+
+const diferenciadores = [
+  'Enfoque estratégico que conecta RRHH con resultados del negocio',
+  'Soluciones personalizadas según la realidad de tu organización',
+  'Experiencia comprobada con metodologías probadas e innovación constante',
+  'Plataforma digital y herramientas para seguimiento efectivo',
+  'Acompañamiento cercano durante todo el proceso',
+];
+---
+
+<section class="py-24 bg-primary-lighter">
+  <div class="container-page">
+    <SectionTitle 
+      title="¿Por qué Human Talent Evolution?"
+      subtitle="No somos una consultancy cualquiera. Somos tu aliado estratégico."
+    />
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
+      {diferenciadores.map((item) => (
+        <div class="flex items-start gap-4 p-6 bg-white rounded-xl">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center mt-0.5">
+            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <p class="text-text-dark font-medium">{item}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

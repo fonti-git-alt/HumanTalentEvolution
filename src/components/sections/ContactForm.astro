@@ -1,0 +1,144 @@
+---
+import Input from '../ui/Input.astro';
+import Textarea from '../ui/Textarea.astro';
+import Button from '../ui/Button.astro';
+---
+
+<form id="contact-form" class="space-y-6 max-w-xl mx-auto" novalidate>
+  <div class="grid md:grid-cols-2 gap-6">
+    <Input 
+      label="Nombre completo" 
+      name="name" 
+      required 
+      placeholder="Tu nombre"
+    />
+    <Input 
+      label="Correo electrónico" 
+      name="email" 
+      type="email"
+      required 
+      placeholder="correo@ejemplo.com"
+    />
+  </div>
+  
+  <Input 
+    label="Empresa" 
+    name="company" 
+    placeholder="Nombre de tu empresa (opcional)"
+  />
+  
+  <Textarea 
+    label="Mensaje" 
+    name="message" 
+    required 
+    placeholder="Cuéntanos en qué podemos ayudarte..."
+    rows={5}
+  />
+  
+  <div class="flex items-start gap-3">
+    <input 
+      type="checkbox" 
+      id="terms" 
+      name="terms" 
+      required
+      class="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary"
+    />
+    <label for="terms" class="text-sm text-text-medium">
+      Acepto la <a href="#" class="text-primary hover:underline">política de privacidad</a> y autorizo el contacto por parte de Human Talent Evolution.
+    </label>
+  </div>
+  
+  <div id="form-messages" class="hidden">
+    <!-- Success/Error messages will appear here -->
+  </div>
+  
+  <Button type="submit" variant="primary" size="lg" class="w-full md:w-auto">
+    Enviar mensaje
+  </Button>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const messagesContainer = document.getElementById('form-messages');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Clear previous messages
+    if (messagesContainer) {
+      messagesContainer.innerHTML = '';
+      messagesContainer.classList.add('hidden');
+    }
+    
+    // Validate form
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    
+    // Collect form data
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    // Show loading state
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Enviando...';
+    submitBtn.disabled = true;
+    
+    try {
+      // NOTE: This is a placeholder for Cloudflare Workers integration
+      // When deploying, implement the Worker endpoint here
+      // 
+      // Example implementation:
+      // const response = await fetch('/api/contact', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(data),
+      // });
+      
+      // Simulate successful submission for demo
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Show success message
+      if (messagesContainer) {
+        messagesContainer.classList.remove('hidden');
+        messagesContainer.innerHTML = `
+          <div class="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <strong>¡Mensaje enviado!</strong>
+            </div>
+            <p class="mt-1 text-sm">Nos pondremos en contacto contigo pronto.</p>
+          </div>
+        `;
+      }
+      
+      // Reset form
+      form.reset();
+      
+    } catch (error) {
+      // Show error message
+      if (messagesContainer) {
+        messagesContainer.classList.remove('hidden');
+        messagesContainer.innerHTML = `
+          <div class="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              <strong>Error al enviar</strong>
+            </div>
+            <p class="mt-1 text-sm">Por favor intenta de nuevo o contáctanos por WhatsApp.</p>
+          </div>
+        `;
+      }
+    } finally {
+      // Restore button
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+</script>

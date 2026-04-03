@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import WhatsAppButton from '../components/layout/WhatsAppButton.astro';
+import Hero from '../components/sections/Hero.astro';
+import Problemas from '../components/sections/Problemas.astro';
+import Diferenciadores from '../components/sections/Diferenciadores.astro';
+import SolucionesPreview from '../components/sections/SolucionesPreview.astro';
+import Autoridad from '../components/sections/Autoridad.astro';
+import CTABanner from '../components/sections/CTABanner.astro';
+---
+
+<BaseLayout title="Inicio" description="Consultora especializada en valoración del talento humano. Impulsamos el crecimiento de las empresas a través de su talento.">
+  <Header />
+  
+  <main>
+    <Hero />
+    <Problemas />
+    <Diferenciadores />
+    <SolucionesPreview />
+    <Autoridad />
+    <CTABanner />
+  </main>
+  
+  <Footer />
+  <WhatsAppButton />
+</BaseLayout>

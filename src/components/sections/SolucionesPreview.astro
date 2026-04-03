@@ -1,0 +1,59 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+import Card from '../ui/Card.astro';
+import Button from '../ui/Button.astro';
+
+const soluciones = [
+  {
+    title: 'Valoración de Potencial',
+    description: 'Identificamos talento clave y preparamos planes de sucesión efectivos.',
+    href: '/empresas#potencial',
+  },
+  {
+    title: 'Desarrollo de Liderazgo',
+    description: 'Medimos y desarrollamos líderes alineados a los objetivos del negocio.',
+    href: '/empresas#liderazgo',
+  },
+  {
+    title: 'Ajustes de Cargo',
+    description: 'Tomamos mejores decisiones en promociones y reestructuraciones.',
+    href: '/empresas#ajustes',
+  },
+  {
+    title: 'Desarrollo Individual',
+    description: 'Planes de crecimiento personalizados para cada colaborador.',
+    href: '/empresas#desarrollo',
+  },
+  {
+    title: 'Talento Joven',
+    description: 'Identificamos y cultivamos al próximo líderes de tu organización.',
+    href: '/empresas#talento-joven',
+  },
+];
+---
+
+<section class="py-24 bg-white" id="soluciones">
+  <div class="container-page">
+    <SectionTitle 
+      title="Soluciones para empresas"
+      subtitle="Cada servicio está diseñado para resolver problemas específicos de talento."
+    />
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+      {soluciones.map((solucion) => (
+        <Card 
+          title={solucion.title}
+          description={solucion.description}
+          href={solucion.href}
+          variant="default"
+        />
+      ))}
+    </div>
+    
+    <div class="text-center mt-12">
+      <Button href="/empresas" variant="secondary">
+        Ver todas las soluciones →
+      </Button>
+    </div>
+  </div>
+</section>

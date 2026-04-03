@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import WhatsAppButton from '../components/layout/WhatsAppButton.astro';
+import Button from '../components/ui/Button.astro';
+
+const pasos = [
+  {
+    numero: '01',
+    title: 'Definición del Objetivo',
+    description: 'Entendemos claramente qué necesitas lograr: ¿desarrollo, sucesión, promoción, identificación de talento?',
+    details: [
+      'Conversamos para entender tu necesidad específica',
+      'Definimos los objetivos de la valoración',
+      'Acordamos el alcance y entregables',
+    ],
+  },
+  {
+    numero: '02',
+    title: 'Análisis del Contexto',
+    description: 'Evaluamos el contexto organizacional y el perfil del cargo o rol para asegurar una valoración relevante.',
+    details: [
+      'Revisamos la estructura y cultura organizacional',
+      'Analizamos las competencias del rol objetivo',
+      'Consideramos factores contextuales relevantes',
+    ],
+  },
+  {
+    numero: '03',
+    title: 'Herramientas de Valoración',
+    description: 'Aplicamos instrumentos científicamente validados y alineados a los objetivos definidos.',
+    details: [
+      'Assessments psicométricos especializados',
+      'Entrevistas estructuradas',
+      'Ejercicios situacionales y de simulación',
+      '360 grados cuando aplique',
+    ],
+  },
+  {
+    numero: '04',
+    title: 'Interpretación de Resultados',
+    description: 'Analizamos los datos gathered con expertise para generar insights significativos y accionables.',
+    details: [
+      'Triangulación de múltiples fuentes de información',
+      'Análisis de patrones y tendencias',
+      'Identificación de fortalezas y áreas de desarrollo',
+    ],
+  },
+  {
+    numero: '05',
+    title: 'Retroalimentación Clara y Accionable',
+    description: 'Comunicamos los resultados de manera clara, confidencial y orientada a la acción.',
+    details: [
+      'Sesión de retroalimentación con el candidato',
+      'Reporte ejecutivo para la organización',
+      'Recomendaciones específicas de desarrollo',
+      'Plan de acción acordado',
+    ],
+  },
+];
+
+const valores = [
+  {
+    title: 'Ética',
+    description: 'Actuamos con integridad y confidencialidad en cada proceso de valoración.',
+    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  },
+  {
+    title: 'Confidencialidad',
+    description: 'La información de cada valoración se maneja con absoluto cuidado y discreción.',
+    icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
+  },
+  {
+    title: 'Estrategia',
+    description: 'Cada valoración está orientada a generar valor estratégico para personas y organizaciones.',
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+  },
+];
+---
+
+<BaseLayout title="Metodología" description="Nuestra metodología de valoración del talento. Un proceso riguroso, ético y orientado a resultados.">
+  <Header />
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 bg-gradient-to-br from-primary-lighter to-white">
+      <div class="container-page">
+        <h1 class="text-4xl md:text-5xl font-heading font-bold text-text-dark mb-4">
+          Metodología de Valoración
+        </h1>
+        <p class="text-xl text-text-medium max-w-2xl">
+          Un proceso riguroso y estructurado para generar insights precisos y accionables sobre el talento.
+        </p>
+      </div>
+    </section>
+    
+    <!-- Intro -->
+    <section class="py-16 bg-white">
+      <div class="container-page">
+        <div class="max-w-3xl mx-auto text-center">
+          <p class="text-lg text-text-medium leading-relaxed">
+            Nuestra metodología combina herramientas científicamente validadas con años de experiencia 
+            práctica en valoración del talento. Cada proceso está diseñado para entregar información 
+            útil, confidencial y estratégica que realmente marque la diferencia en las decisiones 
+            de desarrollo y sucesión.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Pasos -->
+    <section class="py-16 bg-gray-50">
+      <div class="container-page">
+        <div class="space-y-8">
+          {pasos.map((paso) => (
+            <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex flex-col md:flex-row gap-6">
+                <div class="shrink-0">
+                  <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary-dark flex flex-col items-center justify-center text-white">
+                    <span class="text-2xl font-heading font-bold">{paso.numero}</span>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h2 class="text-xl md:text-2xl font-heading font-bold text-text-dark mb-3">
+                    {paso.title}
+                  </h2>
+                  <p class="text-text-medium mb-4">
+                    {paso.description}
+                  </p>
+                  <ul class="grid md:grid-cols-2 gap-2">
+                    {paso.details.map((detail) => (
+                      <li class="flex items-start gap-2 text-sm text-text-medium">
+                        <svg class="w-4 h-4 text-primary mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        {detail}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <!-- Valores -->
+    <section class="py-16 bg-white">
+      <div class="container-page">
+        <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark text-center mb-4">
+          Nuestros Compromisos
+        </h2>
+        <p class="text-text-medium text-center mb-12 max-w-2xl mx-auto">
+          Actuamos bajo principios que garantizan la calidad y ética de cada proceso de valoración.
+        </p>
+        <div class="grid md:grid-cols-3 gap-8">
+          {valores.map((valor) => (
+            <div class="text-center p-6">
+              <div class="w-16 h-16 rounded-full bg-primary-lighter flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={valor.icon} />
+                </svg>
+              </div>
+              <h3 class="text-xl font-heading font-bold text-text-dark mb-2">{valor.title}</h3>
+              <p class="text-text-medium">{valor.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <!-- Diferenciador -->
+    <section class="py-16 bg-gradient-to-br from-primary to-primary-dark">
+      <div class="container-page">
+        <div class="max-w-3xl mx-auto text-center text-white">
+          <h2 class="text-2xl md:text-3xl font-heading font-bold mb-4">
+            ¿Por qué nuestra metodología funciona?
+          </h2>
+          <p class="text-white/80 mb-8 text-lg">
+            Combinamos rigor científico con pragmatismo empresarial. No solo te decimos qué descubrió 
+            la valoración, sino qué puedes hacer al respecto. Cada insight viene acompañado de 
+            recomendaciones prácticas y accionables.
+          </p>
+          <Button href="/contacto" variant="gold" size="lg">
+            Agenda una asesoría
+          </Button>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+  <WhatsAppButton />
+</BaseLayout>

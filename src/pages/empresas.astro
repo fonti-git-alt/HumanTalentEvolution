@@ -1,0 +1,215 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import WhatsAppButton from '../components/layout/WhatsAppButton.astro';
+import SectionTitle from '../components/ui/SectionTitle.astro';
+import Button from '../components/ui/Button.astro';
+
+const servicios = [
+  {
+    id: 'potencial',
+    title: 'Valoración de Potencial para Desarrollo y Sucesión',
+    description: 'Identificamos el talento clave de tu organización y preparamos planes de sucesión estratégicos para garantizar la continuidad del negocio.',
+    paraQueSirve: [
+      'Identificar talento clave en la organización',
+      'Preparar planes de sucesión efectivos',
+      'Tomar decisiones de desarrollo con criterio fundamentado',
+      'Reducir riesgos en transiciones de liderazgo',
+    ],
+    incluye: [
+      'Análisis completo de competencias',
+      'Identificación de potencial de crecimiento',
+      'Retroalimentación estratégica para el candidato',
+      'Recomendaciones de desarrollo personalizadas',
+    ],
+  },
+  {
+    id: 'ajustes',
+    title: 'Valoración para Ajustes o Cambios de Cargo',
+    description: 'Brindamos información objetiva para promociones internas, cambios de rol y reestructuraciones organizacionales.',
+    paraQueSirve: [
+      'Fundamentar promociones internas con datos',
+      'Identificar el mejor fit para cambios de rol',
+      'Apoyar reestructuraciones organizacionales',
+      'Reducir errores costosos en asignación de roles',
+    ],
+    incluye: [
+      'Análisis detallado persona-cargo',
+      'Identificación de brechas de competencias',
+      'Evaluación de Readiness',
+      'Recomendaciones de acción concretas',
+    ],
+  },
+  {
+    id: 'liderazgo',
+    title: 'Valoración de Liderazgo',
+    description: 'Medimos la efectividad del liderazgo en tu organización y desarrollamos líderes alineados a los objetivos del negocio.',
+    paraQueSirve: [
+      'Medir la efectividad del liderazgo actual',
+      'Desarrollar líderes alineados al negocio',
+      'Identificar estilos de liderazgo predominantes',
+      'Mejorar el impacto en equipos de trabajo',
+    ],
+    incluye: [
+      'Evaluación del estilo de liderazgo',
+      'Análisis de impacto en equipos',
+      'Retroalimentación 360 grados',
+      'Plan de desarrollo de liderazgo',
+    ],
+  },
+  {
+    id: 'desarrollo',
+    title: 'Valoración para Desarrollo Individual',
+    description: 'Diseñamos planes de desarrollo personalizados para acompañar el crecimiento profesional de cada talento.',
+    paraQueSirve: [
+      'Diseñar planes de desarrollo a medida',
+      'Acompañar procesos de crecimiento profesional',
+      'Identificar áreas de mejora con precisión',
+      'Maximizar el potencial individual',
+    ],
+    incluye: [
+      'Valoración integral de competencias',
+      'Feedback profesional detallado',
+      'Identificación de fortalezas y áreas de mejora',
+      'Hoja de ruta de desarrollo personalizada',
+    ],
+  },
+  {
+    id: 'talento-joven',
+    title: 'Valoración de Talento Joven / Alto Potencial',
+    description: 'Identificamos y desarrollamos el talento del futuro mediante programas de semillero de liderazgo.',
+    paraQueSirve: [
+      'Identificar capacidades futuras en talento joven',
+      'Diseñar programas de desarrollo temprano',
+      'Crear semilleros de liderazgo',
+      'Retener talento clave desde el inicio',
+    ],
+    incluye: [
+      'Identificación de capacidades futuras',
+      'Evaluación de potencial de crecimiento',
+      'Recomendaciones de desarrollo temprano',
+      'Seguimiento del progreso',
+    ],
+  },
+];
+---
+
+<BaseLayout title="Soluciones para Empresas" description="Valoración del talento humano para empresas. Identificamos, desarrollamos y potenciamos el talento clave de tu organización.">
+  <Header />
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 bg-gradient-to-br from-primary-lighter to-white">
+      <div class="container-page">
+        <h1 class="text-4xl md:text-5xl font-heading font-bold text-text-dark mb-4">
+          Soluciones para Empresas
+        </h1>
+        <p class="text-xl text-text-medium max-w-2xl">
+          Valoramos el talento de tu organización para que puedas tomar decisiones de desarrollo y sucesión con confianza y criterio estratégico.
+        </p>
+      </div>
+    </section>
+    
+    <!-- Intro -->
+    <section class="py-16 bg-white">
+      <div class="container-page">
+        <div class="max-w-3xl mx-auto text-center">
+          <p class="text-lg text-text-medium leading-relaxed">
+            En Human Talent Evolution entendemos que el talento es el activo más valioso de cualquier organización. 
+            Nuestros servicios de valoración están diseñados para proporcionarte información objetiva y accionable 
+            que te permita desarrollar a tu gente y preparar el futuro de tu empresa.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Servicios -->
+    <section class="py-16 bg-gray-50">
+      <div class="container-page">
+        <div class="space-y-16">
+          {servicios.map((servicio, index) => (
+            <div id={servicio.id} class="scroll-mt-24 bg-white rounded-2xl p-8 md:p-12 shadow-sm hover:shadow-lg transition-shadow">
+              <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                  <div class="flex items-center gap-3 mb-4">
+                    <span class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-heading font-bold text-lg">
+                      {index + 1}
+                    </span>
+                    <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark">
+                      {servicio.title}
+                    </h2>
+                  </div>
+                  <p class="text-text-medium text-lg mb-6">
+                    {servicio.description}
+                  </p>
+                  <Button href="/contacto" variant="primary">
+                    Agenda tu valoración
+                  </Button>
+                </div>
+                
+                <div class="space-y-6">
+                  <div>
+                    <h3 class="text-lg font-heading font-semibold text-text-dark mb-3 flex items-center gap-2">
+                      <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      Para qué sirve
+                    </h3>
+                    <ul class="space-y-2">
+                      {servicio.paraQueSirve.map((item) => (
+                        <li class="flex items-start gap-2 text-text-medium">
+                          <svg class="w-5 h-5 text-primary/60 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h3 class="text-lg font-heading font-semibold text-text-dark mb-3 flex items-center gap-2">
+                      <svg class="w-5 h-5 text-accent-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                      </svg>
+                      Qué incluye
+                    </h3>
+                    <ul class="space-y-2">
+                      {servicio.incluye.map((item) => (
+                        <li class="flex items-start gap-2 text-text-medium">
+                          <svg class="w-5 h-5 text-accent-gold/60 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="py-16 bg-primary-lighter">
+      <div class="container-page text-center">
+        <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark mb-4">
+          ¿Listo para conocer el potencial de tu equipo?
+        </h2>
+        <p class="text-text-medium mb-8 max-w-xl mx-auto">
+          Agenda una asesoría personalizada y descubre cómo podemos ayudarte a tomar decisiones más conscientes sobre tu talento.
+        </p>
+        <Button href="/contacto" variant="primary" size="lg">
+          Agenda tu valoración
+        </Button>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+  <WhatsAppButton />
+</BaseLayout>

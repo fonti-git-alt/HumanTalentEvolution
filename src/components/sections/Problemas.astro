@@ -1,0 +1,45 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+
+const problemas = [
+  {
+    title: 'Promociones sin criterios claros',
+    description: 'Las decisiones de ascenso se basan en intuición o antigüedad, no en competencias reales.',
+    icon: '❓',
+  },
+  {
+    title: 'Talento con potencial desaprovechado',
+    description: 'Empleados con capacidades excepcionales que no encuentran cómo crecer en la empresa.',
+    icon: '📉',
+  },
+  {
+    title: 'Líderes mal ubicados',
+    description: 'Managers técnicos sin habilidades de liderazgo que impactan negativamente en sus equipos.',
+    icon: '🎯',
+  },
+  {
+    title: 'Decisiones basadas en intuición',
+    description: 'La falta de datos objetivos lleva a errores costosos en la gestión del talento.',
+    icon: '🎲',
+  },
+];
+---
+
+<section class="py-24 bg-white">
+  <div class="container-page">
+    <SectionTitle 
+      title="¿Te suena familiar?"
+      subtitle="Las empresas crecen, pero el talento no siempre evoluciona al mismo ritmo. Estos problemas son más comunes de lo que imaginas."
+    />
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+      {problemas.map((problema, index) => (
+        <div class="card border-l-4 border-l-primary/30 hover:border-l-primary transition-colors">
+          <div class="text-4xl mb-4">{problema.icon}</div>
+          <h3 class="text-lg font-heading font-semibold text-text-dark mb-2">{problema.title}</h3>
+          <p class="text-text-medium text-sm">{problema.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
