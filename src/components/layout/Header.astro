@@ -1,9 +1,29 @@
 ---
 const navLinks = [
   { href: '/', label: 'Inicio' },
-  { href: '/empresas', label: 'Empresas' },
-  { href: '/personas', label: 'Personas' },
-  { href: '/metodologia', label: 'Metodología' },
+  { 
+    label: 'Soluciones', 
+    children: [
+      { 
+        label: 'Para Empresas', 
+        items: [
+          { href: '/empresas#atraccion-seleccion', label: 'Atracción y Selección de Talentos' },
+          { href: '/empresas#desarrollo-talento', label: 'Desarrollo y Valoración del Talento' },
+          { href: '/empresas#formacion-liderazgo', label: 'Formación y Liderazgo' },
+          { href: '/empresas#bienestar-cultura', label: 'Bienestar y Cultura Organizacional' },
+          { href: '/empresas#salud-psicosocial', label: 'Salud y Gestión de Riesgo Psicosocial' },
+        ]
+      },
+      { 
+        label: 'Para Candidatos', 
+        items: [
+          { href: '/personas', label: 'Impulso Profesional' },
+          { href: '/personas', label: 'Marca Profesional Estratégica' },
+          { href: '/personas', label: 'Salto Profesional' },
+        ]
+      },
+    ]
+  },
   { href: '/quienes-somos', label: 'Nosotros' },
   { href: '/insights', label: 'Insights' },
   { href: '/contacto', label: 'Contacto' },
@@ -26,23 +46,75 @@ const currentPath = Astro.url.pathname;
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden lg:flex items-center gap-8">
+      <div class="hidden lg:flex items-center gap-6">
         {navLinks.map((link) => (
-          <a 
-            href={link.href} 
-            class={`font-medium transition-colors hover:text-primary ${
-              currentPath === link.href ? 'text-primary' : 'text-text-medium'
-            }`}
-          >
-            {link.label}
-          </a>
+          link.children ? (
+            <div class="relative group dropdown">
+              <button 
+                class={`font-medium flex items-center gap-1 py-2 transition-colors hover:text-primary ${
+                  link.children.some(cat => currentPath.includes(cat.label.split(' ').pop()?.toLowerCase() || '')) 
+                    ? 'text-primary' : 'text-text-medium'
+                }`}
+              >
+                {link.label}
+                <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div class="bg-white rounded-xl shadow-xl border border-gray-100 py-3 min-w-64">
+                  {link.children.map(cat => (
+                    <div class="relative group/sub px-4 py-2 hover:bg-gray-50">
+                      <div class="flex items-center justify-between">
+                        <span class={`font-medium text-sm ${currentPath.includes(cat.label.split(' ').pop()?.toLowerCase() || '') ? 'text-primary' : 'text-text-dark'}`}>
+                          {cat.label}
+                        </span>
+                        <svg class="w-4 h-4 text-text-medium -rotate-90 group-hover/sub:rotate-0 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                      <!-- Submenu -->
+                      <div class="absolute left-full top-0 ml-1 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200">
+                        <div class="bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-72 ml-2">
+                          {cat.items.map(item => (
+                            <a 
+                              href={item.href}
+                              class={`block px-4 py-2 text-sm hover:bg-gray-50 transition-colors ${
+                                currentPath === item.href ? 'text-primary bg-primary/5' : 'text-text-medium'
+                              }`}
+                            >
+                              {item.label}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a 
+              href={link.href} 
+              class={`font-medium transition-colors hover:text-primary ${
+                currentPath === link.href ? 'text-primary' : 'text-text-medium'
+              }`}
+            >
+              {link.label}
+            </a>
+          )
         ))}
       </div>
 
       <!-- CTA + Mobile Menu -->
       <div class="flex items-center gap-4">
-        <a href="/contacto" class="btn btn-primary btn-sm hidden sm:inline-flex">
-          Agenda una asesoría
+        <a 
+          href="https://humantalentevolution.psy-tech.net/login"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary btn-sm hidden sm:inline-flex"
+        >
+          Registra tu hoja de vida
         </a>
         
         <!-- Mobile Menu Button -->
@@ -61,7 +133,7 @@ const currentPath = Astro.url.pathname;
 
   <!-- Mobile Menu Overlay -->
   <div id="mobile-menu" class="fixed inset-0 bg-text-dark/95 z-50 hidden lg:hidden">
-    <div class="flex flex-col h-full p-6">
+    <div class="flex flex-col h-full p-6 overflow-y-auto">
       <div class="flex justify-between items-center mb-8">
         <span class="font-heading font-semibold text-white text-lg">Menú</span>
         <button id="mobile-menu-close" class="p-2 text-white hover:text-primary transition-colors">
@@ -71,27 +143,45 @@ const currentPath = Astro.url.pathname;
         </button>
       </div>
       
-      <nav class="flex flex-col gap-6">
+      <nav class="flex flex-col gap-4">
         {navLinks.map((link) => (
-          <a 
-            href={link.href} 
-            class={`text-2xl font-heading font-semibold transition-colors hover:text-primary ${
-              currentPath === link.href ? 'text-primary' : 'text-white'
-            }`}
-          >
-            {link.label}
-          </a>
+          link.children ? (
+            <div class="space-y-3">
+              <span class="text-lg font-heading font-semibold text-white/50">{link.label}</span>
+              {link.children.map(cat => (
+                <div class="pl-4 border-l-2 border-white/10 space-y-2">
+                  <span class="text-base font-medium text-white">{cat.label}</span>
+                  {cat.items.map(item => (
+                    <a 
+                      href={item.href}
+                      class={`block text-base transition-colors hover:text-primary ${
+                        currentPath === item.href ? 'text-primary' : 'text-white/70'
+                      }`}
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <a 
+              href={link.href} 
+              class={`text-2xl font-heading font-semibold transition-colors hover:text-primary ${
+                currentPath === link.href ? 'text-primary' : 'text-white'
+              }`}
+            >
+              {link.label}
+            </a>
+          )
         ))}
-        <a href="/contacto" class="btn btn-primary btn-lg mt-4">
-          Agenda una asesoría
-        </a>
         <a 
           href="https://humantalentevolution.psy-tech.net/login" 
           target="_blank"
-          rel="noopener"
-          class="text-lg text-white/70 hover:text-white transition-colors"
+          rel="noopener noreferrer"
+          class="btn btn-primary btn-lg mt-4"
         >
-          Registra tu hoja de vida →
+          Registra tu hoja de vida
         </a>
       </nav>
     </div>
