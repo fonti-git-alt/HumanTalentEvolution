@@ -3,99 +3,103 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import WhatsAppButton from '../components/layout/WhatsAppButton.astro';
-import SectionTitle from '../components/ui/SectionTitle.astro';
 import Button from '../components/ui/Button.astro';
 
 const servicios = [
   {
-    id: 'potencial',
-    title: 'Valoración de Potencial para Desarrollo y Sucesión',
-    description: 'Identificamos el talento clave de tu organización y preparamos planes de sucesión estratégicos para garantizar la continuidad del negocio.',
-    paraQueSirve: [
-      'Identificar talento clave en la organización',
-      'Preparar planes de sucesión efectivos',
-      'Tomar decisiones de desarrollo con criterio fundamentado',
-      'Reducir riesgos en transiciones de liderazgo',
+    id: 'atraccion-seleccion',
+    title: 'Atracción y Selección de Talentos',
+    tagline: 'Encuentra el talento ideal que tu empresa necesita para crecer.',
+    description: 'Atraemos, evaluamos y conectamos a tu organización con candidatos altamente calificados, asegurando un ajuste real entre sus competencias, el perfil del cargo y la cultura de tu empresa.',
+    queHacemos: [
+      'Búsqueda y evaluación de candidatos para cargos operativos, tácticos y estratégicos',
+      'Externalización del proceso de reclutamiento (RPO) integral',
+      'Reclutamiento para proyectos o temporadas masivas',
+      'Plataforma propia para seguimiento y trazabilidad del proceso',
     ],
-    incluye: [
-      'Análisis completo de competencias',
-      'Identificación de potencial de crecimiento',
-      'Retroalimentación estratégica para el candidato',
-      'Recomendaciones de desarrollo personalizadas',
-    ],
-  },
-  {
-    id: 'ajustes',
-    title: 'Valoración para Ajustes o Cambios de Cargo',
-    description: 'Brindamos información objetiva para promociones internas, cambios de rol y reestructuraciones organizacionales.',
-    paraQueSirve: [
-      'Fundamentar promociones internas con datos',
-      'Identificar el mejor fit para cambios de rol',
-      'Apoyar reestructuraciones organizacionales',
-      'Reducir errores costosos en asignación de roles',
-    ],
-    incluye: [
-      'Análisis detallado persona-cargo',
-      'Identificación de brechas de competencias',
-      'Evaluación de Readiness',
-      'Recomendaciones de acción concretas',
+    beneficios: [
+      'Candidatos cualificados alineados a competencias y cultura organizacional',
+      'Visibilidad y confianza en cada etapa del proceso',
+      'Experiencia ágil y efectiva para el cliente',
+      'Toma de decisiones estratégica basada en datos',
     ],
   },
   {
-    id: 'liderazgo',
-    title: 'Valoración de Liderazgo',
-    description: 'Medimos la efectividad del liderazgo en tu organización y desarrollamos líderes alineados a los objetivos del negocio.',
-    paraQueSirve: [
-      'Medir la efectividad del liderazgo actual',
-      'Desarrollar líderes alineados al negocio',
-      'Identificar estilos de liderazgo predominantes',
-      'Mejorar el impacto en equipos de trabajo',
+    id: 'desarrollo-talento',
+    title: 'Desarrollo y Valoración del Talento',
+    tagline: 'Potencia el desempeño de tu equipo y lleva su talento al siguiente nivel.',
+    description: 'Somos aliados estratégicos en el fortalecimiento de habilidades y la transformación cultural de tu organización. Desarrollamos las competencias clave de tu equipo, facilitando la toma de decisiones para impulsar el talento en función de resultados reales.',
+    queHacemos: [
+      'Diseño de modelo de competencias alineado a cultura y objetivos',
+      'Evaluación de desempeño y competencias (90°, 180°, 360°)',
+      'Identificación de talento y planes de sucesión',
+      'Herramientas digitales para medición y seguimiento ágil',
     ],
-    incluye: [
-      'Evaluación del estilo de liderazgo',
-      'Análisis de impacto en equipos',
-      'Retroalimentación 360 grados',
-      'Plan de desarrollo de liderazgo',
-    ],
-  },
-  {
-    id: 'desarrollo',
-    title: 'Valoración para Desarrollo Individual',
-    description: 'Diseñamos planes de desarrollo personalizados para acompañar el crecimiento profesional de cada talento.',
-    paraQueSirve: [
-      'Diseñar planes de desarrollo a medida',
-      'Acompañar procesos de crecimiento profesional',
-      'Identificar áreas de mejora con precisión',
-      'Maximizar el potencial individual',
-    ],
-    incluye: [
-      'Valoración integral de competencias',
-      'Feedback profesional detallado',
-      'Identificación de fortalezas y áreas de mejora',
-      'Hoja de ruta de desarrollo personalizada',
+    beneficios: [
+      'Cierre de brechas de competencias con planes de acción concretos',
+      'Retención del talento clave mediante planes de carrera',
+      'Decisiones basadas en datos objetivos',
+      'Mayor compromiso y desempeño organizacional',
     ],
   },
   {
-    id: 'talento-joven',
-    title: 'Valoración de Talento Joven / Alto Potencial',
-    description: 'Identificamos y desarrollamos el talento del futuro mediante programas de semillero de liderazgo.',
-    paraQueSirve: [
-      'Identificar capacidades futuras en talento joven',
-      'Diseñar programas de desarrollo temprano',
-      'Crear semilleros de liderazgo',
-      'Retener talento clave desde el inicio',
+    id: 'formacion-liderazgo',
+    title: 'Formación y Liderazgo',
+    tagline: 'Forma líderes que inspiren, guíen y generen resultados.',
+    description: 'Impulsa el crecimiento de tu equipo a través de programas de formación diseñados para desarrollar habilidades clave, incorporar nuevas herramientas y fortalecer el liderazgo en todos los niveles de la organización.',
+    queHacemos: [
+      'Programas de formación y eventos corporativos virtuales y presenciales',
+      'Diseño de planes de formación corporativa alineados al negocio',
+      'Creación de aulas virtuales y escuelas corporativas a la medida',
+      'Metodologías dinámicas y de alto impacto',
     ],
-    incluye: [
-      'Identificación de capacidades futuras',
-      'Evaluación de potencial de crecimiento',
-      'Recomendaciones de desarrollo temprano',
-      'Seguimiento del progreso',
+    beneficios: [
+      'Desarrollo integral de competencias organizacionales',
+      'Cultura de formación continua',
+      'Líderes que generan impacto real en sus equipos',
+      'Adaptación a los retos actuales del entorno empresarial',
+    ],
+  },
+  {
+    id: 'bienestar-cultura',
+    title: 'Bienestar y Cultura Organizacional',
+    tagline: 'Construye una cultura sólida donde las personas y el negocio prosperen.',
+    description: 'Te acompañamos en la creación de entornos laborales positivos, donde el compromiso, la motivación y el sentido de pertenencia impulsan los resultados del negocio.',
+    queHacemos: [
+      'Medición e intervención de clima laboral completo',
+      'Diseño e implementación de programas de cultura y reconocimiento',
+      'Actividades de bienestar corporativo y eventos familiares',
+      'Estrategias de reconocimiento e incentivos',
+    ],
+    beneficios: [
+      'Entornos laborales positivos y productivos',
+      'Mayor compromiso y sentido de pertenencia',
+      'Colaboradores felices y motivados',
+      'Impacto directo en los resultados organizacionales',
+    ],
+  },
+  {
+    id: 'salud-psicosocial',
+    title: 'Salud y Gestión de Riesgo Psicosocial',
+    tagline: 'Cuida el bienestar emocional de tu equipo y fortalece su productividad.',
+    description: 'Acompañamos a tu organización en la gestión integral de la salud mental y los riesgos psicosociales, promoviendo entornos laborales seguros, saludables y sostenibles.',
+    queHacemos: [
+      'Promoción de la salud mental mediante capacitaciones y talleres',
+      'Intervención psicológica para colaboradores (duelo, estrés, ausentismo)',
+      'Asesoría en Seguridad y Salud en el Trabajo (SST)',
+      'Vigilancia epidemiológica y estrategias de afrontamiento',
+    ],
+    beneficios: [
+      'Prevención de riesgos psicosociales',
+      'Entornos laborales seguros y sostenibles',
+      'Mayor productividad y mejor clima laboral',
+      'Cumplimiento normativo en SST',
     ],
   },
 ];
 ---
 
-<BaseLayout title="Soluciones para Empresas" description="Valoración del talento humano para empresas. Identificamos, desarrollamos y potenciamos el talento clave de tu organización.">
+<BaseLayout title="Soluciones para Empresas" description="Soluciones integrales para la gestión del talento humano. Atracción, desarrollo, formación, bienestar y salud organizacional.">
   <Header />
   
   <main>
@@ -106,7 +110,7 @@ const servicios = [
           Soluciones para Empresas
         </h1>
         <p class="text-xl text-text-medium max-w-2xl">
-          Valoramos el talento de tu organización para que puedas tomar decisiones de desarrollo y sucesión con confianza y criterio estratégico.
+          Impulsamos el crecimiento de tu organización a través de soluciones integrales en gestión del talento humano.
         </p>
       </div>
     </section>
@@ -117,8 +121,8 @@ const servicios = [
         <div class="max-w-3xl mx-auto text-center">
           <p class="text-lg text-text-medium leading-relaxed">
             En Human Talent Evolution entendemos que el talento es el activo más valioso de cualquier organización. 
-            Nuestros servicios de valoración están diseñados para proporcionarte información objetiva y accionable 
-            que te permita desarrollar a tu gente y preparar el futuro de tu empresa.
+            Brindamos soluciones innovadoras que se incorporan al ADN de tu empresa, creando estrategias personalizadas 
+            que alinean personas, procesos y cultura.
           </p>
         </div>
       </div>
@@ -140,11 +144,12 @@ const servicios = [
                       {servicio.title}
                     </h2>
                   </div>
+                  <p class="text-primary font-semibold mb-2">{servicio.tagline}</p>
                   <p class="text-text-medium text-lg mb-6">
                     {servicio.description}
                   </p>
                   <Button href="/contacto" variant="primary">
-                    Agenda tu valoración
+                    Solicitar información
                   </Button>
                 </div>
                 
@@ -154,10 +159,10 @@ const servicios = [
                       <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      Para qué sirve
+                      Qué hacemos
                     </h3>
                     <ul class="space-y-2">
-                      {servicio.paraQueSirve.map((item) => (
+                      {servicio.queHacemos.map((item) => (
                         <li class="flex items-start gap-2 text-text-medium">
                           <svg class="w-5 h-5 text-primary/60 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -171,12 +176,12 @@ const servicios = [
                   <div>
                     <h3 class="text-lg font-heading font-semibold text-text-dark mb-3 flex items-center gap-2">
                       <svg class="w-5 h-5 text-accent-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                       </svg>
-                      Qué incluye
+                      Beneficios
                     </h3>
                     <ul class="space-y-2">
-                      {servicio.incluye.map((item) => (
+                      {servicio.beneficios.map((item) => (
                         <li class="flex items-start gap-2 text-text-medium">
                           <svg class="w-5 h-5 text-accent-gold/60 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -198,13 +203,13 @@ const servicios = [
     <section class="py-16 bg-primary-lighter">
       <div class="container-page text-center">
         <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark mb-4">
-          ¿Listo para conocer el potencial de tu equipo?
+          ¿Listo para transformar tu gestión del talento?
         </h2>
         <p class="text-text-medium mb-8 max-w-xl mx-auto">
-          Agenda una asesoría personalizada y descubre cómo podemos ayudarte a tomar decisiones más conscientes sobre tu talento.
+          Contáctanos y descubre cómo podemos ayudarte a construir una organización más fuerte a través de su gente.
         </p>
         <Button href="/contacto" variant="primary" size="lg">
-          Agenda tu valoración
+          Agenda una asesoría
         </Button>
       </div>
     </section>

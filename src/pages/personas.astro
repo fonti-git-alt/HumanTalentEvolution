@@ -5,31 +5,67 @@ import Footer from '../components/layout/Footer.astro';
 import WhatsAppButton from '../components/layout/WhatsAppButton.astro';
 import Button from '../components/ui/Button.astro';
 
-const servicios = [
+const paquetes = [
   {
-    title: 'Valoración de Perfil Profesional',
-    description: 'Conoce tus fortalezas, competencias y áreas de desarrollo para tomar decisiones informadas sobre tu carrera.',
-    icon: 'M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z',
+    id: 'impulso',
+    title: 'Impulso Profesional',
+    tagline: 'Claridad y enfoque para tu carrera',
+    description: 'Ideal si no sabes por dónde empezar.',
+    precio: 'Desde $X',
+    incluye: [
+      'Revisión y ajuste de hoja de vida',
+      'Diagnóstico de perfil profesional',
+      'Sesión de orientación laboral',
+    ],
+    cta: 'Solicitar Impulso Profesional',
   },
   {
-    title: 'Orientación de Carrera',
-    description: 'Definimos juntos el mejor camino para tu desarrollo profesional, alineando tus habilidades con tus aspiraciones.',
-    icon: 'M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7',
+    id: 'marca',
+    title: 'Marca Profesional Estratégica',
+    tagline: 'Tu perfil alineado a lo que el mercado busca',
+    description: 'Ideal para quienes buscan un cambio laboral.',
+    precio: 'Desde $X',
+    incluye: [
+      'Hoja de vida estratégica',
+      'Optimización de perfil LinkedIn',
+      'Evaluación psicotécnica',
+      'Feedback profesional detallado',
+    ],
+    cta: 'Solicitar Marca Profesional',
   },
   {
-    title: 'Valoración para Crecimiento Laboral',
-    description: 'Preparate para ascender o cambiar de rol con una evaluación completa de tu readiness y potencial.',
-    icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',
+    id: 'salto',
+    title: 'Salto Profesional',
+    tagline: 'Prepárate para el siguiente nivel',
+    description: 'Ideal para quienes están listos para dar un salto profesional importante.',
+    precio: 'Desde $X',
+    incluye: [
+      'Todo lo anterior',
+      'Preparación para entrevistas',
+      'Construcción de narrativa profesional',
+      'Estrategia de búsqueda laboral',
+    ],
+    cta: 'Solicitar Salto Profesional',
+  },
+];
+
+const situaciones = [
+  {
+    titulo: 'Estoy buscando trabajo',
+    descripcion: 'Te ayudamos a crear una estrategia de búsqueda efectiva y a posicionarte como el candidato ideal.',
   },
   {
-    title: 'Preparación para Roles de Liderazgo',
-    description: 'Desarrolla las competencias necesarias para asumir roles de dirección y gestión de equipos.',
-    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
+    titulo: 'Quiero crecer laboralmente',
+    descripcion: 'Identificamos tus fortalezas y áreas de desarrollo para diseñar tu ruta de crecimiento profesional.',
+  },
+  {
+    titulo: 'Quiero potencializar mi perfil',
+    descripcion: 'Optimizamos tu imagen profesional para que destaces frente a reclutadores y empresas.',
   },
 ];
 ---
 
-<BaseLayout title="Soluciones para Personas" description="Valoración y desarrollo profesional para personas. Descubre tu potencial y avanza en tu carrera con criterio.">
+<BaseLayout title="Soluciones para Candidatos" description="Asesoramiento profesional para tu carrera. Te ayudamos a construir una estrategia clara y alcanzar tus objetivos laborales.">
   <Header />
   
   <main>
@@ -37,10 +73,11 @@ const servicios = [
     <section class="pt-32 pb-16 bg-gradient-to-br from-primary-lighter to-white">
       <div class="container-page">
         <h1 class="text-4xl md:text-5xl font-heading font-bold text-text-dark mb-4">
-          Soluciones para Personas
+          Para Candidatos
         </h1>
         <p class="text-xl text-text-medium max-w-2xl">
-          Valoramos tu perfil profesional para que puedas tomar decisiones conscientes sobre tu carrera y desarrollo.
+          Asesoramiento profesional a través de herramientas y orientación personalizada. 
+          Te ayudamos a construir una estrategia profesional clara, segura y alineada a tus objetivos.
         </p>
       </div>
     </section>
@@ -50,82 +87,79 @@ const servicios = [
       <div class="container-page">
         <div class="max-w-3xl mx-auto text-center">
           <p class="text-lg text-text-medium leading-relaxed">
-            Sabemos que el desarrollo profesional es un camino personal y único. En Human Talent Evolution 
-            te acompañamos a descubrir tu potencial, entender tus fortalezas y diseñar una estrategia 
-            clara para alcanzar tus metas laborales.
+            ¿Por dónde empiezas? ¿Cómo destacas? ¿Qué camino tomar? 
+            Мы ayudarte a responder estas preguntas y más, con un acompañamiento personalizado 
+            que se adapta a tu situación y tus metas.
           </p>
         </div>
       </div>
     </section>
     
-    <!-- Servicios -->
-    <section class="py-16 bg-gray-50">
+    <!-- Situaciones -->
+    <section class="py-16 bg-primary-lighter">
       <div class="container-page">
-        <div class="grid md:grid-cols-2 gap-8">
-          {servicios.map((servicio) => (
-            <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
-              <div class="w-14 h-14 rounded-xl bg-primary-lighter flex items-center justify-center mb-6">
-                <svg class="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={servicio.icon} />
+        <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark text-center mb-12">
+          ¿Cuál es tu situación?
+        </h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          {situaciones.map((situacion) => (
+            <div class="bg-white rounded-2xl p-8 text-center hover:shadow-lg transition-shadow">
+              <div class="w-14 h-14 rounded-xl bg-primary flex items-center justify-center mx-auto mb-4">
+                <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h2 class="text-xl font-heading font-bold text-text-dark mb-3">
-                {servicio.title}
-              </h2>
-              <p class="text-text-medium mb-6">
-                {servicio.description}
-              </p>
-              <Button href="/contacto" variant="ghost">
-                Solicitar información
-              </Button>
+              <h3 class="text-xl font-heading font-bold text-text-dark mb-3">{situacion.titulo}</h3>
+              <p class="text-text-medium">{situacion.descripcion}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
     
-    <!-- Beneficios -->
+    <!-- Paquetes -->
     <section class="py-16 bg-white">
       <div class="container-page">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark text-center mb-12">
-            ¿Por qué valorarte con nosotros?
+        <div class="text-center mb-12">
+          <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark mb-4">
+            Conoce nuestros paquetes de acompañamiento
           </h2>
-          <div class="grid md:grid-cols-3 gap-8">
-            <div class="text-center">
-              <div class="w-16 h-16 rounded-full bg-primary-lighter flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
+          <p class="text-text-medium max-w-2xl mx-auto">
+            Programas diseñados para diferentes etapas de tu desarrollo profesional.
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          {paquetes.map((paquete, index) => (
+            <div class={`bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow border-2 ${index === 1 ? 'border-primary' : 'border-transparent'}`}>
+              {index === 1 && (
+                <span class="inline-block bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">
+                  Más popular
+                </span>
+              )}
+              <h3 class="text-2xl font-heading font-bold text-text-dark mb-2">{paquete.title}</h3>
+              <p class="text-primary font-semibold mb-2">{paquete.tagline}</p>
+              <p class="text-text-medium text-sm mb-6">{paquete.description}</p>
+              
+              <div class="border-t border-gray-100 pt-6 mb-6">
+                <h4 class="font-semibold text-text-dark mb-4">Incluye:</h4>
+                <ul class="space-y-3">
+                  {paquete.incluye.map((item) => (
+                    <li class="flex items-start gap-3 text-text-medium text-sm">
+                      <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 class="font-heading font-semibold text-text-dark mb-2">Confidencialidad</h3>
-              <p class="text-text-medium text-sm">
-                Tu información es tratada con absoluta confidencialidad y ética profesional.
-              </p>
+              
+              <Button href="/contacto" variant={index === 1 ? 'primary' : 'secondary'} class="w-full">
+                {paquete.cta}
+              </Button>
             </div>
-            <div class="text-center">
-              <div class="w-16 h-16 rounded-full bg-primary-lighter flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              </div>
-              <h3 class="font-heading font-semibold text-text-dark mb-2">Perspectiva Experta</h3>
-              <p class="text-text-medium text-sm">
-                Más de 15 años de experiencia en valoración del talento organizacional.
-              </p>
-            </div>
-            <div class="text-center">
-              <div class="w-16 h-16 rounded-full bg-primary-lighter flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                </svg>
-              </div>
-              <h3 class="font-heading font-semibold text-text-dark mb-2">Plan de Acción</h3>
-              <p class="text-text-medium text-sm">
-                Recibirás recomendaciones concretas y una hoja de ruta para tu desarrollo.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
@@ -134,13 +168,13 @@ const servicios = [
     <section class="py-16 bg-gradient-to-br from-primary to-primary-dark">
       <div class="container-page text-center">
         <h2 class="text-2xl md:text-3xl font-heading font-bold text-white mb-4">
-          ¿Listo para conocer tu verdadero potencial?
+          ¿Listo para dar el siguiente paso en tu carrera?
         </h2>
         <p class="text-white/80 mb-8 max-w-xl mx-auto">
-          Agenda una valoración personalizada y da el primer paso hacia tu desarrollo profesional.
+          Agenda una asesoría gratuita y descubre cómo podemos ayudarte a lograr el trabajo que mereces.
         </p>
         <Button href="/contacto" variant="gold" size="lg">
-          Agenda tu valoración personal
+          Agenda tu asesoría gratuita
         </Button>
       </div>
     </section>

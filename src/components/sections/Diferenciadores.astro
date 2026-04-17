@@ -2,11 +2,30 @@
 import SectionTitle from '../ui/SectionTitle.astro';
 
 const diferenciadores = [
-  'Enfoque estratégico que conecta RRHH con resultados del negocio',
-  'Soluciones personalizadas según la realidad de tu organización',
-  'Experiencia comprobada con metodologías probadas e innovación constante',
-  'Plataforma digital y herramientas para seguimiento efectivo',
-  'Acompañamiento cercano durante todo el proceso',
+  {
+    title: 'Impulsamos el crecimiento',
+    description: 'Impulsamos el crecimiento de las empresas a través de su talento humano.',
+  },
+  {
+    title: 'Soluciones innovadoras',
+    description: 'Brindamos soluciones innovadoras a los desafíos organizacionales.',
+  },
+  {
+    title: 'Nos incorporamos al ADN',
+    description: 'Creamos soluciones personalizadas que alinean personas, procesos y cultura.',
+  },
+  {
+    title: 'Innovación y enfoque',
+    description: 'Nos mantenemos actualizados con las últimas tendencias y prácticas del área.',
+  },
+  {
+    title: 'Servicio excepcional',
+    description: 'Sobrepasamos las expectativas de nuestros clientes en cada interacción.',
+  },
+  {
+    title: 'Toma de decisiones',
+    description: 'Ofrecemos soluciones que permiten tomar decisiones informadas e implementar mejores prácticas.',
+  },
 ];
 ---
 
@@ -14,18 +33,19 @@ const diferenciadores = [
   <div class="container-page">
     <SectionTitle 
       title="¿Por qué Human Talent Evolution?"
-      subtitle="No somos una consultancy cualquiera. Somos tu aliado estratégico."
+      subtitle="Tu socio estratégico en gestión del talento."
     />
     
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
       {diferenciadores.map((item) => (
-        <div class="flex items-start gap-4 p-6 bg-white rounded-xl">
-          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center mt-0.5">
-            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+        <div class="flex flex-col p-6 bg-white rounded-xl hover:shadow-lg transition-shadow">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <p class="text-text-dark font-medium">{item}</p>
+          <h3 class="text-lg font-heading font-semibold text-text-dark mb-2">{item.title}</h3>
+          <p class="text-text-medium text-sm">{item.description}</p>
         </div>
       ))}
     </div>

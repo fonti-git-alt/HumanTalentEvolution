@@ -1,21 +1,29 @@
 ---
-const stats = [
-  { number: '10+', label: 'Años de experiencia' },
-  { number: '500+', label: 'Empresas atendidas' },
-  { number: '5,000+', label: 'Valoraciones realizadas' },
-  { number: '98%', label: 'Clientes satisfechos' },
+const clientes = [
+  'Empresa 1',
+  'Empresa 2',
+  'Empresa 3',
+  'Empresa 4',
+  'Empresa 5',
+  'Empresa 6',
 ];
 ---
 
-<section class="py-24 bg-primary">
+<section class="py-24 bg-primary-lighter">
   <div class="container-page">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
-      {stats.map((stat) => (
-        <div class="text-center">
-          <div class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-2">
-            {stat.number}
-          </div>
-          <p class="text-white/80 font-medium">{stat.label}</p>
+    <div class="text-center mb-12">
+      <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark">
+        Empresas que confían en nosotros
+      </h2>
+      <p class="text-text-medium mt-4 max-w-2xl mx-auto">
+        Organizaciones que han transformado su gestión del talento con nuestra ayuda.
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+      {clientes.map((cliente) => (
+        <div class="flex items-center justify-center p-4 bg-white rounded-xl grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100">
+          <span class="text-text-medium font-semibold text-sm text-center">{cliente}</span>
         </div>
       ))}
     </div>
