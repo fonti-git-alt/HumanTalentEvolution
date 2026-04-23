@@ -1,31 +1,89 @@
 ---
 const clientes = [
-  'Empresa 1',
-  'Empresa 2',
-  'Empresa 3',
-  'Empresa 4',
-  'Empresa 5',
-  'Empresa 6',
+  { name: 'TECNOS', initial: 'T' },
+  { name: 'INVER', initial: 'I' },
+  { name: 'CORP', initial: 'C' },
+  { name: 'GRUPO H', initial: 'G' },
+  { name: 'SOLUCIONES', initial: 'S' },
+  { name: 'ALIANZA', initial: 'A' },
+  { name: 'VANGUARD', initial: 'V' },
+  { name: 'PROMOVE', initial: 'P' },
 ];
 ---
 
-<section class="py-24 bg-primary-lighter">
-  <div class="container-page">
-    <div class="text-center mb-12">
+<section class="py-20 bg-primary-lighter overflow-hidden">
+  <div class="container-page mb-10">
+    <div class="text-center">
       <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark">
         Empresas que confían en nosotros
       </h2>
-      <p class="text-text-medium mt-4 max-w-2xl mx-auto">
+      <p class="text-text-medium mt-3 max-w-xl mx-auto">
         Organizaciones que han transformado su gestión del talento con nuestra ayuda.
       </p>
     </div>
+  </div>
+  
+  <!-- Carousel container -->
+  <div class="relative group">
+    <!-- Gradiente overlays para efecto smooth en bordes -->
+    <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-primary-lighter to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-primary-lighter to-transparent z-10 pointer-events-none"></div>
     
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
-      {clientes.map((cliente) => (
-        <div class="flex items-center justify-center p-4 bg-white rounded-xl grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100">
-          <span class="text-text-medium font-semibold text-sm text-center">{cliente}</span>
+    <!-- Track con animación infinita -->
+    <div class="flex" id="carousel-track">
+      <!-- Duplicamos los clientes para efecto infinite seamless -->
+      {[...clientes, ...clientes, ...clientes].map((cliente) => (
+        <div class="flex-shrink-0 w-32 md:w-40 mx-4">
+          <div class="bg-white rounded-2xl p-6 md:p-8 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer">
+            <span class="text-2xl md:text-3xl font-heading font-bold text-primary">
+              {cliente.initial}
+            </span>
+          </div>
+          <p class="text-center text-xs text-text-medium mt-2 truncate">{cliente.name}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<script>
+  const track = document.getElementById('carousel-track');
+  
+  let isPaused = false;
+  let animationId: number | null = null;
+  let currentPosition = 0;
+  let speed = 0.4;
+
+  const itemWidth = 144;
+  const totalItems = 24;
+  const oneCyclePosition = itemWidth * totalItems;
+
+  function animate() {
+    if (isPaused || !track) return;
+    
+    currentPosition -= speed;
+    
+    if (currentPosition <= -oneCyclePosition) {
+      currentPosition = 0;
+    }
+    
+    track.style.transform = `translateX(${currentPosition}px)`;
+    animationId = requestAnimationFrame(animate);
+  }
+
+  function pause() {
+    isPaused = true;
+  }
+
+  function resume() {
+    isPaused = false;
+    animationId = requestAnimationFrame(animate);
+  }
+
+  // Iniciar
+  resume();
+
+  // Pausar en hover
+  track?.addEventListener('mouseenter', pause);
+  track?.addEventListener('mouseleave', resume);
+</script>

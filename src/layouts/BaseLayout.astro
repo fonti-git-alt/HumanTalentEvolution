@@ -17,6 +17,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://humantal
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     
+    <!-- Anti-FOUC: Apply theme before render -->
+    <script is:inline>
+      (function() {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+    
     <!-- Primary Meta Tags -->
     <title>{title} | Human Talent Evolution</title>
     <meta name="title" content={`${title} | Human Talent Evolution`} />
