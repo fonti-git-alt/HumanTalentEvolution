@@ -3,6 +3,11 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      screens: {
+        'mobile': {'max': '479px'},
+        'tablet': {'min': '480px', 'max': '1023px'},
+        'desktop': '1024px',
+      },
       colors: {
         primary: {
           DEFAULT: '#8f4c9f',
@@ -16,8 +21,9 @@ export default {
         text: {
           dark: '#1a1a2e',
           medium: '#5a5a6a',
+          light: '#e5e5e5',
         },
-        background: '#fafafa',
+        background: '#f5f3f0',
       },
       fontFamily: {
         heading: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],

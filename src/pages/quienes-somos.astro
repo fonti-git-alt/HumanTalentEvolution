@@ -4,6 +4,79 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import WhatsAppButton from '../components/layout/WhatsAppButton.astro';
 import Button from '../components/ui/Button.astro';
+
+const pasos = [
+  {
+    numero: '01',
+    title: 'Definición del Objetivo',
+    description: 'Entendemos claramente qué necesitas lograr: ¿desarrollo, sucesión, promoción, identificación de talento?',
+    details: [
+      'Conversamos para entender tu necesidad específica',
+      'Definimos los objetivos de la valoración',
+      'Acordamos el alcance y entregables',
+    ],
+  },
+  {
+    numero: '02',
+    title: 'Análisis del Contexto',
+    description: 'Evaluamos el contexto organizacional y el perfil del cargo o rol para asegurar una valoración relevante.',
+    details: [
+      'Revisamos la estructura y cultura organizacional',
+      'Analizamos las competencias del rol objetivo',
+      'Consideramos factores contextuales relevantes',
+    ],
+  },
+  {
+    numero: '03',
+    title: 'Herramientas de Valoración',
+    description: 'Aplicamos instrumentos científicamente validados y alineados a los objetivos definidos.',
+    details: [
+      'Assessments psicométricos especializados',
+      'Entrevistas estructuradas',
+      'Ejercicios situacionales y de simulación',
+      '360 grados cuando aplique',
+    ],
+  },
+  {
+    numero: '04',
+    title: 'Interpretación de Resultados',
+    description: 'Analizamos los datos gathered con expertise para generar insights significativos y accionables.',
+    details: [
+      'Triangulación de múltiples fuentes de información',
+      'Análisis de patrones y tendencias',
+      'Identificación de fortalezas y áreas de desarrollo',
+    ],
+  },
+  {
+    numero: '05',
+    title: 'Retroalimentación Clara y Accionable',
+    description: 'Comunicamos los resultados de manera clara, confidencial y orientada a la acción.',
+    details: [
+      'Sesión de retroalimentación con el candidato',
+      'Reporte ejecutivo para la organización',
+      'Recomendaciones específicas de desarrollo',
+      'Plan de acción acordado',
+    ],
+  },
+];
+
+const valoresMetodologia = [
+  {
+    title: 'Ética',
+    description: 'Actuamos con integridad y confidencialidad en cada proceso de valoración.',
+    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  },
+  {
+    title: 'Confidencialidad',
+    description: 'La información de cada valoración se maneja con absoluto cuidado y discreción.',
+    icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
+  },
+  {
+    title: 'Estrategia',
+    description: 'Cada valoración está orientada a generar valor estratégico para personas y organizaciones.',
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+  },
+];
 ---
 
 <BaseLayout title="Quiénes Somos" description="Conoce a Human Talent Evolution, una consultora especializada en valoración del talento humano con más de 15 años de experiencia.">
@@ -13,37 +86,170 @@ import Button from '../components/ui/Button.astro';
     <!-- Hero Section -->
     <section class="pt-32 pb-16 bg-gradient-to-br from-primary-lighter to-white">
       <div class="container-page">
-        <h1 class="text-4xl md:text-5xl font-heading font-bold text-text-dark mb-4">
-          Quiénes Somos
-        </h1>
-        <p class="text-xl text-text-medium max-w-2xl">
-          Consultora especializada en valoración del talento humano para tomar decisiones más conscientes y estratégicas.
-        </p>
+        <div class="max-w-3xl mx-auto text-center">
+          <h1 class="text-4xl md:text-5xl font-heading font-bold text-text-dark mb-4">
+            Quiénes Somos
+          </h1>
+          <p class="text-xl text-text-medium">
+            Consultora especializada en valoración del talento humano para tomar decisiones más conscientes y estratégicas.
+          </p>
+        </div>
       </div>
     </section>
     
     <!-- Historia -->
+    <section class="py-24 bg-white">
+      <div class="container-page">
+        <div class="max-w-4xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-16">
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-text-dark mb-6">Misión</h2>
+              <p class="text-text-medium leading-relaxed text-lg">
+                Brindamos soluciones innovadoras a las necesidades de nuestros clientes en la gestión del factor humano, atrayendo, desarrollando, evaluando y manteniendo motivado a sus talentos.
+              </p>
+            </div>
+            <div>
+              <h2 class="text-2xl font-heading font-bold text-text-dark mb-6">Visión</h2>
+              <p class="text-text-medium leading-relaxed text-lg">
+                Seremos reconocida como la compañía líder en la transformación y gestión del talento en las organizaciones.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Valores -->
+    <section class="py-24 bg-gray-50">
+      <div class="container-page">
+        <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark text-center mb-16">
+          Nuestros Valores
+        </h2>
+        <div class="grid md:grid-cols-3 gap-10 max-w-4xl mx-auto">
+          <div class="bg-white rounded-2xl p-10 text-center">
+            <div class="w-16 h-16 rounded-full bg-primary-lighter flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-text-dark mb-4">Servicio Inigualable</h3>
+            <p class="text-text-medium text-base">
+              Comprendemos a fondo las necesidades y desafíos específicos de nuestros clientes. Sobrepasamos las expectativas ofreciendo soluciones personalizadas y apoyo continuo.
+            </p>
+          </div>
+          <div class="bg-white rounded-2xl p-10 text-center">
+            <div class="w-16 h-16 rounded-full bg-primary-lighter flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-text-dark mb-4">Compromiso Apasionado</h3>
+            <p class="text-text-medium text-base">
+              Con genuina pasión ayudamos a las organizaciones a maximizar el potencial de su talento humano. Nos enfocamos en comprender, apoyar e impulsar su éxito y crecimiento.
+            </p>
+          </div>
+          <div class="bg-white rounded-2xl p-10 text-center">
+            <div class="w-16 h-16 rounded-full bg-primary-lighter flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-text-dark mb-4">Actitud Ganadora</h3>
+            <p class="text-text-medium text-base">
+              Somos positivos, determinados y proactivos hacia el logro de resultados exitosos. Tenemos mentalidad de superación y perseverancia para alcanzar metas ambiciosas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Metodología -->
+    <section class="py-24 bg-gray-50">
+      <div class="container-page">
+        <div class="text-center mb-16">
+          <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark mb-6">
+            Nuestra Metodología
+          </h2>
+          <p class="text-text-medium max-w-2xl mx-auto text-lg">
+            Un proceso riguroso y estructurado para generar insights precisos y accionables sobre el talento.
+          </p>
+        </div>
+        <div class="space-y-8 max-w-4xl mx-auto">
+          {pasos.map((paso) => (
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex flex-col md:flex-row gap-4 md:gap-6">
+                <div class="shrink-0">
+                  <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-white">
+                    <span class="text-lg font-heading font-bold">{paso.numero}</span>
+                  </div>
+                </div>
+                <div class="flex-1">
+                  <h3 class="text-lg md:text-xl font-heading font-bold text-text-dark mb-2">
+                    {paso.title}
+                  </h3>
+                  <p class="text-text-medium mb-3">
+                    {paso.description}
+                  </p>
+                  <ul class="grid md:grid-cols-2 gap-2">
+                    {paso.details.map((detail) => (
+                      <li class="flex items-start gap-2 text-sm text-text-medium">
+                        <svg class="w-4 h-4 text-primary mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        {detail}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <!-- Valores metodológicos -->
     <section class="py-16 bg-white">
       <div class="container-page">
         <div class="max-w-4xl mx-auto">
-          <div class="prose prose-lg mx-auto">
-            <p class="text-lg text-text-medium leading-relaxed mb-6">
-              Human Talent Evolution nació de una convicción profunda: las organizaciones son mejores 
-              cuando comprenden verdaderamente a su gente. Somos una consultora especializada en 
-              <strong>valoración del talento</strong> que ayuda a empresas y profesionales a tomar 
-              decisiones más conscientes, fundamentadas y estratégicas.
-            </p>
-            <p class="text-lg text-text-medium leading-relaxed mb-6">
-              No creemos en diagnósticos genéricos ni en soluciones de cajón. Cada proceso de valoración 
-              es diseñado para responder a las necesidades específicas de cada cliente, combinando 
-              rigor científico con un enfoque práctico y orientado a resultados.
-            </p>
-            <p class="text-lg text-text-medium leading-relaxed">
-              Nuestra misión es simple: ayudarte a entender el talento para poder desarrollarlo, 
-              retenerlo y potenciarlo. Porque cuando el talento crece, las personas florecen y las 
-              organizaciones prosperan.
-            </p>
+          <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark text-center mb-4">
+            Nuestros Compromisos
+          </h2>
+          <p class="text-text-medium text-center mb-12 max-w-2xl mx-auto">
+            Actuamos bajo principios que garantizan la calidad y ética de cada proceso de valoración.
+          </p>
+          <div class="grid md:grid-cols-3 gap-8">
+            {valoresMetodologia.map((valor) => (
+              <div class="text-center p-6">
+                <div class="w-16 h-16 rounded-full bg-primary-lighter flex items-center justify-center mx-auto mb-4">
+                  <svg class="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={valor.icon} />
+                  </svg>
+                </div>
+                <h3 class="text-xl font-heading font-bold text-text-dark mb-2">{valor.title}</h3>
+                <p class="text-text-medium">{valor.description}</p>
+              </div>
+            ))}
           </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Diferenciador -->
+    <section class="py-16 bg-gradient-to-br from-primary to-primary-dark">
+      <div class="container-page">
+        <div class="max-w-3xl mx-auto text-center text-white">
+          <h2 class="text-2xl md:text-3xl font-heading font-bold mb-4">
+            ¿Por qué nuestra metodología funciona?
+          </h2>
+          <p class="text-white/80 mb-8 text-lg">
+            Combinamos rigor científico con pragmatismo empresarial. No solo te decimos qué descubrió 
+            la valoración, sino qué puedes hacer al respecto. Cada insight viene acompañado de 
+            recomendaciones prácticas y accionables.
+          </p>
+          <Button href="/contacto" variant="gold" size="lg">
+            Agenda una asesoría
+          </Button>
         </div>
       </div>
     </section>
@@ -103,36 +309,78 @@ import Button from '../components/ui/Button.astro';
       </div>
     </section>
     
-    <!-- Líder -->
-    <section class="py-16 bg-white">
+    <!-- Equipo Directivo -->
+    <section class="py-20 bg-white">
       <div class="container-page">
-        <div class="max-w-4xl mx-auto">
-          <div class="bg-gradient-to-br from-primary-lighter to-white rounded-2xl p-8 md:p-12">
-            <div class="flex flex-col md:flex-row gap-8 items-center">
-              <div class="shrink-0">
-                <div class="w-48 h-48 rounded-2xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center">
-                  <svg class="w-24 h-24 text-white/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-16">
+            <span class="text-primary font-semibold text-sm uppercase tracking-wider">Equipo Profesional</span>
+            <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark mt-3">
+              Profesionales Altamente Calificados
+            </h2>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-10 mb-16">
+            <!-- Eva Parra -->
+            <div class="bg-gradient-to-br from-primary-lighter/50 to-white rounded-2xl p-10 shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex flex-col sm:flex-row gap-8 items-center sm:items-start">
+                <img 
+                  src="/images/vieja-web/ABOUTUS.JPG" 
+                  alt="Eva Parra - Fundadora y Líder"
+                  class="w-48 h-48 rounded-2xl object-cover shadow-lg shrink-0"
+                />
+                <div class="text-center sm:text-left">
+                  <span class="text-primary font-semibold text-sm uppercase tracking-wider">Fundadora y Líder</span>
+                  <h3 class="text-xl font-heading font-bold text-text-dark mt-2 mb-3">Eva Parra</h3>
+                  <p class="text-text-medium text-sm mb-4">
+                    Psicóloga con amplia formación en recursos humanos y gestión del talento organizacional.
+                  </p>
+                  <div class="text-sm text-text-medium space-y-1">
+                    <p><strong class="text-text-dark">Formación:</strong> Psicóloga, Máster en Dirección de RRHH</p>
+                    <p><strong class="text-text-dark">Especialización:</strong> Valoración del talento, desarrollo organizacional</p>
+                  </div>
                 </div>
               </div>
-              <div class="text-center md:text-left">
-                <span class="text-primary font-semibold text-sm uppercase tracking-wider">Fundadora y Líder</span>
-                <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark mt-2 mb-4">
-                  Eva Parra
-                </h2>
-                <p class="text-text-medium mb-4">
-                  Psicóloga con amplia formación en recursos humanos y gestión del talento organizacional.
-                </p>
-                <div class="space-y-2 text-sm text-text-medium">
-                  <p><strong class="text-text-dark">Formación:</strong> Psicóloga, Máster en Dirección de Recursos Humanos</p>
-                  <p><strong class="text-text-dark">Especialización:</strong> Valoración del talento, desarrollo organizacional y toma de decisiones estratégicas</p>
+            </div>
+            
+            <!-- Shadia -->
+            <div class="bg-gradient-to-br from-primary-lighter/50 to-white rounded-2xl p-10 shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex flex-col sm:flex-row gap-8 items-center sm:items-start">
+                <img 
+                  src="/images/vieja-web/PORTADA.JPG" 
+                  alt="Shadia - Equipo Profesional"
+                  class="w-48 h-48 rounded-2xl object-cover shadow-lg shrink-0"
+                />
+                <div class="text-center sm:text-left">
+                  <span class="text-primary font-semibold text-sm uppercase tracking-wider">Coordinadora de Operaciones</span>
+                  <h3 class="text-xl font-heading font-bold text-text-dark mt-2 mb-3">Shadia M.</h3>
+                  <p class="text-text-medium text-sm mb-4">
+                    Profesional especializada en gestión operativa y atención al cliente.
+                  </p>
+                  <div class="text-sm text-text-medium space-y-1">
+                    <p><strong class="text-text-dark">Formación:</strong> Administración de Empresas</p>
+                    <p><strong class="text-text-dark">Especialización:</strong> Procesos de selección y reclutamiento</p>
+                  </div>
                 </div>
-                <p class="text-text-medium mt-4 text-sm italic">
-                  "Creo firmemente que las mejores decisiones de talento se toman cuando verdaderamente 
-                  entendemos a las personas. Mi trabajo es facilitar esa comprensión."
-                </p>
               </div>
+            </div>
+          </div>
+          
+          <!-- Video placeholder -->
+          <div class="bg-gray-50 rounded-2xl p-12 text-center">
+            <div class="max-w-2xl mx-auto">
+              <div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center mx-auto mb-6">
+                <svg class="w-12 h-12 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-heading font-bold text-text-dark mb-3">Conoce nuestro equipo</h3>
+              <p class="text-text-medium mb-6">
+                Descubre más sobre nosotros y nuestra filosofía de trabajo.
+              </p>
+              <p class="text-sm text-text-medium bg-white inline-block px-6 py-3 rounded-lg shadow-sm">
+                📎 <strong>Enlace al video</strong> - Por agregar
+              </p>
             </div>
           </div>
         </div>

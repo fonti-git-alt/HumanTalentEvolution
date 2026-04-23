@@ -3,24 +3,24 @@ import SectionTitle from '../ui/SectionTitle.astro';
 
 const problemas = [
   {
-    title: 'Promociones sin criterios claros',
-    description: 'Las decisiones de ascenso se basan en intuición o antigüedad, no en competencias reales.',
-    icon: '❓',
+    title: 'Liderazgo',
+    description: 'Desarrollamos líderes que inspiran, guían y generan resultados.',
+    icon: '/public/images/icons/equipo.png',
   },
   {
-    title: 'Talento con potencial desaprovechado',
-    description: 'Empleados con capacidades excepcionales que no encuentran cómo crecer en la empresa.',
-    icon: '📉',
+    title: 'Capacidad de análisis',
+    description: 'Datos objetivos para tomar decisiones de talento informadas.',
+    icon: '/public/images/icons/apreton-de-manos.png',
   },
   {
-    title: 'Líderes mal ubicados',
-    description: 'Managers técnicos sin habilidades de liderazgo que impactan negativamente en sus equipos.',
-    icon: '🎯',
+    title: 'Orientación a resultados',
+    description: 'Transformamos el talento en impacto medible para el negocio.',
+    icon: '/public/images/icons/exitoso.png',
   },
   {
-    title: 'Decisiones basadas en intuición',
-    description: 'La falta de datos objetivos lleva a errores costosos en la gestión del talento.',
-    icon: '🎲',
+    title: 'Desarrollo continuo',
+    description: 'Potenciamos el crecimiento profesional de tu equipo.',
+    icon: '/public/images/icons/cofundador.png',
   },
 ];
 ---
@@ -34,11 +34,17 @@ const problemas = [
     
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
       {problemas.map((problema, index) => (
-        <div class="card border-l-4 border-l-primary/30 hover:border-l-primary transition-colors">
-          <div class="text-4xl mb-4">{problema.icon}</div>
-          <h3 class="text-lg font-heading font-semibold text-text-dark mb-2">{problema.title}</h3>
-          <p class="text-text-medium text-sm">{problema.description}</p>
-        </div>
+     <div class="card border-l-4 border-l-primary/30 hover:border-l-primary transition-colors">
+       <div class="w-12 h-12 mb-4">
+         <img 
+           src={problema.icon} 
+           alt={problema.title} 
+           class="w-full h-full object-contain"
+         />
+       </div>
+       <h3 class="text-lg font-heading font-semibold text-text-dark mb-2">{problema.title}</h3>
+       <p class="text-text-medium text-sm">{problema.description}</p>
+     </div>
       ))}
     </div>
   </div>

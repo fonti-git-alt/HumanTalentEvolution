@@ -1,9 +1,29 @@
 ---
 const navLinks = [
   { href: '/', label: 'Inicio' },
-  { href: '/empresas', label: 'Empresas' },
-  { href: '/personas', label: 'Personas' },
-  { href: '/metodologia', label: 'Metodología' },
+  { 
+    label: 'Soluciones', 
+    children: [
+      { 
+        label: 'Para Empresas', 
+        items: [
+          { href: '/empresas#atraccion-seleccion', label: 'Atracción y Selección de Talentos' },
+          { href: '/empresas#desarrollo-talento', label: 'Desarrollo y Valoración del Talento' },
+          { href: '/empresas#formacion-liderazgo', label: 'Formación y Liderazgo' },
+          { href: '/empresas#bienestar-cultura', label: 'Bienestar y Cultura Organizacional' },
+          { href: '/empresas#salud-psicosocial', label: 'Salud y Gestión de Riesgo Psicosocial' },
+        ]
+      },
+      { 
+        label: 'Para Candidatos', 
+        items: [
+          { href: '/personas', label: 'Impulso Profesional' },
+          { href: '/personas', label: 'Marca Profesional Estratégica' },
+          { href: '/personas', label: 'Salto Profesional' },
+        ]
+      },
+    ]
+  },
   { href: '/quienes-somos', label: 'Nosotros' },
   { href: '/insights', label: 'Insights' },
   { href: '/contacto', label: 'Contacto' },
@@ -12,112 +32,335 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 glass border-b border-gray-100/50">
-  <nav class="container-page">
-    <div class="flex items-center justify-between h-20">
+<header 
+  id="main-header" 
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out"
+>
+  <!-- Desktop header background -->
+  <div 
+    id="header-bg"
+    class="absolute inset-0 transition-all duration-300 ease-out hidden lg:block"
+  ></div>
+  
+  <!-- Desktop nav content -->
+  <nav id="header-nav" class="container-page relative transition-all duration-300 ease-out hidden lg:block">
+    <div class="flex items-center justify-between h-16 lg:h-20">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-          <span class="text-white font-heading font-bold text-lg">HTE</span>
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-primary flex items-center justify-center">
+          <span class="text-white font-heading font-bold text-sm lg:text-base">HTE</span>
         </div>
-        <span class="font-heading font-semibold text-text-dark hidden sm:block group-hover:text-primary transition-colors">
+        <span class="font-heading font-semibold text-text-dark group-hover:text-primary transition-colors text-sm lg:text-base">
           Human Talent Evolution
         </span>
       </a>
 
-      <!-- Desktop Navigation -->
-      <div class="hidden lg:flex items-center gap-8">
+      <!-- Desktop nav -->
+      <div class="hidden lg:flex items-center gap-4 xl:gap-6">
         {navLinks.map((link) => (
-          <a 
-            href={link.href} 
-            class={`font-medium transition-colors hover:text-primary ${
-              currentPath === link.href ? 'text-primary' : 'text-text-medium'
-            }`}
-          >
-            {link.label}
-          </a>
+          link.children ? (
+            <div class="relative group dropdown">
+              <button 
+                class={`font-medium flex items-center gap-1 py-1 text-sm transition-colors hover:text-primary ${
+                  link.children.some(cat => currentPath.includes(cat.label.split(' ').pop()?.toLowerCase() || '')) 
+                    ? 'text-primary' : 'text-text-medium'
+                }`}
+              >
+                {link.label}
+                <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div class="bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-56">
+                  {link.children.map(cat => (
+                    <div class="relative group/sub px-3 py-1.5 hover:bg-gray-50">
+                      <div class="flex items-center justify-between">
+                        <span class={`font-medium text-xs ${currentPath.includes(cat.label.split(' ').pop()?.toLowerCase() || '') ? 'text-primary' : 'text-text-dark'}`}>
+                          {cat.label}
+                        </span>
+                        <svg class="w-3 h-3 text-text-medium -rotate-90 group-hover/sub:rotate-0 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                      <div class="absolute left-full top-0 ml-1 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200">
+                        <div class="bg-white rounded-xl shadow-xl border border-gray-100 py-1.5 min-w-56 ml-2">
+                          {cat.items.map(item => (
+                            <a 
+                              href={item.href}
+                              class={`block px-3 py-1.5 text-xs hover:bg-gray-50 transition-colors ${
+                                currentPath === item.href ? 'text-primary bg-primary/5' : 'text-text-medium'
+                              }`}
+                            >
+                              {item.label}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a 
+              href={link.href} 
+              class={`font-medium text-sm py-1 transition-colors hover:text-primary ${
+                currentPath === link.href ? 'text-primary' : 'text-text-medium'
+              }`}
+            >
+              {link.label}
+            </a>
+          )
         ))}
       </div>
 
-      <!-- CTA + Mobile Menu -->
-      <div class="flex items-center gap-4">
-        <a href="/contacto" class="btn btn-primary btn-sm hidden sm:inline-flex">
-          Agenda una asesoría
-        </a>
-        
-        <!-- Mobile Menu Button -->
-        <button 
-          id="mobile-menu-btn" 
-          class="lg:hidden p-2 text-text-dark hover:text-primary transition-colors"
-          aria-label="Abrir menú"
+      <!-- CTA -->
+      <div class="hidden lg:flex items-center gap-2">
+        <a 
+          href="https://humantalentevolution.psy-tech.net/login"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary btn-sm hidden sm:inline-flex"
         >
-          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
+          Registra tu CV
+        </a>
       </div>
     </div>
   </nav>
 
-  <!-- Mobile Menu Overlay -->
-  <div id="mobile-menu" class="fixed inset-0 bg-text-dark/95 z-50 hidden lg:hidden">
-    <div class="flex flex-col h-full p-6">
-      <div class="flex justify-between items-center mb-8">
-        <span class="font-heading font-semibold text-white text-lg">Menú</span>
-        <button id="mobile-menu-close" class="p-2 text-white hover:text-primary transition-colors">
-          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <!-- Mobile header (simple bar across top) -->
+    <div id="mobile-header" class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-transparent transition-opacity duration-300 ease-out opacity-100">
+    <div class="flex items-center justify-between h-14 px-4">
+      <a href="/" class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+          <span class="text-white font-heading font-bold text-xs">HTE</span>
+        </div>
+      </a>
+      
+      <button 
+        id="mobile-menu-btn" 
+        class="p-2 text-text-dark hover:text-primary transition-colors"
+        aria-label="Abrir menú"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Drawer (slides from right) -->
+  <div id="mobile-menu" class="fixed inset-y-0 right-0 w-80 max-w-[85vw] bg-white shadow-2xl z-50 hidden lg:hidden transform translate-x-full transition-transform duration-300 ease-out">
+    <div class="flex flex-col h-full overflow-y-auto">
+      <!-- Header del drawer -->
+      <div class="flex items-center justify-between p-6 border-b border-gray-100">
+        <a href="/" class="flex items-center gap-2" onclick="document.getElementById('mobile-menu').classList.add('hidden');document.body.style.overflow=''">
+          <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+            <span class="text-white font-heading font-bold text-xs">HTE</span>
+          </div>
+          <span class="font-heading font-semibold text-text-dark text-sm">Human Talent</span>
+        </a>
+        <button id="mobile-menu-close" class="p-2 text-text-dark hover:text-primary transition-colors">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
       
-      <nav class="flex flex-col gap-6">
+      <!-- Menu content -->
+      <nav class="flex-1 p-6 space-y-1">
         {navLinks.map((link) => (
-          <a 
-            href={link.href} 
-            class={`text-2xl font-heading font-semibold transition-colors hover:text-primary ${
-              currentPath === link.href ? 'text-primary' : 'text-white'
-            }`}
-          >
-            {link.label}
-          </a>
+          link.children ? (
+            <div class="mb-4">
+              <span class="text-xs font-semibold text-text-medium uppercase tracking-wider">{link.label}</span>
+              <div class="mt-2 space-y-0">
+                {link.children.map(cat => (
+                  <div class="py-2 border-b border-gray-50 last:border-0">
+                    <span class="text-sm font-medium text-text-dark">{cat.label}</span>
+                    <div class="mt-1 ml-1 pl-3 border-l-2 border-primary/20 space-y-1">
+                      {cat.items.map(item => (
+                        <a 
+                          href={item.href}
+                          class={`block text-sm py-1.5 transition-colors hover:text-primary ${
+                            currentPath === item.href ? 'text-primary' : 'text-text-medium'
+                          }`}
+                        >
+                          {item.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a 
+              href={link.href} 
+              class={`block py-3 text-lg font-heading font-medium transition-colors hover:text-primary ${
+                currentPath === link.href ? 'text-primary' : 'text-text-dark'
+              }`}
+            >
+              {link.label}
+            </a>
+          )
         ))}
-        <a href="/contacto" class="btn btn-primary btn-lg mt-4">
-          Agenda una asesoría
-        </a>
+      </nav>
+      
+      <!-- Footer del drawer -->
+      <div class="p-6 border-t border-gray-100">
         <a 
           href="https://humantalentevolution.psy-tech.net/login" 
           target="_blank"
-          rel="noopener"
-          class="text-lg text-white/70 hover:text-white transition-colors"
+          rel="noopener noreferrer"
+          class="btn btn-primary btn-lg w-full"
         >
-          Registra tu hoja de vida →
+          Registra tu CV
         </a>
-      </nav>
+      </div>
     </div>
   </div>
+
+  <!-- Overlay oscuro (fuera del drawer) -->
+  <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden opacity-0 transition-opacity duration-300"></div>
 </header>
 
 <script>
   const menuBtn = document.getElementById('mobile-menu-btn');
   const menuClose = document.getElementById('mobile-menu-close');
   const mobileMenu = document.getElementById('mobile-menu');
+  const mobileHeader = document.getElementById('mobile-header');
+  
+  // Desktop header morphing (lg+ only)
+  const headerBg = document.getElementById('header-bg');
+  const headerNav = document.getElementById('header-nav');
+  let isScrolled = false;
+  const SCROLL_THRESHOLD = 10;
 
-  menuBtn?.addEventListener('click', () => {
+  function updateHeaderMorphing(scrolled: boolean) {
+    // Only morph on desktop (lg breakpoint and above)
+    if (!headerBg || !headerNav || window.innerWidth < 1024) return;
+    if (scrolled === isScrolled) return;
+    isScrolled = scrolled;
+
+    if (scrolled) {
+      // SCROLLED: pill, wide, solid
+      headerBg?.classList.add(
+        'rounded-full',
+        'mx-20',
+        'mt-2',
+        'shadow-xl',
+        'border',
+        'border-gray-100/50',
+        'bg-white/95',
+        'backdrop-blur-xl',
+        'left-0',
+        'right-0'
+      );
+      headerBg?.classList.remove(
+        'rounded-none',
+        'border-b',
+        'bg-white/90',
+        'backdrop-blur-md',
+        'mx-1'
+      );
+      
+      headerNav?.classList.remove('container-page');
+      headerNav?.classList.add('max-w-5xl', 'mx-auto', 'px-6');
+    } else {
+      // TOP: transparent, narrow
+      headerBg?.classList.add(
+        'rounded-none',
+        'mx-1'
+      );
+      headerBg?.classList.remove(
+        'rounded-full',
+        'border',
+        'border-b',
+        'border-gray-100/50',
+        'bg-white/95',
+        'bg-white/90',
+        'backdrop-blur-xl',
+        'backdrop-blur-md',
+        'shadow-xl',
+        'mx-20',
+        'mt-2',
+        'left-0',
+        'right-0'
+      );
+      
+      headerNav?.classList.remove('max-w-5xl', 'mx-auto', 'px-6');
+      headerNav?.classList.add('container-page');
+    }
+  }
+
+  function handleScroll() {
+    const scrolled = window.scrollY > SCROLL_THRESHOLD;
+    updateHeaderMorphing(scrolled);
+  }
+
+  handleScroll();
+  window.addEventListener('scroll', handleScroll, { passive: true });
+
+   // Mobile header: fade out on scroll down, fade in on scroll up
+   let lastScrollY = 0;
+   let mobileHidden = false;
+
+   function updateMobileHeaderVisibility() {
+     if (!mobileHeader || window.innerWidth >= 1024) return;
+     
+     const currentScrollY = window.scrollY;
+     
+     if (currentScrollY > lastScrollY && currentScrollY > 50) {
+       // Scrolling down - fade out header
+       if (!mobileHidden) {
+         mobileHeader.classList.add('opacity-0');
+         mobileHeader.classList.remove('opacity-100');
+         mobileHidden = true;
+       }
+     } else {
+       // Scrolling up - fade in header
+       if (mobileHidden || currentScrollY < lastScrollY) {
+         mobileHeader.classList.remove('opacity-0');
+         mobileHeader.classList.add('opacity-100');
+         mobileHidden = false;
+       }
+     }
+     
+     lastScrollY = currentScrollY;
+   }
+  
+  window.addEventListener('scroll', updateMobileHeaderVisibility, { passive: true });
+
+  // Mobile drawer handlers
+  const menuOverlay = document.getElementById('mobile-menu-overlay');
+  
+  function openDrawer() {
     mobileMenu?.classList.remove('hidden');
+    menuOverlay?.classList.remove('hidden');
+    // Trigger reflow para la transición
+    mobileMenu?.offsetHeight;
+    mobileMenu?.classList.remove('translate-x-full');
+    menuOverlay?.classList.remove('opacity-0');
     document.body.style.overflow = 'hidden';
-  });
-
-  menuClose?.addEventListener('click', () => {
-    mobileMenu?.classList.add('hidden');
-    document.body.style.overflow = '';
-  });
-
-  // Close menu on link click
-  mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
+  }
+  
+  function closeDrawer() {
+    mobileMenu?.classList.add('translate-x-full');
+    menuOverlay?.classList.add('opacity-0');
+    setTimeout(() => {
+      mobileMenu?.classList.add('hidden');
+      menuOverlay?.classList.add('hidden');
       document.body.style.overflow = '';
-    });
+    }, 300);
+  }
+
+  menuBtn?.addEventListener('click', openDrawer);
+  menuClose?.addEventListener('click', closeDrawer);
+  menuOverlay?.addEventListener('click', closeDrawer);
+
+  // Close on link click
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeDrawer);
   });
 </script>

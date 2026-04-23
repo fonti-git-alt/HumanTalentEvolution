@@ -1,31 +1,101 @@
 ---
 import SectionTitle from '../ui/SectionTitle.astro';
+import Button from '../ui/Button.astro';
 
-const diferenciadores = [
-  'Enfoque estratégico que conecta RRHH con resultados del negocio',
-  'Soluciones personalizadas según la realidad de tu organización',
-  'Experiencia comprobada con metodologías probadas e innovación constante',
-  'Plataforma digital y herramientas para seguimiento efectivo',
-  'Acompañamiento cercano durante todo el proceso',
+const destacados = [
+  {
+    title: 'Nos incorporamos al ADN de tu organización',
+    description: 'creando soluciones personalizadas estratégicas que alineen personas, procesos y cultura.',
+    image: '/images/vieja-web/INCORPORAMOS-ADN.HEIC'
+  },
+  {
+    title: 'Con innovación y enfoque centrado en el futuro',
+    description: 'Nos mantenemos actualizados con las últimas tendencias, tecnología y prácticas del área.',
+    image: '/images/vieja-web/INNOVACIONYENFOQUE.jpg'
+  }
 ];
----
 
+const tarjetas = [
+  {
+    title: 'Ideas innovadoras y creativas',
+    description: 'Proporcionamos ideas innovadoras y creativas para que las compañías se adapten y prosperen en un entorno empresarial de constante evolución.',
+    image: '/images/vieja-web/BLOG1.jpg'
+  },
+  {
+    title: 'Servicio al cliente inigualable y excepcional',
+    description: 'Sobrepasamos las expectativas de nuestros clientes.',
+    image: '/images/vieja-web/SERVICIOALCLIENTE.JPG'
+  },
+  {
+    title: 'Toma de decisiones informadas',
+    description: 'Comprendiendo sus necesidades y ofreciendo soluciones que le permitan tomar decisiones informadas e implementar las mejores prácticas en su organización.',
+    image: '/images/vieja-web/MISIÓN-VISIÓN DIFUM.JPG'
+  }
+];
+
+---
 <section class="py-24 bg-primary-lighter">
   <div class="container-page">
     <SectionTitle 
       title="¿Por qué Human Talent Evolution?"
-      subtitle="No somos una consultancy cualquiera. Somos tu aliado estratégico."
+      subtitle="Tu socio estratégico en gestión del talento."
     />
     
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
-      {diferenciadores.map((item) => (
-        <div class="flex items-start gap-4 p-6 bg-white rounded-xl">
-          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center mt-0.5">
-            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-            </svg>
+    <!-- Dos cajas destacadas con imagen y descripción -->
+    <div class="space-y-8">
+      {destacados.map((destacado, index) => (
+        <div class="flex flex-col md:flex-row items-start gap-6 bg-white rounded-xl p-6 shadow hover:shadow-lg transition-shadow">
+          {index % 2 === 0 ? (
+            <>
+              <div class="w-48 h-48 md:w-60 md:h-60 flex-shrink-0">
+                <img 
+                  src={destacado.image} 
+                  alt={destacado.title} 
+                  class="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+              <div class="flex-1 space-y-3">
+                <h3 class="text-2xl font-heading font-bold text-text-dark">{destacado.title}</h3>
+                <p class="text-text-medium text-base leading-relaxed">{destacado.description}</p>
+                <Button href="/contacto" variant="secondary" size="sm">
+                  Contáctanos
+                </Button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div class="flex-1 space-y-3">
+                <h3 class="text-2xl font-heading font-bold text-text-dark">{destacado.title}</h3>
+                <p class="text-text-medium text-base leading-relaxed">{destacado.description}</p>
+              </div>
+              <div class="w-48 h-48 md:w-60 md:h-60 flex-shrink-0">
+                <img 
+                  src={destacado.image} 
+                  alt={destacado.title} 
+                  class="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+            </>
+          )}
+        </div>
+      ))}
+    </div>
+    
+    <!-- Tres tarjetas debajo -->
+    <div class="mt-12 grid md:grid-cols-1 lg:grid-cols-3 gap-6">
+      {tarjetas.map((tarjeta) => (
+        <div class="flex flex-col items-start gap-4 bg-white rounded-xl p-6 shadow hover:shadow-lg transition-shadow">
+          <div class="w-16 h-16 flex-shrink-0">
+            <img 
+              src={tarjeta.image} 
+              alt={tarjeta.title} 
+              class="w-full h-full object-cover rounded-lg"
+            />
           </div>
-          <p class="text-text-dark font-medium">{item}</p>
+          <div class="space-y-2">
+            <h3 class="text-xl font-heading font-semibold text-text-dark">{tarjeta.title}</h3>
+            <p class="text-text-medium text-sm leading-relaxed">{tarjeta.description}</p>
+          </div>
         </div>
       ))}
     </div>
