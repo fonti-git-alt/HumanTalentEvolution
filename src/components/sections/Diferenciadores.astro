@@ -2,34 +2,21 @@
 import SectionTitle from '../ui/SectionTitle.astro';
 import Button from '../ui/Button.astro';
 
-const destacados = [
+const tarjetas = [
   {
     title: 'Nos incorporamos al ADN de tu organización',
-    description: 'creando soluciones personalizadas estratégicas que alineen personas, procesos y cultura.',
+    description: 'Creando soluciones personalizadas estratégicas que alineen personas, procesos y cultura.',
     image: '/images/vieja-web/INCORPORAMOS-ADN.HEIC'
   },
   {
     title: 'Con innovación y enfoque centrado en el futuro',
-    description: 'Nos mantenemos actualizados con las últimas tendencias, tecnología y prácticas del área.',
-    image: '/images/vieja-web/INNOVACIONYENFOQUE.jpg'
-  }
-];
-
-const tarjetas = [
-  {
-    title: 'Ideas innovadoras y creativas',
     description: 'Proporcionamos ideas innovadoras y creativas para que las compañías se adapten y prosperen en un entorno empresarial de constante evolución.',
-    image: '/images/vieja-web/BLOG1.jpg'
+    image: '/images/vieja-web/INNOVACIONYENFOQUE.jpg'
   },
   {
     title: 'Servicio al cliente inigualable y excepcional',
-    description: 'Sobrepasamos las expectativas de nuestros clientes.',
-    image: '/images/vieja-web/SERVICIOALCLIENTE.JPG'
-  },
-  {
-    title: 'Toma de decisiones informadas',
-    description: 'Comprendiendo sus necesidades y ofreciendo soluciones que le permitan tomar decisiones informadas e implementar las mejores prácticas en su organización.',
-    image: '/images/vieja-web/MISIÓN-VISIÓN DIFUM.JPG'
+    description: 'Brindamos acompañamiento cercano, entendiendo tus necesidades y brindando soluciones claras y efectivas.',
+    image: '/images/vieja-web/BLOG1.jpg'
   }
 ];
 
@@ -41,63 +28,54 @@ const tarjetas = [
       subtitle="Tu socio estratégico en gestión del talento."
     />
     
-    <!-- Dos cajas destacadas con imagen y descripción -->
-    <div class="space-y-8">
-      {destacados.map((destacado, index) => (
-        <div class="flex flex-col md:flex-row items-start gap-6 bg-white rounded-xl p-6 shadow hover:shadow-lg transition-shadow">
-          {index % 2 === 0 ? (
-            <>
-              <div class="w-48 h-48 md:w-60 md:h-60 flex-shrink-0">
-                <img 
-                  src={destacado.image} 
-                  alt={destacado.title} 
-                  class="w-full h-full object-cover rounded-lg"
-                />
-              </div>
-              <div class="flex-1 space-y-3">
-                <h3 class="text-2xl font-heading font-bold text-text-dark">{destacado.title}</h3>
-                <p class="text-text-medium text-base leading-relaxed">{destacado.description}</p>
-                <Button href="/contacto" variant="secondary" size="sm">
-                  Contáctanos
-                </Button>
-              </div>
-            </>
-          ) : (
-            <>
-              <div class="flex-1 space-y-3">
-                <h3 class="text-2xl font-heading font-bold text-text-dark">{destacado.title}</h3>
-                <p class="text-text-medium text-base leading-relaxed">{destacado.description}</p>
-              </div>
-              <div class="w-48 h-48 md:w-60 md:h-60 flex-shrink-0">
-                <img 
-                  src={destacado.image} 
-                  alt={destacado.title} 
-                  class="w-full h-full object-cover rounded-lg"
-                />
-              </div>
-            </>
-          )}
+    <!-- Tres tarjetas -->
+    <div class="mt-12 grid md:grid-cols-1 lg:grid-cols-3 gap-6">
+      {tarjetas.map((tarjeta) => (
+        <div class="flex flex-col bg-white rounded-xl shadow hover:shadow-lg transition-shadow overflow-hidden">
+          <!-- Imagen como banner superior -->
+          <div class="w-full h-48 flex-shrink-0">
+            <img 
+              src={tarjeta.image} 
+              alt={tarjeta.title} 
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <!-- Contenido -->
+          <div class="p-6 flex-1 flex flex-col">
+            <div class="space-y-2 flex-1">
+              <h3 class="text-xl font-heading font-semibold text-text-dark">{tarjeta.title}</h3>
+              <p class="text-text-medium text-sm leading-relaxed">{tarjeta.description}</p>
+            </div>
+          </div>
         </div>
       ))}
     </div>
     
-    <!-- Tres tarjetas debajo -->
-    <div class="mt-12 grid md:grid-cols-1 lg:grid-cols-3 gap-6">
-      {tarjetas.map((tarjeta) => (
-        <div class="flex flex-col items-start gap-4 bg-white rounded-xl p-6 shadow hover:shadow-lg transition-shadow">
-          <div class="w-16 h-16 flex-shrink-0">
-            <img 
-              src={tarjeta.image} 
-              alt={tarjeta.title} 
-              class="w-full h-full object-cover rounded-lg"
-            />
-          </div>
-          <div class="space-y-2">
-            <h3 class="text-xl font-heading font-semibold text-text-dark">{tarjeta.title}</h3>
-            <p class="text-text-medium text-sm leading-relaxed">{tarjeta.description}</p>
-          </div>
-        </div>
-      ))}
+    <!-- Botón CTA debajo de las tarjetas -->
+    <div class="mt-12 flex justify-center">
+      <a 
+        href="/contacto"
+        class="relative group inline-flex items-center justify-center px-6 py-3 font-semibold leading-6 text-white bg-primary shadow-xl cursor-pointer rounded-xl transition-all duration-300 hover:scale-105 active:scale-95"
+      >
+        <span
+          class="absolute inset-0 rounded-xl bg-gradient-to-r from-accent-gold via-accent-gold to-accent-gold/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        ></span>
+        <span class="relative z-10 flex items-center gap-2">
+          Conócenos
+          <svg
+            class="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
+              fill-rule="evenodd"
+            ></path>
+          </svg>
+        </span>
+      </a>
     </div>
   </div>
 </section>
