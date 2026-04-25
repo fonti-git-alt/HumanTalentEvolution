@@ -2,30 +2,41 @@
 const navLinks = [
   { href: '/', label: 'Inicio' },
   { 
-    label: 'Soluciones', 
+    label: 'Empresas', 
+    href: '/empresas',
     children: [
       { 
-        label: 'Para Empresas', 
-        items: [
-          { href: '/empresas#atraccion-seleccion', label: 'Atracción y Selección de Talentos' },
-          { href: '/empresas#desarrollo-talento', label: 'Desarrollo y Valoración del Talento' },
-          { href: '/empresas#formacion-liderazgo', label: 'Formación y Liderazgo' },
-          { href: '/empresas#bienestar-cultura', label: 'Bienestar y Cultura Organizacional' },
-          { href: '/empresas#salud-psicosocial', label: 'Salud y Gestión de Riesgo Psicosocial' },
-        ]
+        label: 'Atracción y Selección de Talentos', 
+        href: '/empresas#atraccion-seleccion' 
       },
       { 
-        label: 'Para Candidatos', 
-        items: [
-          { href: '/personas', label: 'Impulso Profesional' },
-          { href: '/personas', label: 'Marca Profesional Estratégica' },
-          { href: '/personas', label: 'Salto Profesional' },
-        ]
+        label: 'Desarrollo y Valoración del Talento', 
+        href: '/empresas#desarrollo-talento' 
+      },
+      { 
+        label: 'Formación y Liderazgo', 
+        href: '/empresas#formacion-liderazgo' 
+      },
+      { 
+        label: 'Bienestar y Cultura Organizacional', 
+        href: '/empresas#bienestar-cultura' 
+      },
+      { 
+        label: 'Salud y Gestión de Riesgo Psicosocial', 
+        href: '/empresas#salud-psicosocial' 
       },
     ]
   },
+  { 
+    label: 'Candidatos', 
+    href: '/personas',
+    children: [
+      { href: '/personas', label: 'Impulso Profesional' },
+      { href: '/personas', label: 'Marca Profesional Estratégica' },
+      { href: '/personas', label: 'Salto Profesional' },
+    ]
+  },
   { href: '/quienes-somos', label: 'Nosotros' },
-  { href: '/insights', label: 'Insights' },
   { href: '/contacto', label: 'Contacto' },
 ];
 
@@ -55,77 +66,64 @@ const currentPath = Astro.url.pathname;
         </span>
       </a>
 
-      <!-- Desktop nav -->
-      <div class="hidden lg:flex items-center gap-4 xl:gap-6">
-        {navLinks.map((link) => (
-          link.children ? (
-            <div class="relative group dropdown">
-              <button 
-                class={`font-medium flex items-center gap-1 py-1 text-sm transition-colors hover:text-primary ${
-                  link.children.some(cat => currentPath.includes(cat.label.split(' ').pop()?.toLowerCase() || '')) 
-                    ? 'text-primary' : 'text-text-medium'
-                }`}
-              >
-                {link.label}
-                <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <div class="bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-56">
-                  {link.children.map(cat => (
-                    <div class="relative group/sub px-3 py-1.5 hover:bg-gray-50">
-                      <div class="flex items-center justify-between">
-                        <span class={`font-medium text-xs ${currentPath.includes(cat.label.split(' ').pop()?.toLowerCase() || '') ? 'text-primary' : 'text-text-dark'}`}>
-                          {cat.label}
-                        </span>
-                        <svg class="w-3 h-3 text-text-medium -rotate-90 group-hover/sub:rotate-0 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                      <div class="absolute left-full top-0 ml-1 opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200">
-                        <div class="bg-white rounded-xl shadow-xl border border-gray-100 py-1.5 min-w-56 ml-2">
-                          {cat.items.map(item => (
-                            <a 
-                              href={item.href}
-                              class={`block px-3 py-1.5 text-xs hover:bg-gray-50 transition-colors ${
-                                currentPath === item.href ? 'text-primary bg-primary/5' : 'text-text-medium'
-                              }`}
-                            >
-                              {item.label}
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <a 
-              href={link.href} 
-              class={`font-medium text-sm py-1 transition-colors hover:text-primary ${
-                currentPath === link.href ? 'text-primary' : 'text-text-medium'
-              }`}
-            >
-              {link.label}
-            </a>
-          )
-        ))}
-      </div>
+       <!-- Desktop nav -->
+       <div class="hidden lg:flex items-center gap-4 xl:gap-6">
+         {navLinks.map((link) => (
+           link.children ? (
+             <div class="relative group dropdown">
+               <a 
+                 href={link.href}
+                 class={`font-medium flex items-center gap-1 py-1 text-sm transition-colors hover:text-primary ${
+                   link.children.some(item => currentPath === item.href)
+                     ? 'text-primary' : 'text-text-medium'
+                 }`}
+               >
+                 {link.label}
+                 <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                 </svg>
+               </a>
+               <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                 <div class="bg-white rounded-xl shadow-xl border border-gray-100 py-2 min-w-72">
+                   {link.children.map(item => (
+                     <div class="px-3 py-1.5 hover:bg-gray-50">
+                       <a 
+                         href={item.href}
+                         class={`block font-heading font-medium text-sm transition-colors hover:text-primary ${
+                           currentPath === item.href ? 'text-primary' : 'text-text-medium'
+                         }`}
+                       >
+                         {item.label}
+                       </a>
+                     </div>
+                   ))}
+                 </div>
+               </div>
+             </div>
+           ) : (
+             <a 
+               href={link.href} 
+               class={`font-medium text-sm py-1 transition-colors hover:text-primary ${
+                 currentPath === link.href ? 'text-primary' : 'text-text-medium'
+               }`}
+             >
+               {link.label}
+             </a>
+           )
+         ))}
+       </div>
 
-      <!-- CTA -->
-      <div class="hidden lg:flex items-center gap-2">
-        <a 
-          href="https://humantalentevolution.psy-tech.net/login"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-primary btn-sm hidden sm:inline-flex"
-        >
-          Registra tu CV
-        </a>
-      </div>
+        <!-- CTA -->
+        <div class="hidden lg:flex items-center gap-2">
+          <a 
+            href="https://humantalentevolution.psy-tech.net/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary btn-sm hidden sm:inline-flex"
+          >
+            Registra tu CV
+          </a>
+        </div>
     </div>
   </nav>
 
@@ -168,56 +166,56 @@ const currentPath = Astro.url.pathname;
         </button>
       </div>
       
-      <!-- Menu content -->
-      <nav class="flex-1 p-6 space-y-1">
-        {navLinks.map((link) => (
-          link.children ? (
-            <div class="mb-4">
-              <span class="text-xs font-semibold text-text-medium uppercase tracking-wider">{link.label}</span>
-              <div class="mt-2 space-y-0">
-                {link.children.map(cat => (
-                  <div class="py-2 border-b border-gray-50 last:border-0">
-                    <span class="text-sm font-medium text-text-dark">{cat.label}</span>
-                    <div class="mt-1 ml-1 pl-3 border-l-2 border-primary/20 space-y-1">
-                      {cat.items.map(item => (
-                        <a 
-                          href={item.href}
-                          class={`block text-sm py-1.5 transition-colors hover:text-primary ${
-                            currentPath === item.href ? 'text-primary' : 'text-text-medium'
-                          }`}
-                        >
-                          {item.label}
-                        </a>
-                      ))}
+        <!-- Menu content -->
+        <nav class="flex-1 p-6 space-y-1">
+          {navLinks.map((link) => (
+            link.children ? (
+              <div class="mb-4">
+                <a 
+                  href={link.href}
+                  class={`text-xs font-heading font-semibold text-text-medium uppercase tracking-wider hover:text-primary transition-colors block`}
+                >
+                  {link.label}
+                </a>
+                <div class="mt-2 space-y-0">
+                  {link.children.map(item => (
+                    <div class="py-1">
+                      <a 
+                        href={item.href}
+                        class={`block font-heading font-medium text-sm transition-colors hover:text-primary ${
+                          currentPath === item.href ? 'text-primary' : 'text-text-medium'
+                        }`}
+                      >
+                        {item.label}
+                      </a>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          ) : (
-            <a 
-              href={link.href} 
-              class={`block py-3 text-lg font-heading font-medium transition-colors hover:text-primary ${
-                currentPath === link.href ? 'text-primary' : 'text-text-dark'
-              }`}
-            >
-              {link.label}
-            </a>
-          )
-        ))}
-      </nav>
+            ) : (
+              <a 
+                href={link.href} 
+                class={`block py-3 font-heading text-lg font-medium transition-colors hover:text-primary ${
+                  currentPath === link.href ? 'text-primary' : 'text-text-dark'
+                }`}
+              >
+                {link.label}
+              </a>
+            )
+          ))}
+        </nav>
       
-      <!-- Footer del drawer -->
-      <div class="p-6 border-t border-gray-100">
-        <a 
-          href="https://humantalentevolution.psy-tech.net/login" 
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-primary btn-lg w-full"
-        >
-          Registra tu CV
-        </a>
-      </div>
+        <!-- Footer del drawer -->
+        <div class="p-6 border-t border-gray-100">
+          <a 
+            href="https://humantalentevolution.psy-tech.net/login" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary btn-lg w-full"
+          >
+            Registra tu CV
+          </a>
+        </div>
     </div>
   </div>
 
