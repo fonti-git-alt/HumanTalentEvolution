@@ -8,106 +8,132 @@ interface Props {
 }
 
 const { rings = 4, text = "Texto Arqueado", size = 300, thickness = 3 } = Astro.props;
+
+// Colores de la marca HTE - orden: externo a interno
+// Aro 0 (más externo): primary-lighter (morado claro)
+// Aro 1: primary-dark (morado oscuro)
+// Aro 2: primary (morado principal)
+// Centro: color intermedio entre primary-lighter y primary
+const colors = [
+  '#dad1f6', // primary-lighter (más externo)
+  '#6a2f77', // primary-dark (segundo)
+  '#8f4c9f', // primary (tercero)
+  '#B58FCB', // color intermedio (centro)
+];
 ---
 
 <div class="concentric-rings-container flex items-center justify-center p-8">
-  <svg
-    width={size}
-    height={size}
-    viewBox={`${-size/2 - 30} ${-size/2 - 30} ${size + 60} ${size + 60}`}
-    class="concentric-rings-svg"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <!-- Caminos para texto dentro del aro exterior -->
-      {(() => {
-        const outerRadius = (size / 2 - 20) * (1 - 0 * 0.15);
-        const outerThickness = thickness + 0 * 0.5;
-        const textRadius = outerRadius - outerThickness / 2 - 2;
-        const textPath = `M ${-textRadius} 0 A ${textRadius} ${textRadius} 0 1 1 ${textRadius} 0`;
-        return (
-          <path
-            id="inner-text-arc"
-            d={textPath}
-            fill="none"
-          />
-        );
-      })()}
+   <svg
+     width={size}
+     height={size}
+     viewBox={`${-size/2 - 30} ${-size/2 - 30} ${size + 60} ${size + 60}`}
+     class="concentric-rings-svg"
+     xmlns="http://www.w3.org/2000/svg"
+   >
+      <defs>
+        <!-- Path para texto arqueado superior e inferior -->
+        {(() => {
+          const outerRadius = (size / 2 - 20) * (1 - 0 * 0.15);
+          const outerThickness = thickness + 0 * 0.5;
+          // Radio para texto superior (posición actual)
+          const textRadiusTop = outerRadius - outerThickness / 5;
+          // Radio para texto inferior: 2px más pequeño → más cerca del centro
+          const textRadiusBottom = outerRadius - outerThickness / 5;
 
-      <!-- Caminos para textos fuera del círculo más grande -->
-      {(() => {
-        const outerTextRadius = size / 2 + 30;
-        const midLeft = -outerTextRadius / 4;
-        const midRight = outerTextRadius / 4;
+          // Arco superior: sweep flag 1 (por arriba)
+          const topArcPath = `M ${-textRadiusTop} 0 A ${textRadiusTop} ${textRadiusTop} 0 0 1 ${textRadiusTop} 0`;
+          // Arco inferior: sweep flag 0 (por abajo)
+          const bottomArcPath = `M ${-textRadiusBottom} 0 A ${textRadiusBottom} ${textRadiusBottom} 0 0 0 ${textRadiusBottom} 0`;
+          return (
+            <>
+              <path id="text-arc-top" d={topArcPath} fill="none" />
+              <path id="text-arc-bottom" d={bottomArcPath} fill="none" />
+            </>
+          );
+        })()}
+      </defs>
 
-        return (
-          <>
+     <g id="concentric-group">
+       <!-- Aros concéntricos -->
+       {Array.from({ length: rings }, (_, i) => {
+         const baseRadius = size / 2 - 20;
+         const gap = 1;
+         const isInnermost = i === rings - 1;
+         
+         let radius;
+         if (isInnermost) {
+           const prevRingRadius = baseRadius - (i - 1) * (thickness + gap);
+           radius = prevRingRadius - thickness / 2 - gap;
+         } else {
+           radius = baseRadius - i * (thickness + gap);
+         }
+         
+         const strokeWidth = thickness;
+         const color = colors[i] || colors[colors.length - 1];
+         return (
+           <circle
+             cx={0}
+             cy={0}
+             r={radius}
+             fill={isInnermost ? color : "none"}
+             stroke={isInnermost ? "none" : color}
+             stroke-width={isInnermost ? 0 : strokeWidth}
+             class={isInnermost ? "innermost-circle" : "ring"}
+             style={`transition: all 0.3s ease;`}
+           />
+         );
+       })}
 
-          </>
-        );
-      })()}
-    </defs>
+       <!-- Fondo para el texto separador -->
+       <rect
+         x={-size / 2}
+         y={-15}
+         width={size}
+         height="30"
+         fill="#dad1f6"
+         opacity="0.9"
+       />
 
-    <g id="concentric-group">
-      <!-- Aros concéntricos -->
-    {Array.from({ length: rings }, (_, i) => {
-      const radius = (size / 2 - 20) * (1 - i * 0.15);
-      const strokeWidth = thickness + i * 0.5;
-      const isInnermost = i === rings - 1;
-      return (
-        <circle
-          cx={0}
-          cy={0}
-          r={radius}
-          fill={isInnermost ? `hsl(${200 + i * 30}, 70%, ${50 + i * 10}%)` : "none"}
-          stroke={isInnermost ? "none" : `hsl(${200 + i * 30}, 70%, ${50 + i * 10}%)`}
-          stroke-width={isInnermost ? 0 : strokeWidth}
-          class={isInnermost ? "innermost-circle" : "ring"}
-          style={`transition: all 0.3s ease;`}
-        />
-      );
-    })}
+       <!-- Texto horizontal separador -->
+       <text
+         x={0}
+         y={5}
+         font-size="16"
+         fill="#1a1a2e"
+         font-family="Plus Jakarta Sans, sans-serif"
+         font-weight="700"
+         text-anchor="middle"
+       >
+         TEXTO SEPARADOR
+       </text>
 
-    <!-- Texto arqueado dentro -->
-    <text
-      font-size="18"
-      fill="white"
-      font-family="Plus Jakarta Sans, sans-serif"
-      font-weight="600"
-      text-anchor="middle"
-    >
-      <textPath href="#inner-text-arc" startOffset="50%">
-        {text}
-      </textPath>
-    </text>
+        <!-- Texto arqueado superior (centrado en arco superior) -->
+        <text
+          font-size="18"
+          fill="#1a1a2e"
+          font-family="Plus Jakarta Sans, sans-serif"
+          font-weight="600"
+          text-anchor="middle"
+        >
+          <textPath href="#text-arc-top" startOffset="50%">
+            {text}
+          </textPath>
+        </text>
 
-
-
-    <!-- Fondo para el texto separador -->
-    <rect
-      x={-size / 2}
-      y={-15}
-      width={size}
-      height="30"
-      fill="white"
-      opacity="1"
-    />
-
-    <!-- Texto horizontal separador -->
-    <text
-      x={0}
-      y={5}
-      font-size="16"
-      fill="#1f2937"
-      font-family="Plus Jakarta Sans, sans-serif"
-      font-weight="700"
-      text-anchor="middle"
-    >
-      TEXTO SEPARADOR
-    </text>
-    </g>
-
-  </svg>
+        <!-- Texto arqueado inferior (centrado en arco inferior, compensado +2%) -->
+        <text
+          font-size="18"
+          fill="#1a1a2e"
+          font-family="Plus Jakarta Sans, sans-serif"
+          font-weight="600"
+          text-anchor="middle"
+        >
+          <textPath href="#text-arc-bottom" startOffset="50%">
+            {text}
+          </textPath>
+        </text>
+     </g>
+   </svg>
 </div>
 
 <style>
