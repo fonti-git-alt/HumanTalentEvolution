@@ -3,11 +3,15 @@
 interface Props {
   rings?: number;
   text?: string;
+  texts?: Array<{ top: string; bottom: string }>;
   size?: number;
   thickness?: number;
 }
 
-const { rings = 4, text = "Texto Arqueado", size = 300, thickness = 3 } = Astro.props;
+const { rings = 4, text = "Texto Arqueado", texts, size = 300, thickness = 3 } = Astro.props;
+
+// Si se proporciona texts[], usar ese array; si no, crear objetos con mismo texto para top y bottom
+const ringTexts = texts || Array(rings).fill({ top: text, bottom: text });
 
 // Colores de la marca HTE - orden: externo a interno
 const colors = [
@@ -18,9 +22,8 @@ const colors = [
 ];
 
 // Offsets para texto (distancia desde el borde interno del aro hasta el texto)
-// Ajusta estos valores para controlar la posición radial de cada texto
-const textOffsetTop = 1 ;    // texto superior: 15px desde el borde interno
-const textOffsetBottom = 1; // texto inferior: 15px desde el borde interno (cambia este para alejar/acercar)
+const textOffsetTop = 15;    // texto superior: 15px desde el borde interno
+const textOffsetBottom = 15; // texto inferior: 15px desde el borde interno
 ---
 
 <div class="concentric-rings-container flex items-center justify-center p-8">
@@ -35,7 +38,7 @@ const textOffsetBottom = 1; // texto inferior: 15px desde el borde interno (camb
       <!-- Paths para textos en cada anillo (superior e inferior) -->
       {Array.from({ length: rings }, (_, i) => {
         const baseRadius = size / 2 - 20;
-        const gap = 1;
+        const gap = 2;
         let radius;
         if (i === rings - 1) {
           const prevRingRadius = baseRadius - (i - 1) * (thickness + gap);
@@ -44,8 +47,8 @@ const textOffsetBottom = 1; // texto inferior: 15px desde el borde interno (camb
           radius = baseRadius - i * (thickness + gap);
         }
         // Radios independientes para texto superior e inferior
-        const textRadiusTop = radius - thickness / 2 - textOffsetTop;
-        const textRadiusBottom = radius - thickness / 2 - textOffsetBottom;
+        const textRadiusTop = radius - thickness / 5 - textOffsetTop;
+        const textRadiusBottom = radius - thickness / 12 - textOffsetBottom;
         const topPath = `M ${-textRadiusTop} 0 A ${textRadiusTop} ${textRadiusTop} 0 0 1 ${textRadiusTop} 0`;
         const bottomPath = `M ${-textRadiusBottom} 0 A ${textRadiusBottom} ${textRadiusBottom} 0 0 0 ${textRadiusBottom} 0`;
         return (
@@ -94,20 +97,20 @@ const textOffsetBottom = 1; // texto inferior: 15px desde el borde interno (camb
         TEXTO SEPARADOR
       </text>
 
-      <!-- Textos arqueados: uno en cada anillo (superior) -->
+      <!-- Textos arqueados superiores -->
       {Array.from({ length: rings }, (_, i) => (
         <text font-size="18" fill="#1a1a2e" font-family="Plus Jakarta Sans, sans-serif" font-weight="600" text-anchor="middle">
           <textPath href={`#text-top-${i}`} startOffset="50%">
-            {text}
+            {ringTexts[i].top}
           </textPath>
         </text>
       ))}
 
-      <!-- Textos arqueados inferiores (opuestos) -->
+      <!-- Textos arqueados inferiores -->
       {Array.from({ length: rings }, (_, i) => (
         <text font-size="18" fill="#1a1a2e" font-family="Plus Jakarta Sans, sans-serif" font-weight="600" text-anchor="middle">
           <textPath href={`#text-bottom-${i}`} startOffset="50%">
-            {text}
+            {ringTexts[i].bottom}
           </textPath>
         </text>
       ))}
