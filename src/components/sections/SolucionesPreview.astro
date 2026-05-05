@@ -137,12 +137,14 @@ const soluciones = [
 
     if (!carousel) return;
 
-    const numItems = parseInt(carousel.dataset.numItems);
-    let autoRotateInterval;
+    const numItems = parseInt(carousel.dataset.numItems || '5');
+    let autoRotateInterval: number | null = null;
     let activeIndex = 0;
+    let currentItemWidth = 280;
+    let currentGap = 32;
 
     // Actualizar indicadores
-    function updateIndicators(activeIdx) {
+    function updateIndicators(activeIdx: number) {
       indicators.forEach((indicator, index) => {
         indicator.classList.toggle('bg-primary', index === activeIdx);
         indicator.classList.toggle('bg-gray-300', index !== activeIdx);
@@ -154,6 +156,7 @@ const soluciones = [
     // Actualizar elemento activo (resaltar el del medio)
     function updateActive() {
       const items = document.querySelectorAll('[data-index]');
+      if (!carousel) return;
       const containerRect = carousel.getBoundingClientRect();
       const containerCenter = containerRect.left + containerRect.width / 2;
       let closestIndex = 0;
@@ -183,8 +186,9 @@ const soluciones = [
     }
 
     // Scroll al elemento
-    function scrollToIndex(index) {
+    function scrollToIndex(index: number) {
       const itemWidth = currentItemWidth + currentGap;
+      if (!carousel) return;
       carousel.scrollTo({
         left: index * itemWidth,
         behavior: 'auto'
@@ -201,7 +205,9 @@ const soluciones = [
     }
 
     function stopAutoRotate() {
-      clearInterval(autoRotateInterval);
+      if (autoRotateInterval !== null) {
+        clearInterval(autoRotateInterval);
+      }
     }
 
     // Event listeners para botones
@@ -258,6 +264,7 @@ const soluciones = [
     // Ajustar items por pantalla en resize
     function adjustItems() {
       const width = window.innerWidth;
+      if (!carousel) return;
       const container = carousel.querySelector('div');
       if (!container) return;
 
@@ -279,8 +286,7 @@ const soluciones = [
         gap = 24;
       }
 
-      currentItemWidth = itemWidth;
-      currentGap = gap;
+
 
       const cards = container.querySelectorAll('div');
       cards.forEach(card => {
