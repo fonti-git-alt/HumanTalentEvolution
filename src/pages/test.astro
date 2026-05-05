@@ -1,42 +1,16 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
 import ConcentricRings from '../components/ConcentricRings.astro';
 ---
 
-<BaseLayout title="Página de Prueba" description="Página de prueba para elementos">
-  <main class="min-h-screen flex flex-col items-center justify-center">
-    <!-- Elemento de prueba: Aros concéntricos con texto arqueado -->
-    <div class="mb-8">
-      <h1 class="text-4xl font-bold text-center mb-8 text-gray-900">Elemento de Prueba: Aros Concéntricos</h1>
-      <ConcentricRings 
-        rings={5}
+<ConcentricRings 
+        rings={4}
         texts={[
-          { top: "EMPRESAS", bottom: "Atracción" },
-          { top: "CANDIDATOS", bottom: "Desarrollo" },
-          { top: "NOSOTROS", bottom: "Formación" },
-          { top: "INSIGHTS", bottom: "Bienestar" },
-          { top: "CONTACTO", bottom: "Resultados" }
+          { top: "INTERNO", bottom: "CENTRAL" },
+          { top: "NIVEL 2", bottom: "INTERMEDIO" },
+          { top: "NIVEL 3", bottom: "EXTERIOR" },
+          { top: "NIVEL 4", bottom: "MÁS EXTERNO" }
         ]}
+
         size={600}
         thickness={40}
       />
-    </div>
-  </main>
-
-  <!-- Sección de prueba al fondo de la página -->
-  <section class="bg-gray-100 py-16 px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl font-bold text-gray-900 mb-4">Sección de Prueba</h2>
-      <p class="text-lg text-gray-600 mb-8">
-        Esta es una sección de prueba creada al fondo de la página.
-        Puedes mover este elemento a cualquier otra parte del sitio.
-      </p>
-      <div class="bg-white p-8 rounded-lg shadow-md">
-        <h3 class="text-xl font-semibold text-gray-800 mb-4">Elemento de Prueba</h3>
-        <p class="text-gray-700">
-          Este es un elemento de prueba que puedes personalizar y reutilizar en otras páginas.
-        </p>
-      </div>
-    </div>
-  </section>
-</BaseLayout>

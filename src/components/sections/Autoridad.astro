@@ -1,13 +1,22 @@
 ---
 const clientes = [
-  { name: 'TECNOS', initial: 'T' },
-  { name: 'INVER', initial: 'I' },
-  { name: 'CORP', initial: 'C' },
-  { name: 'GRUPO H', initial: 'G' },
-  { name: 'SOLUCIONES', initial: 'S' },
-  { name: 'ALIANZA', initial: 'A' },
-  { name: 'VANGUARD', initial: 'V' },
-  { name: 'PROMOVE', initial: 'P' },
+  { name: 'Wildlife Works', logo: '/images/reduxfotos/clientes/wildlife works.png' },
+  { name: 'Proeco', logo: '/images/reduxfotos/clientes/proeco.png' },
+  { name: 'Pactia', logo: '/images/reduxfotos/clientes/Pactia.png' },
+  { name: 'Maken', logo: '/images/reduxfotos/clientes/Maken.png' },
+  { name: 'Los Olivos', logo: '/images/reduxfotos/clientes/Los olivos.png' },
+  { name: 'Logika', logo: '/images/reduxfotos/clientes/logika.png' },
+  { name: 'Grupo Argos', logo: '/images/reduxfotos/clientes/Grupo Argos.png' },
+  { name: 'GMAS', logo: '/images/reduxfotos/clientes/gmas.png' },
+  { name: 'Globus', logo: '/images/reduxfotos/clientes/Globus.png' },
+  { name: 'Fondeargos', logo: '/images/reduxfotos/clientes/Fondeargos.png' },
+  { name: 'Emu', logo: '/images/reduxfotos/clientes/emu.png' },
+  { name: 'DP', logo: '/images/reduxfotos/clientes/dp.png' },
+  { name: 'Discurramba SA', logo: '/images/reduxfotos/clientes/Discurramba sa.png' },
+  { name: 'Comfaguajira', logo: '/images/reduxfotos/clientes/Comfaguajira.png' },
+  { name: 'Colchones Serrati', logo: '/images/reduxfotos/clientes/Colchones serrati.png' },
+  { name: 'Bordeus', logo: '/images/reduxfotos/clientes/Bordeus.png' },
+  { name: '3Net', logo: '/images/reduxfotos/clientes/3net.png' },
 ];
 ---
 
@@ -35,9 +44,7 @@ const clientes = [
       {[...clientes, ...clientes, ...clientes].map((cliente) => (
         <div class="flex-shrink-0 w-32 md:w-40 mx-4">
           <div class="bg-white rounded-2xl p-6 md:p-8 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer">
-            <span class="text-2xl md:text-3xl font-heading font-bold text-primary">
-              {cliente.initial}
-            </span>
+            <img src={cliente.logo} alt={cliente.name} class="w-20 h-20 md:w-24 md:h-24 object-contain" />
           </div>
           <p class="text-center text-xs text-text-medium mt-2 truncate">{cliente.name}</p>
         </div>
@@ -55,7 +62,7 @@ const clientes = [
   let speed = 0.4;
 
   const itemWidth = 144;
-  const totalItems = 24;
+  const totalItems = 51;
   const oneCyclePosition = itemWidth * totalItems;
 
   function animate() {

@@ -7,34 +7,41 @@ const soluciones = [
     title: 'Atracción y Selección',
     description: 'Encontramos el talento ideal que tu empresa necesita para crecer.',
     href: '/empresas#atraccion-seleccion',
-    image: '/images/vieja-web/ATRACCIÓN.JPG',
+    icon: '/images/icons/icon-atraccion.png',
   },
   {
     title: 'Desarrollo y Valoración del Talento',
     description: 'Potenciamos el desempeño de tu equipo y llevamos su talento al siguiente nivel.',
     href: '/empresas#desarrollo-talento',
-    image: '/images/vieja-web/DESARROLLO.HEIC',
+    icon: '/images/icons/icon-desarrollo.png',
   },
   {
     title: 'Formación y Liderazgo',
     description: 'Formamos líderes que inspiran, guían y generan resultados.',
     href: '/empresas#formacion-liderazgo',
-    image: '/images/vieja-web/FORMACIÓN.heic',
+    icon: '/images/icons/icon-formacion.png',
   },
   {
     title: 'Bienestar y Cultura Organizacional',
     description: 'Construimos una cultura sólida donde las personas y el negocio prosperen.',
     href: '/empresas#bienestar-cultura',
-    image: '/images/vieja-web/BIENESTAR.jpg',
+    icon: '/images/icons/icon-bienestar.png',
   },
   {
     title: 'Salud Psicosocial',
-    description: 'Cuidamos el bienestar emocional de tu equipo y fortalecemos su productividad.',
+    description: 'Cuidamos el bienestar emocional de tu equipo y fortalecemos tu productividad.',
     href: '/empresas#salud-psicosocial',
-    image: '/images/vieja-web/SALUD-LABORAL.JPG',
+    icon: '/images/icons/icon-salud.png',
+  },
+  // Duplicado del primero para loop infinito
+  {
+    title: 'Atracción y Selección',
+    description: 'Encontramos el talento ideal que tu empresa necesita para crecer.',
+    href: '/empresas#atraccion-seleccion',
+    icon: '/images/icons/icon-atraccion.png',
   },
 ];
----
+--- 
 
 <section class="py-24 bg-white" id="soluciones">
   <div class="container-page">
@@ -44,29 +51,35 @@ const soluciones = [
       align="center"
     />
     
-    <!-- Carrusel de soluciones -->
-    <div class="relative mt-12 group">
-      <!-- Contenedor del carrusel con scroll snap -->
-      <div id="soluciones-carousel" class="flex overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory">
-        <div class="flex gap-6 px-4">
-          {soluciones.map((solucion) => (
-            <div class="flex-none w-[85vw] sm:w-[70vw] md:w-[45vw] lg:w-[350px] snap-start">
-              <a href={solucion.href} class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 h-full flex flex-col">
-                <div class="aspect-video overflow-hidden flex-shrink-0">
-                  <img 
-                    src={solucion.image} 
-                    alt={solucion.title}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+    <!-- Carrusel de iconos -->
+    <div class="relative mt-16 group">
+      <!-- Contenedor del carrusel -->
+      <div id="soluciones-carousel" class="flex overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-8" data-num-items="6">
+        <div class="flex gap-8 px-4">
+          {soluciones.map((solucion, i) => (
+            <div class="flex-none w-[280px] snap-start" data-index={i}>
+              <a href={solucion.href} class="group/icon block text-center">
+                {/* Ícono circular */}
+                <div class="relative w-32 h-32 mx-auto mb-6">
+                  <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-lg opacity-50 group-hover/icon:opacity-70 transition-opacity"></div>
+                  <div class="relative w-full h-full rounded-full bg-white border-2 border-gray-100 shadow-lg flex items-center justify-center overflow-hidden group-hover/icon:scale-105 group-hover/icon:border-primary transition-all duration-300">
+                    <img 
+                      src={solucion.icon} 
+                      alt={solucion.title}
+                      class="w-16 h-16 object-contain filter grayscale group-hover/icon:grayscale-0 transition-all duration-300"
+                    />
+                  </div>
                 </div>
-                <div class="p-6 flex-1 flex flex-col">
-                  <h3 class="text-lg font-heading font-bold text-text-dark mb-2 group-hover:text-primary transition-colors">
-                    {solucion.title}
-                  </h3>
-                  <p class="text-text-medium text-sm flex-1">
-                    {solucion.description}
-                  </p>
-                </div>
+                
+                {/* Título */}
+                <h3 class="text-base font-heading font-bold text-text-dark mb-2 group-hover/icon:text-primary transition-colors leading-tight">
+                  {solucion.title}
+                </h3>
+                
+                {/* Descripción */}
+                <p class="text-text-medium text-sm leading-relaxed px-2">
+                  {solucion.description}
+                </p>
               </a>
             </div>
           ))}
@@ -74,81 +87,39 @@ const soluciones = [
       </div>
 
       <!-- Botón anterior -->
-      <button 
+      <button
         id="soluciones-prev"
-        class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-50 transition-colors opacity-0 group-hover:opacity-100"
+        class="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-50 transition-all hover:scale-110 opacity-0 group-hover:opacity-100"
         aria-label="Anterior"
       >
-        <svg class="w-5 h-5 text-text-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
         </svg>
       </button>
 
       <!-- Botón siguiente -->
-      <button 
+      <button
         id="soluciones-next"
-        class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-50 transition-colors opacity-0 group-hover:opacity-100"
+        class="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-50 transition-all hover:scale-110 opacity-0 group-hover:opacity-100"
         aria-label="Siguiente"
       >
-        <svg class="w-5 h-5 text-text-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
         </svg>
       </button>
     </div>
 
-    <!-- Script del carrusel con loop infinito -->
-    <script>
-      (function() {
-        const carousel = document.getElementById('soluciones-carousel');
-        const prevBtn = document.getElementById('soluciones-prev');
-        const nextBtn = document.getElementById('soluciones-next');
-        
-        if (!carousel || !prevBtn || !nextBtn) return;
+    <!-- Indicadores (puntos) -->
+    <div class="flex justify-center mt-8 gap-2" id="carousel-indicators">
+      {Array.from({ length: 5 }, (_, i) => (
+        <button
+          class="w-2 h-2 rounded-full bg-gray-300 transition-all hover:bg-primary/70"
+          aria-label={`Ir a solución ${i + 1}`}
+          data-index={i}
+        />
+      ))}
+    </div>
 
-        const cardWidth = 350 + 24; // ancho tarjeta (350px) + gap (24px)
-        const scrollAmount = cardWidth;
-
-        function getScrollPosition() {
-          return carousel.scrollLeft;
-        }
-
-        function scrollToPosition(position) {
-          carousel.scrollTo({ left: position, behavior: 'smooth' });
-        }
-
-        prevBtn.addEventListener('click', () => {
-          const currentPos = getScrollPosition();
-          if (currentPos <= 0) {
-            // Ir al final (loop)
-            scrollToPosition(carousel.scrollWidth - carousel.clientWidth);
-          } else {
-            scrollToPosition(currentPos - scrollAmount);
-          }
-        });
-
-        nextBtn.addEventListener('click', () => {
-          const currentPos = getScrollPosition();
-          const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-          if (currentPos >= maxScroll - 10) {
-            // Volver al inicio (loop)
-            scrollToPosition(0);
-          } else {
-            scrollToPosition(currentPos + scrollAmount);
-          }
-        });
-      })();
-    </script>
-
-    <style>
-      .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-      .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-      }
-    </style>
-    
     <div class="text-center mt-12">
       <Button href="/empresas" variant="secondary">
         Ver todas las soluciones →
@@ -156,3 +127,197 @@ const soluciones = [
     </div>
   </div>
 </section>
+
+<script>
+  (function() {
+    const carousel = document.getElementById('soluciones-carousel');
+    const prevBtn = document.getElementById('soluciones-prev');
+    const nextBtn = document.getElementById('soluciones-next');
+    const indicators = document.querySelectorAll('#carousel-indicators button');
+
+    if (!carousel) return;
+
+    const numItems = parseInt(carousel.dataset.numItems || '5');
+    let autoRotateInterval: number | null = null;
+    let activeIndex = 0;
+    let currentItemWidth = 280;
+    let currentGap = 32;
+
+    // Actualizar indicadores
+    function updateIndicators(activeIdx: number) {
+      indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('bg-primary', index === activeIdx);
+        indicator.classList.toggle('bg-gray-300', index !== activeIdx);
+        indicator.classList.toggle('w-6', index === activeIdx);
+        indicator.classList.toggle('w-2', index !== activeIdx);
+      });
+    }
+
+    // Actualizar elemento activo (resaltar el del medio)
+    function updateActive() {
+      const items = document.querySelectorAll('[data-index]');
+      if (!carousel) return;
+      const containerRect = carousel.getBoundingClientRect();
+      const containerCenter = containerRect.left + containerRect.width / 2;
+      let closestIndex = 0;
+      let minDistance = Infinity;
+
+      items.forEach((item, index) => {
+        const itemRect = item.getBoundingClientRect();
+        const itemCenter = itemRect.left + itemRect.width / 2;
+        const distance = Math.abs(itemCenter - containerCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      const logicalIndex = closestIndex === 5 ? 0 : closestIndex;
+
+      items.forEach((item, index) => {
+        const itemLogical = index === 5 ? 0 : index;
+        if (itemLogical === logicalIndex) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+      updateIndicators(logicalIndex);
+    }
+
+    // Scroll al elemento
+    function scrollToIndex(index: number) {
+      const itemWidth = currentItemWidth + currentGap;
+      if (!carousel) return;
+      carousel.scrollTo({
+        left: index * itemWidth,
+        behavior: 'auto'
+      });
+    }
+
+    // Rotación automática
+    function startAutoRotate() {
+      autoRotateInterval = setInterval(() => {
+        activeIndex = (activeIndex + 1) % 5;
+        scrollToIndex(activeIndex);
+        updateActive();
+      }, 5000);
+    }
+
+    function stopAutoRotate() {
+      if (autoRotateInterval !== null) {
+        clearInterval(autoRotateInterval);
+      }
+    }
+
+    // Event listeners para botones
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        const itemWidth = currentItemWidth + currentGap;
+        if (carousel.scrollLeft <= itemWidth / 2) {
+          carousel.scrollTo({ left: 4 * itemWidth, behavior: 'smooth' });
+        } else {
+          carousel.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+        }
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        const itemWidth = currentItemWidth + currentGap;
+        carousel.scrollBy({ left: itemWidth, behavior: 'smooth' });
+      });
+    }
+
+    // Event listeners para indicadores
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        activeIndex = index;
+        scrollToIndex(activeIndex);
+        updateActive();
+      });
+    });
+
+    // Pausar en hover
+    carousel.addEventListener('mouseenter', stopAutoRotate);
+    carousel.addEventListener('mouseleave', startAutoRotate);
+
+    // Actualizar al hacer scroll
+    carousel.addEventListener('scroll', () => {
+      const scrollPos = carousel.scrollLeft;
+      const itemWidth = currentItemWidth + currentGap;
+      let newIndex = Math.round(scrollPos / itemWidth);
+      if (newIndex === 5) {
+        carousel.scrollTo({ left: 0, behavior: 'auto' });
+        newIndex = 0;
+      }
+      if (newIndex !== activeIndex) {
+        activeIndex = newIndex;
+        updateActive();
+      }
+    });
+
+    // Inicializar
+    updateActive();
+    startAutoRotate();
+
+    // Ajustar items por pantalla en resize
+    function adjustItems() {
+      const width = window.innerWidth;
+      if (!carousel) return;
+      const container = carousel.querySelector('div');
+      if (!container) return;
+
+      let itemsToShow = 1;
+      let itemWidth = 280;
+      let gap = 32;
+
+      if (width >= 1024) {
+        itemsToShow = 4;
+        itemWidth = 240;
+        gap = 24;
+      } else if (width >= 768) {
+        itemsToShow = 3;
+        itemWidth = 240;
+        gap = 24;
+      } else if (width >= 640) {
+        itemsToShow = 2;
+        itemWidth = 260;
+        gap = 24;
+      }
+
+
+
+      const cards = container.querySelectorAll('div');
+      cards.forEach(card => {
+        card.style.width = `${itemWidth}px`;
+      });
+
+      container.style.gap = `${gap}px`;
+
+      updateActive();
+    }
+
+    adjustItems();
+    window.addEventListener('resize', adjustItems);
+  })();
+</script>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .active img {
+    filter: grayscale(0%) !important;
+  }
+
+  .active .rounded-full {
+    border-color: #3b82f6 !important; /* Ajustar según el color primary */
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3) !important;
+  }
+</style>
