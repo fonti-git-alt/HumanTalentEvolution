@@ -54,7 +54,7 @@ const soluciones = [
     <!-- Carrusel de iconos -->
     <div class="relative mt-16 group">
       <!-- Contenedor del carrusel -->
-      <div id="soluciones-carousel" class="flex overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-8" data-num-items="6">
+      <div id="soluciones-carousel" class="flex overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-8" style="mask: linear-gradient(to right, transparent 0%, white 10%, white 90%, transparent 100%); -webkit-mask: linear-gradient(to right, transparent 0%, white 10%, white 90%, transparent 100%);" data-num-items="6">
         <div class="flex gap-8 px-4">
           {soluciones.map((solucion, i) => (
             <div class="flex-none w-[280px] snap-start" data-index={i}>
@@ -109,16 +109,7 @@ const soluciones = [
       </button>
     </div>
 
-    <!-- Indicadores (puntos) -->
-    <div class="flex justify-center mt-8 gap-2" id="carousel-indicators">
-      {Array.from({ length: 5 }, (_, i) => (
-        <button
-          class="w-2 h-2 rounded-full bg-gray-300 transition-all hover:bg-primary/70"
-          aria-label={`Ir a solución ${i + 1}`}
-          data-index={i}
-        />
-      ))}
-    </div>
+
 
     <div class="text-center mt-12">
       <Button href="/empresas" variant="secondary">
@@ -133,7 +124,6 @@ const soluciones = [
     const carousel = document.getElementById('soluciones-carousel');
     const prevBtn = document.getElementById('soluciones-prev');
     const nextBtn = document.getElementById('soluciones-next');
-    const indicators = document.querySelectorAll('#carousel-indicators button');
 
     if (!carousel) return;
 
@@ -143,15 +133,7 @@ const soluciones = [
     let currentItemWidth = 280;
     let currentGap = 32;
 
-    // Actualizar indicadores
-    function updateIndicators(activeIdx: number) {
-      indicators.forEach((indicator, index) => {
-        indicator.classList.toggle('bg-primary', index === activeIdx);
-        indicator.classList.toggle('bg-gray-300', index !== activeIdx);
-        indicator.classList.toggle('w-6', index === activeIdx);
-        indicator.classList.toggle('w-2', index !== activeIdx);
-      });
-    }
+
 
     // Actualizar elemento activo (resaltar el del medio)
     function updateActive() {
@@ -182,7 +164,6 @@ const soluciones = [
           item.classList.remove('active');
         }
       });
-      updateIndicators(logicalIndex);
     }
 
     // Scroll al elemento
@@ -225,18 +206,11 @@ const soluciones = [
     if (nextBtn) {
       nextBtn.addEventListener('click', () => {
         const itemWidth = currentItemWidth + currentGap;
-        carousel.scrollBy({ left: itemWidth, behavior: 'smooth' });
+        carousel.scrollTo({ left: carousel.scrollLeft + itemWidth, behavior: 'smooth' });
       });
     }
 
-    // Event listeners para indicadores
-    indicators.forEach((indicator, index) => {
-      indicator.addEventListener('click', () => {
-        activeIndex = index;
-        scrollToIndex(activeIndex);
-        updateActive();
-      });
-    });
+
 
     // Pausar en hover
     carousel.addEventListener('mouseenter', stopAutoRotate);
