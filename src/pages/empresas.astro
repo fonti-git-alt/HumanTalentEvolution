@@ -8,7 +8,9 @@ import Button from '../components/ui/Button.astro';
 const servicios = [
   {
     id: 'atraccion-seleccion',
-    title: 'Atracción y Selección de Talentos',
+    title: 'Atracción y Selección de Talento',
+    shortDescription: 'Encuentra y contrata talento alineado a tu cultura y objetivos.',
+    specific: 'Reclutamiento, RPO, procesos masivos',
     tagline: 'Encuentra el talento ideal que tu empresa necesita para crecer.',
     description: 'Atraemos, evaluamos y conectamos a tu organización con candidatos altamente calificados, asegurando un ajuste real entre sus competencias, el perfil del cargo y la cultura de tu empresa.',
     queHacemos: [
@@ -27,6 +29,8 @@ const servicios = [
   {
     id: 'desarrollo-talento',
     title: 'Desarrollo y Valoración del Talento',
+    shortDescription: 'Evalúa y potencia el desempeño de tu equipo.',
+    specific: 'Evaluaciones 90°/180°/360°, planes de sucesión',
     tagline: 'Potencia el desempeño de tu equipo y lleva su talento al siguiente nivel.',
     description: 'Somos aliados estratégicos en el fortalecimiento de habilidades y la transformación cultural de tu organización. Desarrollamos las competencias clave de tu equipo, facilitando la toma de decisiones para impulsar el talento en función de resultados reales.',
     queHacemos: [
@@ -45,6 +49,8 @@ const servicios = [
   {
     id: 'formacion-liderazgo',
     title: 'Formación y Liderazgo',
+    shortDescription: 'Desarrolla líderes que generen resultados.',
+    specific: 'Programas, escuelas corporativas, formación a medida',
     tagline: 'Forma líderes que inspiren, guíen y generen resultados.',
     description: 'Impulsa el crecimiento de tu equipo a través de programas de formación diseñados para desarrollar habilidades clave, incorporar nuevas herramientas y fortalecer el liderazgo en todos los niveles de la organización.',
     queHacemos: [
@@ -63,6 +69,8 @@ const servicios = [
   {
     id: 'bienestar-cultura',
     title: 'Bienestar y Cultura Organizacional',
+    shortDescription: 'Construye entornos donde las personas quieran estar.',
+    specific: 'Clima laboral, cultura, reconocimiento',
     tagline: 'Construye una cultura sólida donde las personas y el negocio prosperen.',
     description: 'Te acompañamos en la creación de entornos laborales positivos, donde el compromiso, la motivación y el sentido de pertenencia impulsan los resultados del negocio.',
     queHacemos: [
@@ -80,7 +88,9 @@ const servicios = [
   },
   {
     id: 'salud-psicosocial',
-    title: 'Salud y Gestión de Riesgo Psicosocial',
+    title: 'Salud y Riesgo Psicosocial',
+    shortDescription: 'Protege la salud mental y productividad de tu equipo.',
+    specific: 'SST, intervención psicológica, prevención',
     tagline: 'Cuida el bienestar emocional de tu equipo y fortalece su productividad.',
     description: 'Acompañamos a tu organización en la gestión integral de la salud mental y los riesgos psicosociales, promoviendo entornos laborales seguros, saludables y sostenibles.',
     queHacemos: [
@@ -128,76 +138,93 @@ const servicios = [
       </div>
     </section>
     
-    <!-- Servicios -->
-    <section class="py-16 bg-gray-50">
-      <div class="container-page">
-        <div class="space-y-16">
-          {servicios.map((servicio, index) => (
-            <div id={servicio.id} class="scroll-mt-24 bg-white rounded-2xl p-8 md:p-12 shadow-sm hover:shadow-lg transition-shadow">
-              <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                  <div class="flex items-center gap-3 mb-4">
-                    <span class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-heading font-bold text-lg">
-                      {index + 1}
-                    </span>
-                    <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark">
-                      {servicio.title}
-                    </h2>
-                  </div>
-                  <p class="text-primary font-semibold mb-2">{servicio.tagline}</p>
-                  <p class="text-text-medium text-lg mb-6">
-                    {servicio.description}
-                  </p>
-                  <Button href="/contacto" variant="primary">
-                    Solicitar información
-                  </Button>
-                </div>
-                
-                <div class="space-y-6">
-                  <div>
-                    <h3 class="text-lg font-heading font-semibold text-text-dark mb-3 flex items-center gap-2">
-                      <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      Qué hacemos
-                    </h3>
-                    <ul class="space-y-2">
-                      {servicio.queHacemos.map((item) => (
-                        <li class="flex items-start gap-2 text-text-medium">
-                          <svg class="w-5 h-5 text-primary/60 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                          </svg>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div>
-                    <h3 class="text-lg font-heading font-semibold text-text-dark mb-3 flex items-center gap-2">
-                      <svg class="w-5 h-5 text-accent-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                      </svg>
-                      Beneficios
-                    </h3>
-                    <ul class="space-y-2">
-                      {servicio.beneficios.map((item) => (
-                        <li class="flex items-start gap-2 text-text-medium">
-                          <svg class="w-5 h-5 text-accent-gold/60 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                          </svg>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+     <!-- Servicios -->
+     <section class="py-16 bg-gray-50">
+       <div class="container-page">
+         <div class="space-y-8">
+           {servicios.map((servicio, index) => (
+             <div id={servicio.id} class="scroll-mt-24 bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-shadow">
+               <div class="grid md:grid-cols-2 gap-6">
+                 <div>
+                   <div class="mb-2">
+                     <div class="flex items-center gap-3 mb-2">
+                       <span class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-heading font-bold text-sm">
+                         {index + 1}
+                       </span>
+                       <h2 class="text-xl md:text-2xl font-heading font-bold text-text-dark">
+                         {servicio.title}
+                       </h2>
+                     </div>
+                     <p class="text-primary font-semibold mb-1">{servicio.shortDescription}</p>
+                     <p class="text-text-medium">👉 {servicio.specific}</p>
+                   </div>
+                   <div class="extra-left hidden">
+                     <p class="text-primary font-semibold mb-1">{servicio.tagline}</p>
+                     <p class="text-text-medium text-base mb-4">
+                       {servicio.description}
+                     </p>
+                     <Button href="/contacto" variant="primary">
+                       Solicitar información
+                     </Button>
+                   </div>
+                 </div>
+
+                 <div>
+                   <div class="flex justify-end mb-2">
+                     <button onclick="toggleCard(this)" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors">
+                       ver más ▼
+                     </button>
+                   </div>
+                   <div class="initial-right">
+                   </div>
+                   <div class="extra-right hidden">
+                     <div class="space-y-4">
+                       <div>
+                          <h3 class="text-base font-heading font-semibold text-text-dark mb-2 flex items-center gap-2">
+                            <svg class="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            Qué hacemos
+                          </h3>
+                         <ul class="space-y-2">
+                           {servicio.queHacemos.map((item) => (
+                             <li class="flex items-start gap-2 text-text-medium">
+                               <svg class="w-5 h-5 text-primary/60 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                               </svg>
+                               {item}
+                             </li>
+                           ))}
+                         </ul>
+                       </div>
+
+                       <div>
+                          <h3 class="text-base font-heading font-semibold text-text-dark mb-2 flex items-center gap-2">
+                            <svg class="w-4 h-4 text-accent-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                            </svg>
+                            Beneficios
+                          </h3>
+                         <ul class="space-y-2">
+                           {servicio.beneficios.map((item) => (
+                             <li class="flex items-start gap-2 text-text-medium">
+                               <svg class="w-5 h-5 text-accent-gold/60 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                               </svg>
+                               {item}
+                             </li>
+                           ))}
+                         </ul>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           ))}
+         </div>
+       </div>
+     </section>
     
     <!-- CTA -->
     <section class="py-16 bg-primary-lighter">
@@ -217,4 +244,33 @@ const servicios = [
   
   <Footer />
   <WhatsAppButton />
+
+  <script>
+    function toggleCard(button) {
+      const card = button.closest('.grid');
+      const extraLeft = card.querySelector('.extra-left');
+      const extraRight = card.querySelector('.extra-right');
+      const initialRight = card.querySelector('.initial-right');
+      if (extraLeft.classList.contains('hidden')) {
+        extraLeft.classList.remove('hidden');
+        extraRight.classList.remove('hidden');
+        initialRight.classList.add('hidden');
+        button.textContent = 'ver menos ▲';
+      } else {
+        extraLeft.classList.add('hidden');
+        extraRight.classList.add('hidden');
+        initialRight.classList.remove('hidden');
+        button.textContent = 'ver más ▼';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('button[onclick*="toggleCard"]').forEach(button => {
+        button.addEventListener('click', () => {
+          toggleCard(button);
+        });
+        button.removeAttribute('onclick');
+      });
+    });
+  </script>
 </BaseLayout>
