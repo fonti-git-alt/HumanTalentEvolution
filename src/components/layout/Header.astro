@@ -27,15 +27,7 @@ const navLinks = [
       },
     ]
   },
-  { 
-    label: 'Candidatos', 
-    href: '/personas',
-    children: [
-      { href: '/personas', label: 'Impulso Profesional' },
-      { href: '/personas', label: 'Marca Profesional Estratégica' },
-      { href: '/personas', label: 'Salto Profesional' },
-    ]
-  },
+  { href: '/personas', label: 'Candidatos' },
   { href: '/quienes-somos', label: 'Nosotros' },
   { href: '/contacto', label: 'Contacto' },
 ];
@@ -303,34 +295,36 @@ const currentPath = Astro.url.pathname;
   window.addEventListener('scroll', handleScroll, { passive: true });
 
    // Mobile header: fade out on scroll down, fade in on scroll up
-   let lastScrollY = 0;
+   let lastScrollY = window.scrollY;
    let mobileHidden = false;
 
    function updateMobileHeaderVisibility() {
      if (!mobileHeader || window.innerWidth >= 1024) return;
-     
+
      const currentScrollY = window.scrollY;
-     
-     if (currentScrollY > lastScrollY && currentScrollY > 50) {
-       // Scrolling down - fade out header
-       if (!mobileHidden) {
+     const scrollDelta = currentScrollY - lastScrollY;
+
+     // Only hide/show if there's significant scroll movement
+     if (Math.abs(scrollDelta) > 5) {
+       if (scrollDelta > 0 && currentScrollY > 100 && !mobileHidden) {
+         // Scrolling down past 100px - fade out header
          mobileHeader.classList.add('opacity-0');
          mobileHeader.classList.remove('opacity-100');
          mobileHidden = true;
-       }
-     } else {
-       // Scrolling up - fade in header
-       if (mobileHidden || currentScrollY < lastScrollY) {
+       } else if (scrollDelta < 0 && mobileHidden) {
+         // Scrolling up - fade in header
          mobileHeader.classList.remove('opacity-0');
          mobileHeader.classList.add('opacity-100');
          mobileHidden = false;
        }
      }
-     
+
      lastScrollY = currentScrollY;
    }
-  
-  window.addEventListener('scroll', updateMobileHeaderVisibility, { passive: true });
+
+   // Initialize mobile header visibility
+   updateMobileHeaderVisibility();
+   window.addEventListener('scroll', updateMobileHeaderVisibility, { passive: true });
 
   // Mobile drawer handlers
   const menuOverlay = document.getElementById('mobile-menu-overlay');
