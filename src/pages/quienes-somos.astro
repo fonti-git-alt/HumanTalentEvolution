@@ -5,60 +5,24 @@ import Footer from '../components/layout/Footer.astro';
 import WhatsAppButton from '../components/layout/WhatsAppButton.astro';
 import Button from '../components/ui/Button.astro';
 
-const pasos = [
-  {
-    numero: '01',
-    title: 'Definición del Objetivo',
-    description: 'Entendemos claramente qué necesitas lograr: ¿desarrollo, sucesión, promoción, identificación de talento?',
-    details: [
-      'Conversamos para entender tu necesidad específica',
-      'Definimos los objetivos de la valoración',
-      'Acordamos el alcance y entregables',
-    ],
-  },
-  {
-    numero: '02',
-    title: 'Análisis del Contexto',
-    description: 'Evaluamos el contexto organizacional y el perfil del cargo o rol para asegurar una valoración relevante.',
-    details: [
-      'Revisamos la estructura y cultura organizacional',
-      'Analizamos las competencias del rol objetivo',
-      'Consideramos factores contextuales relevantes',
-    ],
-  },
-  {
-    numero: '03',
-    title: 'Herramientas de Valoración',
-    description: 'Aplicamos instrumentos científicamente validados y alineados a los objetivos definidos.',
-    details: [
-      'Assessments psicométricos especializados',
-      'Entrevistas estructuradas',
-      'Ejercicios situacionales y de simulación',
-      '360 grados cuando aplique',
-    ],
-  },
-  {
-    numero: '04',
-    title: 'Interpretación de Resultados',
-    description: 'Analizamos los datos gathered con expertise para generar insights significativos y accionables.',
-    details: [
-      'Triangulación de múltiples fuentes de información',
-      'Análisis de patrones y tendencias',
-      'Identificación de fortalezas y áreas de desarrollo',
-    ],
-  },
-  {
-    numero: '05',
-    title: 'Retroalimentación Clara y Accionable',
-    description: 'Comunicamos los resultados de manera clara, confidencial y orientada a la acción.',
-    details: [
-      'Sesión de retroalimentación con el candidato',
-      'Reporte ejecutivo para la organización',
-      'Recomendaciones específicas de desarrollo',
-      'Plan de acción acordado',
-    ],
-  },
-];
+const galleryImages = [
+  '/images/reduxfotos/galeria/imagen 1.jpeg',
+  '/images/reduxfotos/galeria/imagen 2.jpeg',
+  '/images/reduxfotos/galeria/imagen 3.jpeg',
+  '/images/reduxfotos/galeria/imagen 4.jpeg',
+  '/images/reduxfotos/galeria/imagen 5.jpeg',
+  '/images/reduxfotos/galeria/imagen 6.jpeg',
+  '/images/reduxfotos/galeria/imagen 7.jpeg',
+  '/images/reduxfotos/galeria/imagen 8.jpeg',
+  '/images/reduxfotos/galeria/imagen 9.jpeg',
+  '/images/reduxfotos/galeria/imagen 10.jpeg',
+  '/images/reduxfotos/galeria/imagen 11.jpeg',
+  '/images/reduxfotos/galeria/imagen 12.jpeg',
+  '/images/reduxfotos/galeria/imagen 13.jpeg',
+  '/images/reduxfotos/galeria/imagen 14.jpeg',
+  '/images/reduxfotos/galeria/imagen 15.jpeg',
+  '/images/reduxfotos/galeria/imagen 16.jpeg',
+].sort(() => Math.random() - 0.5);
 
 const valoresMetodologia = [
   {
@@ -164,50 +128,86 @@ const valoresMetodologia = [
     </section>
     
     <!-- Metodología -->
-    <section class="py-24 bg-gray-50">
-      <div class="container-page">
+    <section class="py-24 bg-primary-lighter relative">
+      <div class="container-page relative z-10">
         <div class="text-center mb-16">
-          <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark mb-6">
+          <h2 class="text-2xl md:text-4xl font-heading font-bold text-text-dark mb-6">
             Nuestra Metodología
           </h2>
           <p class="text-text-medium max-w-2xl mx-auto text-lg">
-            Utilizamos un enfoque disruptivo, experiencial y medible.
+            Un enfoque disruptivo, experiencial y medible que transforma perspectivas.
           </p>
         </div>
-        <div class="space-y-8 max-w-4xl mx-auto">
-          {pasos.map((paso) => (
-            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow">
-              <div class="flex flex-col md:flex-row gap-4 md:gap-6">
-                <div class="shrink-0">
-                  <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center text-white">
-                    <span class="text-lg font-heading font-bold">{paso.numero}</span>
-                  </div>
-                </div>
-                <div class="flex-1">
-                  <h3 class="text-lg md:text-xl font-heading font-bold text-text-dark mb-2">
-                    {paso.title}
-                  </h3>
-                  <p class="text-text-medium mb-3">
-                    {paso.description}
-                  </p>
-                  <ul class="grid md:grid-cols-2 gap-2">
-                    {paso.details.map((detail) => (
-                      <li class="flex items-start gap-2 text-sm text-text-medium">
-                        <svg class="w-4 h-4 text-primary mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-7xl mx-auto" id="gallery-grid">
+          {galleryImages.slice(0, 16).map((img, index) => (
+            <div
+              class="relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-purple-500/25 transition-all duration-500 hover:scale-105 hover:rotate-1 group aspect-square gallery-item"
+              style={`animation-delay: ${index * 0.1}s`}
+              data-index={index}
+            >
+              <img
+                src={img}
+                alt={`Imagen ${index + 1}`}
+                class={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:brightness-110`}
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="absolute bottom-4 left-4 right-4">
+                  <p class="text-white text-sm font-medium">Imagen {index + 1}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
+
+        <!-- Ver más button -->
+        <div class="text-center mt-12">
+          <button
+            id="ver-mas-btn"
+            class="bg-accent-gold hover:bg-accent-gold/90 text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 shadow-lg hover:shadow-xl"
+          >
+            Ver más
+          </button>
+        </div>
       </div>
     </section>
-    
+
+    <script>
+      let showingMore = false;
+      const verMasBtn = document.getElementById('ver-mas-btn');
+      const galleryItems = document.querySelectorAll('.gallery-item');
+
+      function getInitialCount() {
+        const width = window.innerWidth;
+        if (width < 768) return 4; // 2 columns × 2 rows on mobile
+        if (width < 1024) return 6; // 3 columns × 2 rows on tablet
+        return 8; // 4 columns × 2 rows on desktop
+      }
+
+      function updateVisibleImages() {
+        const initialCount = getInitialCount();
+
+        galleryItems.forEach((item, index) => {
+          if (showingMore || index < initialCount) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        verMasBtn.textContent = showingMore ? 'Ver menos' : 'Ver más';
+        verMasBtn.style.display = galleryItems.length <= initialCount ? 'none' : 'inline-block';
+      }
+
+      verMasBtn?.addEventListener('click', () => {
+        showingMore = !showingMore;
+        updateVisibleImages();
+      });
+
+      // Initial setup and responsive handling
+      window.addEventListener('resize', updateVisibleImages);
+      updateVisibleImages();
+    </script>
+
     <!-- Valores metodológicos -->
     <section class="py-16 bg-white">
       <div class="container-page">
@@ -316,16 +316,32 @@ const valoresMetodologia = [
           <div class="text-center mb-16">
             <span class="text-primary font-semibold text-sm uppercase tracking-wider">Equipo Profesional</span>
             <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark mt-3">
-              Profesionales Altamente Calificados
+              Profesionales altamente calificados
             </h2>
           </div>
           
-          <div class="text-center mb-16">
-            <p class="text-lg text-text-medium max-w-3xl mx-auto leading-relaxed">
-              Nuestro equipo de psicólogos organizacionales seniors, certificados con experiencia en gestión de recursos humanos. Te brindará atención personalizada y acompañamiento permanente.
-            </p>
-          </div>
-          
+          <div class="mb-16">
+            <div class="bg-white rounded-2xl p-8 shadow-lg max-w-5xl mx-auto hover:shadow-xl transition-shadow duration-300">
+              <div class="grid md:grid-cols-2 gap-8 items-center">
+                <img
+                  src="/images/reduxfotos/Quienes somos/NUESTRO_EQUIPO.jpg"
+                  alt="Nuestro equipo de psicólogos"
+                  class="w-full aspect-[4/3] object-cover object-[35%_40%] rounded-xl transition-transform duration-300 hover:translate-y-[-10px]"
+                />
+                <div>
+                  <p class="text-lg text-text-medium leading-relaxed mb-6 hover:text-primary transition-colors duration-300 text-center">
+                    Nuestro equipo de psicólogos organizacionales seniors, certificados con experiencia en gestión de recursos humanos.<br>
+                    <strong>Te brindamos atención personalizada y acompañamiento permanente.</strong>
+                  </p>
+                  <div class="text-center">
+                    <Button href="/contacto" variant="primary" size="lg">
+                      Agenda una asesoría
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           <!-- Video placeholder -->
           <div class="bg-gray-50 rounded-2xl p-12 text-center">
             <div class="max-w-2xl mx-auto">

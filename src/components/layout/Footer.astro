@@ -40,7 +40,7 @@ const socialLinks = [
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors"
+              class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent-gold transition-colors"
               aria-label={social.label}
             >
               <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -51,7 +51,7 @@ const socialLinks = [
         </div>
         
         <p class="text-sm text-white/40 mt-6">
-          © 2026 Human Talent Evolution. Parte del grupo <a href="https://hjelpsolutions.com/" class="font-semibold text-primary hover:text-primary/80 transition-colors">Hjelp Solutions</a>.
+          © 2026 Human Talent Evolution. Una marca de <a href="https://hjelpsolutions.com/" class="font-semibold text-accent-gold hover:text-accent-gold/80 transition-colors">Hjelp Solutions S.A.S.</a>.
         </p>
       </div>
 
@@ -61,7 +61,7 @@ const socialLinks = [
         <ul class="space-y-3">
           {quickLinks.map((link) => (
             <li>
-              <a href={link.href} class="hover:text-primary transition-colors">
+              <a href={link.href} class="hover:text-accent-gold transition-colors">
                 {link.label}
               </a>
             </li>
@@ -76,8 +76,8 @@ const socialLinks = [
           {legalLinks.map((link) => (
             <li>
               <a 
-                href={link.href} 
-                class={`hover:text-primary transition-colors ${link.external ? 'flex items-center gap-1' : ''}`}
+                href={link.href}
+                class={`hover:text-accent-gold transition-colors ${link.external ? 'flex items-center gap-1' : ''}`}
                 target={link.external ? '_blank' : undefined}
                 rel={link.external ? 'noopener noreferrer' : undefined}
               >

@@ -46,7 +46,7 @@ const clientes = [
           <div class="bg-white rounded-2xl p-6 md:p-8 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer">
             <img src={cliente.logo} alt={cliente.name} class="w-20 h-20 md:w-24 md:h-24 object-contain" />
           </div>
-          <p class="text-center text-xs text-text-medium mt-2 truncate">{cliente.name}</p>
+
         </div>
       ))}
     </div>
@@ -59,7 +59,7 @@ const clientes = [
   let isPaused = false;
   let animationId: number | null = null;
   let currentPosition = 0;
-  let speed = 0.4;
+   let speed = 1.2;
 
   const itemWidth = 144;
   const totalItems = 51;
