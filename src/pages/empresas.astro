@@ -4,6 +4,8 @@ import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import WhatsAppButton from '../components/layout/WhatsAppButton.astro';
 import Button from '../components/ui/Button.astro';
+import ConcentricRings from '../components/ConcentricRings.astro';
+
 
 const servicios = [
   {
@@ -113,35 +115,62 @@ const servicios = [
   <Header />
   
   <main>
-     <!-- Hero Section -->
-     <section class="pt-32 pb-16 bg-gradient-to-br from-primary-lighter to-white">
-       <div class="container-page text-center">
-         <h1 class="text-4xl md:text-5xl font-heading font-bold text-text-dark mb-4">
-           Soluciones para Empresas
-         </h1>
-         <p class="text-xl text-text-medium max-w-2xl mx-auto">
-           Impulsamos el crecimiento de tu organización a través de soluciones integrales en gestión del talento humano.
-         </p>
-       </div>
-     </section>
-    
-    <!-- Intro -->
-    <section class="py-16 bg-white">
-      <div class="container-page">
-        <div class="max-w-3xl mx-auto text-center">
-          <p class="text-lg text-text-medium leading-relaxed">
-            En Human Talent Evolution entendemos que el talento es el activo más valioso de cualquier organización. 
-            Brindamos soluciones innovadoras que se incorporan al ADN de tu empresa, creando estrategias personalizadas 
-            que alinean personas, procesos y cultura.
-          </p>
+      <!-- Hero Section -->
+      <section class="pt-16 pb-16 bg-primary-lighter">
+        <div class="container-page">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h1 class="text-4xl md:text-5xl font-heading font-bold text-text-dark mb-4">
+                Soluciones para Empresas
+              </h1>
+              <p class="text-xl text-text-medium mb-6">
+                Impulsamos el crecimiento de tu organización a través de soluciones integrales en gestión del talento humano.
+              </p>
+              <p class="text-lg text-text-medium leading-relaxed mb-8">
+                En Human Talent Evolution entendemos que el talento es el activo más valioso de cualquier organización.
+                Brindamos soluciones innovadoras que se incorporan al ADN de tu empresa, creando estrategias personalizadas
+                que alinean personas, procesos y cultura.
+              </p>
+              <div class="flex gap-4 flex-wrap">
+                <Button href="/contacto" variant="primary">
+                  Agenda una asesoría
+                </Button>
+                <Button href="#atraccion-seleccion" variant="secondary">
+                  Ver soluciones
+                </Button>
+              </div>
+            </div>
+            <div>
+              <ConcentricRings
+                rings={4}
+                text="LO QUE TE FALTA"
+                texts={[
+                  { top: "AQUÍ ESTÁS AHORA", bottom: "AQUÍ TIENES QUE LLEGAR" },
+                  { top: "CULTURA", bottom: "" },
+                  { top: "ORGANIZACIÓN", bottom: "ESTRATEGIA DE TALENTOS | DISEÑO ORGANIZACIONAL | DISEÑO DE TRABAJO | COMPENSACIONES" },
+                  { top: "LIDERAZGO", bottom: "EFECTIVIDAD | EXITO" },
+                  { top: "PERSONAS", bottom: "RECLUTAR | DESARROLLAR | REASIGNAR " }
+                ]}
+                size={600}
+                thickness={60}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-    
-     <!-- Servicios -->
-     <section class="py-16 bg-gray-50">
-       <div class="container-page">
-         <div class="space-y-8">
+      </section>
+
+      <!-- Servicios -->
+      <section class="py-16 bg-gray-50">
+        <div class="container-page">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-text-dark mb-4">
+              Nuestras Soluciones
+            </h2>
+            <p class="text-lg text-text-medium max-w-2xl mx-auto">
+              Descubre cómo podemos ayudarte a potenciar el talento de tu organización.
+            </p>
+          </div>
+          <div class="space-y-8">
            {servicios.map((servicio, index) => (
              <div id={servicio.id} class="scroll-mt-24 bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-shadow">
                <div class="grid md:grid-cols-2 gap-6">

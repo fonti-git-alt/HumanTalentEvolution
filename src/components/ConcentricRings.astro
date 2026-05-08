@@ -46,8 +46,8 @@ const textOffsetBottom = 15; // texto inferior: 15px desde el radio
       <!-- Paths para textos curvados (superior e inferior) - capa independiente -->
       {Array.from({ length: numTexts }, (_, i) => {
         // Radios para textos basados en distancia fija desde el centro
-        const defaultTextRadii = [340, 250, 200, 150, 100, 80, 60]; // radios por defecto
-        const radii = textRadii || defaultTextRadii;
+        const defaultTextRadii = [300, 250, 200, 150, 100, 80, 60]; // radios por defecto para size=600
+        const radii = textRadii || defaultTextRadii.map(r => r * (size / 600)); // escalar según size
         const radius = radii[i] || 50; // fallback
         // Radios para texto superior e inferior
         const textRadiusTop = i === 0 ? 320 : i === 1 ? 270 : i === 2 ? 210 : i === 3 ? 150 : i === 4 ? 90 : radius - textOffsetTop;
@@ -95,7 +95,7 @@ const textOffsetBottom = 15; // texto inferior: 15px desde el radio
       />
 
       <!-- Fondo y texto separador central -->
-      <rect x={-size/2 - 30} y={-20} width={size + 60} height={40} fill="#f5f3f0" />
+      <rect x={-size/2 - 30} y={-20} width={size + 60} height={40} fill="#f5f0fa" />
       <text x={0} y={5} font-size="16" fill="red" font-family="Plus Jakarta Sans, sans-serif" font-weight="700" text-anchor="middle">
         {text}
       </text>
