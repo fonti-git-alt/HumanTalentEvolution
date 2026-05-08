@@ -1,18 +1,53 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
 import ConcentricRings from '../components/ConcentricRings.astro';
+
+const title = "Test Page";
 ---
 
-<ConcentricRings 
-      rings={4}
-      texts={[
-        { top: "NIVEL 7", bottom: "MÁS EXTERIOR TODAVÍA" },
-        { top: "NIVEL 6", bottom: "MÁS EXTERIOR" },
-        { top: "NIVEL 5", bottom: "EXTERIOR EXTRA" },
-        { top: "NIVEL 4", bottom: "MÁS EXTERNO" },
-        { top: "NIVEL 3", bottom: "EXTERIOR" },
-        { top: "NIVEL 2", bottom: "INTERMEDIO" }
-      ]}
+<BaseLayout {title}>
+  <div class="grid grid-cols-3 gap-4">
+    <ConcentricRings
+        rings={4}
+        text="LO QUE TE FALTA"
+        texts={[
+          { top: "AQUÍ ESTÁS AHORA", bottom: "AQUÍ TIENES QUE LLEGAR" },
+          { top: "CULTURA", bottom: "" },
+          { top: "ORGANIZACIÓN", bottom: "ESTRATEGIA DE TALENTOS | DISEÑO ORGANIZACIONAL | DISEÑO DE TRABAJO | COMPENSACIONES" },
+          { top: "LIDERAZGO", bottom: "EFECTIVIDAD | EXITO" },
+          { top: "PERSONAS", bottom: "RECLUTAR | DESARROLLAR | REASIGNAR " }
+        ]}
 
-        size={600}
-        thickness={60}
-      />
+          size={600}
+          thickness={60}
+        />
+    <ConcentricRings
+        rings={4}
+        text="LO QUE TE FALTA"
+        texts={[
+          { top: "AQUÍ ESTÁS AHORA", bottom: "AQUÍ TIENES QUE LLEGAR" },
+          { top: "CULTURA", bottom: "" },
+          { top: "ORGANIZACIÓN", bottom: "ESTRATEGIA DE TALENTOS | DISEÑO ORGANIZACIONAL | DISEÑO DE TRABAJO | COMPENSACIONES" },
+          { top: "LIDERAZGO", bottom: "EFECTIVIDAD | EXITO" },
+          { top: "PERSONAS", bottom: "RECLUTAR | DESARROLLAR | REASIGNAR " }
+        ]}
+
+          size={600}
+          thickness={60}
+        />
+    <ConcentricRings
+        rings={4}
+        text="LO QUE TE FALTA"
+        texts={[
+          { top: "AQUÍ ESTÁS AHORA", bottom: "AQUÍ TIENES QUE LLEGAR" },
+          { top: "CULTURA", bottom: "" },
+          { top: "ORGANIZACIÓN", bottom: "ESTRATEGIA DE TALENTOS | DISEÑO ORGANIZACIONAL | DISEÑO DE TRABAJO | COMPENSACIONES" },
+          { top: "LIDERAZGO", bottom: "EFECTIVIDAD | EXITO" },
+          { top: "PERSONAS", bottom: "RECLUTAR | DESARROLLAR | REASIGNAR " }
+        ]}
+
+          size={600}
+          thickness={60}
+        />
+  </div>
+</BaseLayout>
