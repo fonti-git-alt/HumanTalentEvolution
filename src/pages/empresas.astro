@@ -246,11 +246,13 @@ const servicios = [
   <WhatsAppButton />
 
   <script>
-    function toggleCard(button) {
-      const card = button.closest('.grid');
-      const extraLeft = card.querySelector('.extra-left');
-      const extraRight = card.querySelector('.extra-right');
-      const initialRight = card.querySelector('.initial-right');
+    function toggleCard(button: HTMLButtonElement) {
+      const card = button.closest('.grid') as HTMLElement;
+      if (!card) return;
+      const extraLeft = card.querySelector('.extra-left') as HTMLElement;
+      const extraRight = card.querySelector('.extra-right') as HTMLElement;
+      const initialRight = card.querySelector('.initial-right') as HTMLElement;
+      if (!extraLeft || !extraRight || !initialRight) return;
       if (extraLeft.classList.contains('hidden')) {
         extraLeft.classList.remove('hidden');
         extraRight.classList.remove('hidden');
@@ -265,7 +267,7 @@ const servicios = [
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('button[onclick*="toggleCard"]').forEach(button => {
+      document.querySelectorAll<HTMLButtonElement>('button[onclick*="toggleCard"]').forEach(button => {
         button.addEventListener('click', () => {
           toggleCard(button);
         });

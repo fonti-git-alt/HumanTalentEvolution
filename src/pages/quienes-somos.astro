@@ -173,8 +173,8 @@ const valoresMetodologia = [
 
     <script>
       let showingMore = false;
-      const verMasBtn = document.getElementById('ver-mas-btn');
-      const galleryItems = document.querySelectorAll('.gallery-item');
+      const verMasBtn = document.getElementById('ver-mas-btn') as HTMLButtonElement | null;
+      const galleryItems = document.querySelectorAll('.gallery-item') as NodeListOf<HTMLElement>;
 
       function getInitialCount() {
         const width = window.innerWidth;
@@ -184,6 +184,7 @@ const valoresMetodologia = [
       }
 
       function updateVisibleImages() {
+        if (!verMasBtn) return;
         const initialCount = getInitialCount();
 
         galleryItems.forEach((item, index) => {
