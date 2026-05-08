@@ -120,12 +120,12 @@ const currentPath = Astro.url.pathname;
 
     <!-- Mobile header (simple bar across top) -->
     <div id="mobile-header" class="lg:hidden fixed top-0 left-0 right-0 z-50 bg-transparent transition-opacity duration-300 ease-out opacity-100">
-    <div class="flex items-center justify-between h-14 px-4">
+    <div class="flex items-center justify-between h-16 px-4">
       <a href="/" class="flex items-center">
         <img
           src="/images/reduxfotos/Logo horizontal.png"
           alt="Human Talent Evolution"
-          class="h-8"
+          class="h-12"
         />
       </a>
       
@@ -150,7 +150,7 @@ const currentPath = Astro.url.pathname;
           <img
             src="/images/reduxfotos/Logo horizontal.png"
             alt="Human Talent Evolution"
-            class="h-8"
+            class="h-12"
           />
         </a>
         <button id="mobile-menu-close" class="p-2 text-text-dark hover:text-primary transition-colors">
@@ -164,20 +164,20 @@ const currentPath = Astro.url.pathname;
         <nav class="flex-1 p-6 space-y-1">
           {navLinks.map((link) => (
             link.children ? (
-              <div class="mb-4">
-                <a 
+              <div class="mb-6">
+                <a
                   href={link.href}
-                  class={`text-xs font-heading font-semibold text-text-medium uppercase tracking-wider hover:text-primary transition-colors block`}
+                  class={`text-sm font-heading font-semibold text-text-dark uppercase tracking-wide hover:text-primary transition-colors block mb-3`}
                 >
                   {link.label}
                 </a>
-                <div class="mt-2 space-y-0">
+                <div class="space-y-1 pl-2 border-l-2 border-primary/20">
                   {link.children.map(item => (
                     <div class="py-1">
-                      <a 
+                      <a
                         href={item.href}
-                        class={`block font-heading font-medium text-sm transition-colors hover:text-primary ${
-                          currentPath === item.href ? 'text-primary' : 'text-text-medium'
+                        class={`block font-heading font-medium text-sm transition-colors hover:text-primary hover:translate-x-1 hover:pl-1 ${
+                          currentPath === item.href ? 'text-primary font-semibold' : 'text-text-dark'
                         }`}
                       >
                         {item.label}
@@ -187,10 +187,10 @@ const currentPath = Astro.url.pathname;
                 </div>
               </div>
             ) : (
-              <a 
-                href={link.href} 
-                class={`block py-3 font-heading text-lg font-medium transition-colors hover:text-primary ${
-                  currentPath === link.href ? 'text-primary' : 'text-text-dark'
+              <a
+                href={link.href}
+                class={`block py-3 font-heading text-lg font-medium transition-colors hover:text-primary hover:bg-primary/5 rounded-lg px-3 ${
+                  currentPath === link.href ? 'text-primary bg-primary/10 font-semibold' : 'text-text-dark'
                 }`}
               >
                 {link.label}

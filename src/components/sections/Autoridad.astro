@@ -20,13 +20,13 @@ const clientes = [
 ];
 ---
 
-<section class="py-20 bg-primary-lighter overflow-hidden">
-  <div class="container-page mb-10">
+<section class="py-12 md:py-16 lg:py-20 bg-primary-lighter overflow-hidden">
+  <div class="container-page mb-6 md:mb-8 lg:mb-10">
     <div class="text-center">
-      <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark">
+      <h2 class="text-xl sm:text-2xl md:text-3xl font-heading font-bold text-text-dark text-center">
         Empresas que confían en nosotros
       </h2>
-      <p class="text-text-medium mt-3 max-w-xl mx-auto">
+      <p class="text-text-medium mt-3 max-w-xl mx-auto text-sm md:text-base text-center leading-relaxed">
         Organizaciones que han transformado su gestión del talento con nuestra ayuda.
       </p>
     </div>
@@ -42,11 +42,10 @@ const clientes = [
     <div class="flex" id="carousel-track">
       <!-- Duplicamos los clientes para efecto infinite seamless -->
       {[...clientes, ...clientes, ...clientes].map((cliente) => (
-        <div class="flex-shrink-0 w-32 md:w-40 mx-4">
-          <div class="bg-white rounded-2xl p-6 md:p-8 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer">
-            <img src={cliente.logo} alt={cliente.name} class="w-20 h-20 md:w-24 md:h-24 object-contain" />
+        <div class="flex-shrink-0 w-24 sm:w-32 md:w-40 mx-2 sm:mx-4">
+          <div class="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 hover:shadow-lg hover:scale-105 cursor-pointer">
+            <img src={cliente.logo} alt={cliente.name} class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain" />
           </div>
-
         </div>
       ))}
     </div>

@@ -15,23 +15,24 @@ import Button from '../ui/Button.astro';
   </div>
   
   <!-- Decorative Elements -->
-  <div class="absolute top-20 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
-  <div class="absolute bottom-20 left-0 w-72 h-72 bg-accent-gold/10 rounded-full blur-3xl"></div>
+  <div class="absolute top-20 right-0 w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-primary/10 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-20 left-0 w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 bg-accent-gold/10 rounded-full blur-3xl"></div>
   
-  <div class="container-page relative z-10 py-20">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+  <div class="container-page relative z-10 py-12 md:py-16 lg:py-20">
+    <div class="grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center">
       <!-- Content -->
       <div class="space-y-8">
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary font-medium text-sm">
-          <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-          Consultora Estratégica de RRHH
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-primary/10 rounded-full text-primary font-medium text-xs md:text-sm">
+          <span class="w-1.5 h-1.5 md:w-2 md:h-2 bg-primary rounded-full animate-pulse"></span>
+          <span class="hidden sm:inline">Consultora Estratégica de RRHH</span>
+          <span class="sm:hidden">Consultora RRHH</span>
         </div>
         
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-text-dark leading-tight text-balance">
           Impulsamos el crecimiento de tu <span class="text-primary">empresa</span> a través de su <span class="text-primary">talento humano</span>
         </h1>
         
-        <p class="text-xl text-text-medium max-w-xl">
+        <p class="text-lg md:text-xl text-text-medium max-w-xl leading-relaxed">
           Atraemos, desarrollamos y transformamos equipos para generar resultados reales en tu organización.
         </p>
         
@@ -96,27 +97,27 @@ import Button from '../ui/Button.astro';
           </div>
           
           <!-- Floating Elements -->
-          <div class="absolute top-4 right-4 bg-white rounded-2xl shadow-lg p-4 animate-bounce-slow">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-                <svg class="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="absolute top-2 right-2 md:top-4 md:right-4 bg-white rounded-xl md:rounded-2xl shadow-lg p-2 md:p-4 animate-bounce-slow">
+            <div class="flex items-center gap-2 md:gap-3">
+              <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-green-100 flex items-center justify-center">
+                <svg class="w-4 h-4 md:w-5 md:h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <span class="text-sm font-medium">Toma de decisiones</span>
+              <span class="text-xs md:text-sm font-medium">Toma de decisiones</span>
             </div>
           </div>
-          
-          <div class="absolute bottom-4 left-4 bg-white rounded-2xl shadow-lg p-4">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-full bg-primary-lighter flex items-center justify-center">
-                <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+          <div class="absolute bottom-2 left-2 md:bottom-4 md:left-4 bg-white rounded-xl md:rounded-2xl shadow-lg p-2 md:p-4 max-w-[180px] md:max-w-none">
+            <div class="flex items-center gap-2 md:gap-3">
+              <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary-lighter flex items-center justify-center">
+                <svg class="w-4 h-4 md:w-5 md:h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                 </svg>
               </div>
               <div>
-                <p class="text-sm font-medium text-text-dark">
-                  99% de clientes obtuvieron resultados<br/>de valoraciones de su talento más precisas y confiables
+                <p class="text-xs md:text-sm font-medium text-text-dark leading-tight">
+                  99% de clientes obtuvieron resultados<br class="hidden md:block"/>de valoraciones de su talento más precisas y confiables
                 </p>
               </div>
             </div>
@@ -127,7 +128,7 @@ import Button from '../ui/Button.astro';
   </div>
   
   <!-- Scroll Indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+  <div class="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
     <svg class="w-6 h-6 text-text-medium" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
     </svg>
