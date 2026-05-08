@@ -332,10 +332,11 @@ const currentPath = Astro.url.pathname;
   function openDrawer() {
     mobileMenu?.classList.remove('hidden');
     menuOverlay?.classList.remove('hidden');
-    // Trigger reflow para la transición
-    mobileMenu?.offsetHeight;
-    mobileMenu?.classList.remove('translate-x-full');
-    menuOverlay?.classList.remove('opacity-0');
+    // Use requestAnimationFrame to defer the transition classes
+    requestAnimationFrame(() => {
+      mobileMenu?.classList.remove('translate-x-full');
+      menuOverlay?.classList.remove('opacity-0');
+    });
     document.body.style.overflow = 'hidden';
   }
   
