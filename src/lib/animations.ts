@@ -123,17 +123,26 @@ export function animateCounter(element: Element, target: number, options: { suff
 
 // Magnetic button effect
 export function addMagneticEffect(element: HTMLElement, strength: number = 0.3): void {
+  let rect: DOMRect;
+  let ticking = false;
+
   element.addEventListener('mousemove', (e: MouseEvent) => {
-    const rect = element.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    
-    gsap.to(element, {
-      x: x * strength,
-      y: y * strength,
-      duration: 0.3,
-      ease: 'power2.out',
-    });
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        rect = element.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        gsap.to(element, {
+          x: x * strength,
+          y: y * strength,
+          duration: 0.3,
+          ease: 'power2.out',
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
   });
 
   element.addEventListener('mouseleave', () => {

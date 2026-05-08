@@ -216,8 +216,20 @@ const soluciones = [
     carousel.addEventListener('mouseenter', stopAutoRotate);
     carousel.addEventListener('mouseleave', startAutoRotate);
 
-    // Actualizar al hacer scroll
-    carousel.addEventListener('scroll', () => {
+    // Throttle function
+    function throttle(func: (...args: any[]) => void, limit: number) {
+      let inThrottle: boolean;
+      return function(...args: any[]) {
+        if (!inThrottle) {
+          func(...args);
+          inThrottle = true;
+          setTimeout(() => inThrottle = false, limit);
+        }
+      }
+    }
+
+    // Actualizar al hacer scroll (throttled)
+    const throttledUpdateActive = throttle(() => {
       const scrollPos = carousel.scrollLeft;
       const itemWidth = currentItemWidth + currentGap;
       let newIndex = Math.round(scrollPos / itemWidth);
@@ -229,7 +241,9 @@ const soluciones = [
         activeIndex = newIndex;
         updateActive();
       }
-    });
+    }, 16); // ~60fps
+
+    carousel.addEventListener('scroll', throttledUpdateActive);
 
     // Inicializar
     updateActive();
