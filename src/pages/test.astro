@@ -1,18 +1,22 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
 import ConcentricRings from '../components/ConcentricRings.astro';
+
+const title = "Test Page";
 ---
 
-<ConcentricRings 
-      rings={4}
+<BaseLayout {title}>
+  <ConcentricRings
+        rings={4}
       texts={[
-        { top: "NIVEL 7", bottom: "MÁS EXTERIOR TODAVÍA" },
-        { top: "NIVEL 6", bottom: "MÁS EXTERIOR" },
-        { top: "NIVEL 5", bottom: "EXTERIOR EXTRA" },
-        { top: "NIVEL 4", bottom: "MÁS EXTERNO" },
-        { top: "NIVEL 3", bottom: "EXTERIOR" },
-        { top: "NIVEL 2", bottom: "INTERMEDIO" }
+        { top: "AQUÍ ESTÁS AHORA", bottom: "AQUÍ TIENES QUE LLEGAR" },
+        { top: "Cultura", bottom: "" },
+        { top: "Organización", bottom: "Estrategia de Talentos | Diseño Organizacional | Diseño de trabajo | Compensaciones" },
+        { top: "Liderazgo", bottom: "Efectividad | Exito" },
+        { top: "Personas", bottom: "Reclutar | Desarrollar | Reasignar " }
       ]}
 
-        size={600}
-        thickness={60}
-      />
+          size={600}
+          thickness={60}
+        />
+</BaseLayout>
