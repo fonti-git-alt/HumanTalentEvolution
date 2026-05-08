@@ -54,30 +54,30 @@ const soluciones = [
     <!-- Carrusel de iconos -->
     <div class="relative mt-16 group">
       <!-- Contenedor del carrusel -->
-      <div id="soluciones-carousel" class="flex overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-8" style="mask: linear-gradient(to right, transparent 0%, white 10%, white 90%, transparent 100%); -webkit-mask: linear-gradient(to right, transparent 0%, white 10%, white 90%, transparent 100%);" data-num-items="6">
-        <div class="flex gap-8 px-4">
+      <div id="soluciones-carousel" class="flex overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-6 md:py-8" style="mask: linear-gradient(to right, transparent 0%, white 10%, white 90%, transparent 100%); -webkit-mask: linear-gradient(to right, transparent 0%, white 10%, white 90%, transparent 100%);" data-num-items="6">
+        <div class="flex gap-6 md:gap-8 px-4">
           {soluciones.map((solucion, i) => (
-            <div class="flex-none w-[280px] snap-start" data-index={i}>
+            <div class="flex-none w-[260px] md:w-[280px] snap-start" data-index={i}>
               <a href={solucion.href} class="group/icon block text-center">
                 {/* Ícono circular */}
-                <div class="relative w-32 h-32 mx-auto mb-6">
+                <div class="relative w-28 h-28 md:w-32 md:h-32 mx-auto mb-4 md:mb-6">
                   <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-lg opacity-50 group-hover/icon:opacity-70 transition-opacity"></div>
                   <div class="relative w-full h-full rounded-full bg-white border-2 border-gray-100 shadow-lg flex items-center justify-center overflow-hidden group-hover/icon:scale-105 group-hover/icon:border-primary transition-all duration-300">
-                    <img 
-                      src={solucion.icon} 
+                    <img
+                      src={solucion.icon}
                       alt={solucion.title}
-                      class="w-16 h-16 object-contain filter grayscale group-hover/icon:grayscale-0 transition-all duration-300"
+                      class="w-12 h-12 md:w-16 md:h-16 object-contain filter grayscale group-hover/icon:grayscale-0 transition-all duration-300"
                     />
                   </div>
                 </div>
                 
                 {/* Título */}
-                <h3 class="text-base font-heading font-bold text-text-dark mb-2 group-hover/icon:text-primary transition-colors leading-tight">
+                <h3 class="text-sm md:text-base font-heading font-bold text-text-dark mb-2 group-hover/icon:text-primary transition-colors leading-tight">
                   {solucion.title}
                 </h3>
-                
+
                 {/* Descripción */}
-                <p class="text-text-medium text-sm leading-relaxed px-2">
+                <p class="text-text-medium text-xs md:text-sm leading-relaxed px-1 md:px-2">
                   {solucion.description}
                 </p>
               </a>
@@ -89,7 +89,7 @@ const soluciones = [
       <!-- Botón anterior -->
       <button
         id="soluciones-prev"
-        class="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-50 transition-all hover:scale-110 opacity-0 group-hover:opacity-100"
+        class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-50 transition-all hover:scale-110 opacity-0 group-hover:opacity-100"
         aria-label="Anterior"
       >
         <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -100,7 +100,7 @@ const soluciones = [
       <!-- Botón siguiente -->
       <button
         id="soluciones-next"
-        class="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-50 transition-all hover:scale-110 opacity-0 group-hover:opacity-100"
+        class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-50 transition-all hover:scale-110 opacity-0 group-hover:opacity-100"
         aria-label="Siguiente"
       >
         <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

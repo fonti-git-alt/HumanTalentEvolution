@@ -76,11 +76,11 @@ const situaciones = [
   
   <main>
      <!-- Hero Section -->
-     <section class="pt-32 pb-16 bg-gradient-to-br from-primary-lighter to-white">
+     <section class="pt-20 md:pt-24 lg:pt-32 pb-12 md:pb-16 bg-gradient-to-br from-primary-lighter to-white">
        <div class="container-page">
-          <div class="bg-white rounded-2xl shadow-xl overflow-hidden max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row">
-              <div class="md:w-1/2 aspect-[4/3] relative">
+           <div class="bg-white rounded-xl md:rounded-2xl shadow-xl overflow-hidden max-w-6xl mx-auto">
+             <div class="flex flex-col md:flex-row">
+               <div class="md:w-1/2 aspect-[4/3] md:aspect-[4/3] relative">
                 <img
                   src="/images/reduxfotos/Candidatos/PARA_CANDIDATOS__1_.jpg"
                   alt="Candidatos profesionales"
@@ -88,15 +88,15 @@ const situaciones = [
                 />
                 <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"></div>
               </div>
-              <div class="md:w-1/2 p-12 flex flex-col justify-center">
-               <h1 class="text-4xl md:text-5xl font-heading font-bold text-text-dark mb-6">
+              <div class="md:w-1/2 p-6 md:p-8 lg:p-12 flex flex-col justify-center">
+               <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-text-dark mb-4 md:mb-6 leading-tight">
                  Te ayudamos con tu situación laboral
                </h1>
-               <p class="text-xl text-text-medium mb-4">
-                 - Deja de enviar hojas de vida sin respuesta.<br>
-                 - Deja de pedir ese aumento sin seguridad. <br>
-                 - Da ese salto a nuevos proyectos.
-               </p>
+                <p class="text-base md:text-lg lg:text-xl text-text-medium mb-4 leading-relaxed">
+                  - Deja de enviar hojas de vida sin respuesta.<br>
+                  - Deja de pedir ese aumento sin seguridad. <br>
+                  - Da ese salto a nuevos proyectos.
+                </p>
                <p>
                </p>
                <Button href="/contacto" variant="primary" size="lg" class="self-start">
@@ -109,20 +109,20 @@ const situaciones = [
      </section>
 
     <!-- Situaciones -->
-    <section class="py-16 bg-primary-lighter">
+    <section class="py-12 md:py-16 bg-primary-lighter">
       <div class="container-page">
-        <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark text-center mb-12">
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-heading font-bold text-text-dark text-center mb-8 md:mb-12 leading-tight">
           ¿Cuál es tu situación?
         </h2>
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {situaciones.map((situacion) => (
-            <div class="bg-white rounded-2xl p-8 text-center hover:shadow-lg transition-shadow">
-              <div class="w-14 h-14 rounded-xl bg-primary flex items-center justify-center mx-auto mb-4">
-                <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="bg-white rounded-xl md:rounded-2xl p-6 md:p-8 text-center hover:shadow-lg transition-shadow">
+              <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6 md:w-7 md:h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 class="text-xl font-heading font-bold text-text-dark mb-3">{situacion.titulo}</h3>
+              <h3 class="text-lg md:text-xl font-heading font-bold text-text-dark mb-3 leading-tight">{situacion.titulo}</h3>
               <p class="text-text-medium" style="white-space: pre-line;">{situacion.descripcion}</p>
               <Button href={`#${situacion.packageId}`} variant="secondary" class="mt-4">
                 {situacion.cta}
@@ -134,28 +134,28 @@ const situaciones = [
     </section>
     
     <!-- Paquetes -->
-    <section id="paquetes" class="py-16 bg-white">
+    <section id="paquetes" class="py-12 md:py-16 bg-white">
       <div class="container-page">
-        <div class="text-center mb-12">
-          <h2 class="text-2xl md:text-3xl font-heading font-bold text-text-dark mb-4">
+        <div class="text-center mb-8 md:mb-12">
+          <h2 class="text-xl sm:text-2xl md:text-3xl font-heading font-bold text-text-dark mb-4 leading-tight">
             Conoce nuestros paquetes de acompañamiento
           </h2>
-          <p class="text-text-medium max-w-2xl mx-auto">
+          <p class="text-text-medium max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
             Programas diseñados para diferentes etapas de tu desarrollo profesional.
           </p>
         </div>
-        
-        <div class="grid md:grid-cols-3 gap-8">
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {paquetes.map((paquete, index) => (
-            <div id={paquete.id} class={`bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow border-2 ${index === 1 ? 'border-primary' : 'border-transparent'}`}>
+            <div id={paquete.id} class={`bg-white rounded-xl md:rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-lg transition-shadow border-2 ${index === 1 ? 'border-primary' : 'border-transparent'}`}>
               {index === 1 && (
                 <span class="inline-block bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">
                   Más popular
                 </span>
               )}
-              <h3 class="text-2xl font-heading font-bold text-text-dark mb-2">{paquete.title}</h3>
-              <p class="text-primary font-semibold mb-2">{paquete.tagline}</p>
-              <p class="text-text-medium text-sm mb-6">{paquete.description}</p>
+              <h3 class="text-xl md:text-2xl font-heading font-bold text-text-dark mb-2 leading-tight">{paquete.title}</h3>
+              <p class="text-primary font-semibold mb-2 text-sm md:text-base">{paquete.tagline}</p>
+              <p class="text-text-medium text-sm mb-4 md:mb-6 leading-relaxed">{paquete.description}</p>
               
               <div class="border-t border-gray-100 pt-6 mb-6">
                 <h4 class="font-semibold text-text-dark mb-4">Incluye:</h4>
@@ -181,12 +181,12 @@ const situaciones = [
     </section>
     
     <!-- CTA -->
-    <section class="py-16 bg-gradient-to-br from-primary to-primary-dark">
+    <section class="py-12 md:py-16 bg-gradient-to-br from-primary to-primary-dark">
       <div class="container-page text-center">
-        <h2 class="text-2xl md:text-3xl font-heading font-bold text-white mb-4">
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-heading font-bold text-white mb-4 leading-tight">
           ¿Listo para dar el siguiente paso en tu carrera?
         </h2>
-        <p class="text-white/80 mb-8 max-w-xl mx-auto">
+        <p class="text-white/80 mb-6 md:mb-8 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
           Agenda una asesoría gratuita y descubre cómo podemos ayudarte a lograr el trabajo que mereces.
         </p>
         <Button href="/contacto" variant="gold" size="lg">
