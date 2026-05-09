@@ -13,7 +13,7 @@ import Button from '../ui/Button.astro';
       placeholder="Tu nombre"
     />
     <Input 
-      label="Correo electrÃ³nico" 
+      label="Correo electrónico" 
       name="email" 
       type="email"
       required 
@@ -31,7 +31,7 @@ import Button from '../ui/Button.astro';
     label="Mensaje" 
     name="message" 
     required 
-    placeholder="CuÃ©ntanos en quÃ© podemos ayudarte..."
+    placeholder="Cuéntanos en qué podemos ayudarte..."
     rows={5}
   />
   
@@ -44,7 +44,7 @@ import Button from '../ui/Button.astro';
       class="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary"
     />
     <label for="terms" class="text-sm text-text-medium">
-      Acepto la <a href="#" class="text-primary hover:underline">polÃ­tica de privacidad</a> y autorizo el contacto por parte de Human Talent Evolution.
+      Acepto la <a href="#" class="text-primary hover:underline">política de privacidad</a> y autorizo el contacto por parte de Human Talent Evolution.
     </label>
   </div>
   
@@ -87,18 +87,17 @@ import Button from '../ui/Button.astro';
     submitBtn.disabled = true;
     
     try {
-      // NOTE: This is a placeholder for Cloudflare Workers integration
-      // When deploying, implement the Worker endpoint here
-      //
-      // Example implementation:
-      // const response = await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(data),
-      // });
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-      // Simulate successful submission for demo
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Error al enviar el mensaje");
+      }
       
       // Show success message
       if (messagesContainer) {
@@ -109,7 +108,7 @@ import Button from '../ui/Button.astro';
               <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
               </svg>
-              <strong>Â¡Mensaje enviado!</strong>
+              <strong>¡Mensaje enviado!</strong>
             </div>
             <p class="mt-1 text-sm">Nos pondremos en contacto contigo pronto.</p>
           </div>
@@ -131,7 +130,7 @@ import Button from '../ui/Button.astro';
               </svg>
               <strong>Error al enviar</strong>
             </div>
-            <p class="mt-1 text-sm">Por favor intenta de nuevo o contÃ¡ctanos por WhatsApp.</p>
+            <p class="mt-1 text-sm">Por favor intenta de nuevo o contáctanos por WhatsApp.</p>
           </div>
         `;
       }

@@ -13,5 +13,8 @@
   "assets": {
     "binding": "ASSETS",
     "directory": "dist"
+  },
+  "vars": {
+    "RESEND_API_KEY": ""
   }
 }
