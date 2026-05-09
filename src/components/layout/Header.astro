@@ -365,10 +365,10 @@ const currentPath = Astro.url.pathname;
   // Mobile dropdown toggles
   document.querySelectorAll('[data-dropdown-toggle]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const container = btn.closest('[data-mobile-dropdown]');
+      const container = btn.closest('[data-mobile-dropdown]') as HTMLElement | null;
       if (!container) return;
-      const content = container.querySelector('[data-dropdown-content]');
-      const chevron = container.querySelector('[data-dropdown-chevron]');
+      const content = container.querySelector('[data-dropdown-content]') as HTMLElement | null;
+      const chevron = container.querySelector('[data-dropdown-chevron]') as HTMLElement | null;
       if (!content || !chevron) return;
 
       const isOpen = container.dataset.dropdownOpen === 'true';
