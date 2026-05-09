@@ -164,14 +164,17 @@ const currentPath = Astro.url.pathname;
         <nav class="flex-1 p-6 space-y-1">
           {navLinks.map((link) => (
             link.children ? (
-              <div class="mb-6">
-                <a
-                  href={link.href}
-                  class={`text-sm font-heading font-semibold text-text-dark uppercase tracking-wide hover:text-primary transition-colors block mb-3`}
+              <div class="mb-3" data-mobile-dropdown>
+                <button
+                  class="flex items-center justify-between w-full text-base font-heading font-semibold text-text-dark hover:text-primary transition-colors py-3 px-3 rounded-lg hover:bg-primary/5"
+                  data-dropdown-toggle
                 >
                   {link.label}
-                </a>
-                <div class="space-y-1 pl-2 border-l-2 border-primary/20">
+                  <svg class="w-4 h-4 transition-transform duration-200" data-dropdown-chevron fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                <div class="space-y-1 pl-4 border-l-2 border-primary/20 overflow-hidden transition-all duration-200 max-h-0 opacity-0" data-dropdown-content>
                   {link.children.map(item => (
                     <div class="py-1">
                       <a
@@ -189,7 +192,7 @@ const currentPath = Astro.url.pathname;
             ) : (
               <a
                 href={link.href}
-                class={`block py-3 font-heading text-lg font-medium transition-colors hover:text-primary hover:bg-primary/5 rounded-lg px-3 ${
+                class={`block py-3 font-heading text-base font-medium transition-colors hover:text-primary hover:bg-primary/5 rounded-lg px-3 ${
                   currentPath === link.href ? 'text-primary bg-primary/10 font-semibold' : 'text-text-dark'
                 }`}
               >
@@ -357,5 +360,32 @@ const currentPath = Astro.url.pathname;
   // Close on link click
   mobileMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeDrawer);
+  });
+
+  // Mobile dropdown toggles
+  document.querySelectorAll('[data-dropdown-toggle]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const container = btn.closest('[data-mobile-dropdown]');
+      if (!container) return;
+      const content = container.querySelector('[data-dropdown-content]');
+      const chevron = container.querySelector('[data-dropdown-chevron]');
+      if (!content || !chevron) return;
+
+      const isOpen = container.dataset.dropdownOpen === 'true';
+
+      if (isOpen) {
+        // Close
+        content.style.maxHeight = '0px';
+        content.classList.add('opacity-0');
+        chevron.style.transform = 'rotate(0deg)';
+        container.dataset.dropdownOpen = 'false';
+      } else {
+        // Open
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.classList.remove('opacity-0');
+        chevron.style.transform = 'rotate(180deg)';
+        container.dataset.dropdownOpen = 'true';
+      }
+    });
   });
 </script>
