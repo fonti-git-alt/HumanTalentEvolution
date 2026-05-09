@@ -52,19 +52,19 @@ const paquetes = [
 const situaciones = [
   {
     titulo: 'Estoy buscando trabajo',
-    descripcion: 'Deja de enviar hojas de vida sin respuesta.\nTe ayudamos a posicionarte como un candidato atractivo y a crear una estrategia efectiva para conseguir oportunidades reales.',
+    descripcion: '<span class="text-primary font-semibold">Deja de enviar hojas de vida sin respuesta.</span><br>Te ayudamos a posicionarte como un candidato atractivo y a crear una estrategia efectiva para conseguir oportunidades reales.',
     cta: 'Quiero conseguir trabajo',
     packageId: 'marca',
   },
   {
     titulo: 'Quiero crecer laboralmente',
-    descripcion: 'No se trata de trabajar más, sino de avanzar mejor.\nIdentificamos tus fortalezas y diseñamos una ruta clara para impulsar tu crecimiento profesional.',
+    descripcion: '<span class="text-primary font-semibold">No se trata de trabajar más, sino de avanzar mejor.</span><br>Identificamos tus fortalezas y diseñamos una ruta clara para impulsar tu crecimiento profesional.',
     cta: 'Quiero crecer profesionalmente',
     packageId: 'salto',
   },
   {
     titulo: 'Quiero potencializar mi perfil',
-    descripcion: 'Tu perfil habla por ti… asegúrate de que diga lo correcto.\nOptimizamos tu hoja de vida y presencia profesional para que destaques frente a reclutadores.',
+    descripcion: '<span class="text-primary font-semibold">Tu perfil habla por ti… asegúrate de que diga lo correcto.</span><br>Optimizamos tu hoja de vida y presencia profesional para que destaques frente a reclutadores.',
     cta: 'Quiero mejorar mi perfil',
     packageId: 'impulso',
   },
@@ -92,13 +92,26 @@ const situaciones = [
                <h1 class="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-text-dark mb-4 md:mb-6 leading-tight">
                  Te ayudamos con tu situación laboral
                </h1>
-                <p class="text-base md:text-lg lg:text-xl text-text-medium mb-4 leading-relaxed">
-                  - Deja de enviar hojas de vida sin respuesta.<br>
-                  - Deja de pedir ese aumento sin seguridad. <br>
-                  - Da ese salto a nuevos proyectos.
-                </p>
-               <p>
-               </p>
+                 <ul class="space-y-3 mb-6 md:mb-8">
+                   <li class="flex items-start gap-3 text-sm md:text-base lg:text-lg text-text-medium leading-relaxed">
+                    <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Tu hoja de vida no debería perderse entre cientos de perfiles
+                  </li>
+                  <li class="flex items-start gap-3 text-sm md:text-base lg:text-lg text-text-medium leading-relaxed">
+                    <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Aprende a reconocer y comunicar tu verdadero valor profesional
+                  </li>
+                  <li class="flex items-start gap-3 text-sm md:text-base lg:text-lg text-text-medium leading-relaxed">
+                    <svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Diseña el siguiente paso de tu vida profesional
+                  </li>
+                </ul>
                <Button href="/contacto" variant="primary" size="lg" class="self-start">
                  ¿Por donde empezar?
                </Button>
@@ -123,7 +136,7 @@ const situaciones = [
                 </svg>
               </div>
               <h3 class="text-lg md:text-xl font-heading font-bold text-text-dark mb-3 leading-tight">{situacion.titulo}</h3>
-              <p class="text-text-medium" style="white-space: pre-line;">{situacion.descripcion}</p>
+              <p class="text-text-medium" set:html={situacion.descripcion}></p>
               <Button href={`#${situacion.packageId}`} variant="secondary" class="mt-4">
                 {situacion.cta}
               </Button>
